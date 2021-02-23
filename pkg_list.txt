@@ -1,0 +1,11 @@
+firefox
+i3-gaps
+jq
+openssh
+unzip
+virtualbox-guest-utils
+wget
+xfce4-terminal
+xorg-server
+xorg-xinit
+xterm

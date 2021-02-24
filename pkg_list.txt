@@ -4,11 +4,9 @@ bat
 bc
 binwalk
 bleachbit
-burpsuite
 cmatrix
 code
 cronie
-dirbuster
 entr
 exfat-utils
 feh
@@ -18,16 +16,13 @@ freerdp
 fzf
 gimp
 gnu-netcat
-gobuster-git
 htop
 i3-gaps
 imagemagick
 inkscape
-inxi
 john
 jq
 libreoffice-fresh
-librespeed-cli-bin
 lynx
 man-db
 man-pages
@@ -44,12 +39,10 @@ ntfs-3g
 openssh
 openvpn
 p7zip
-pandoc-bin
 perl-image-exiftool
 polkit-gnome
 php
 postgresql
-powershell-bin
 pptpclient
 pulseaudio
 pv
@@ -66,7 +59,6 @@ rsync
 screen
 screenkey
 shellcheck
-simple-mtpfs
 sxiv
 tcpdump
 tesseract
@@ -86,7 +78,6 @@ unzip
 vim
 virtualbox-guest-utils
 w3m
-wfuzz-git
 wget
 whois
 wireshark-qt

@@ -1,0 +1,10 @@
+burpsuite
+dirbuster
+gobuster-git
+gromit-mpx-git
+inxi
+librespeed-cli-bin
+pandoc-bin
+powershell-bin
+simple-mtpfs
+wfuzz-git

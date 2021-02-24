@@ -16,6 +16,7 @@ freerdp
 fzf
 gimp
 gnu-netcat
+go
 htop
 i3-gaps
 imagemagick

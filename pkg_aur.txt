@@ -8,3 +8,4 @@ pandoc-bin
 powershell-bin
 simple-mtpfs
 wfuzz-git
+#test

@@ -173,14 +173,72 @@
 " -- ex: 202005151148
   nnoremap <F9> "=system('echo -n $(date --utc "+%Y%m%d%H%M")')<CR>p
 
-syntax enable
-filetype plugin on
+"----------{XCLIP }
+" -- Enable clipboard ability with xclip.
+" -- ref. Andrew [8xx8] Kulakov 'VIM Copy/Paste' <https://coderwall.com/p/hmki3q/vim-copy-paste>
+  map <F7> y:call system("xclip -i -selection clipboard", getreg("\""))<cr>
+  map <S-F7> :call setreg("\"",system("xclip -o -selection clipboard"))<cr>p")")")"))
 
-"----------{ COLORSCHEME }
-"
-set t_Co=256
-set background=dark
+"----------{ PLUGINS }
 
-highlight Comment term=BOLD cterm=BOLD ctermfg=31 ctermbg=NONE
+  syntax enable
+  filetype plugin on
+
+"-----[ vim-plug ]
+
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin('~/.vim/plugged')
+
+Plug 'https://github.com/davidhalter/jedi-vim.git'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
+call plug#end()
+
+" -- Automatically install missing plugins.
+" .. https://github.com/junegunn/vim-plug/wiki/extra#automatically-install-missing-plugins-on-startup
+autocmd VimEnter *
+  \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+  \|   PlugInstall --sync | q
+  \| endif
+
+" -- Disable automatic indent on from vim-plug
+  filetype indent off
+
+"-----[ PLUGIN: fzf.vim ]
+
+nnoremap <silent> <C-o> :Files<CR>
+nnoremap <silent> <leader>os :Files /<CR>
+nnoremap <silent> <C-f> :BLines<CR>
+nnoremap <silent> <leader>td :BLines <!-- <CR>
+
+"-----[ PLUGIN: emmet-vim ]
+
+" -- Enable emmet-vim tab completion 
+" imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
+
+"----------{COLORSCHEME}
+
+  set t_Co=256
+  set background=dark
+
+" -- iceberg: https://github.com/cocopon/iceberg.vim/blob/master/src/iceberg.vim
+" -- blaquemagick: https://github.com/xero/blaquemagick.vim/blob/master/colors/blaquemagick.vim
+
+  colorscheme default
+
+  highlight ColorColumn   cterm=NONE  ctermfg=NONE  ctermbg=238
+  highlight Comment       cterm=BOLD  ctermfg=31    ctermbg=NONE
+  highlight CursorLine    cterm=NONE  ctermfg=NONE  ctermbg=238
+  highlight LineNr        cterm=NONE  ctermfg=246   ctermbg=238
+  highlight Search        cterm=NONE  ctermfg=16    ctermbg=11
+  highlight StatusLine    cterm=NONE  ctermfg=246   ctermbg=238
+  highlight StatusLineNC  cterm=NONE  ctermfg=0     ctermbg=238
+  highlight Visual        cterm=NONE  ctermfg=16    ctermbg=11
 
 "--{ file:fin }----------------------------------------------------------------

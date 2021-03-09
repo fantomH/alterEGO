@@ -18,14 +18,16 @@ profile_firefox='alterego-firefox.default'
 if [[ ${1} == '--repo' ]]; then
     if [[ ${2} == 'firefox' ]]; then
         printf '%s\n' ":: Will update ${local_firefox} => ${repo_firefox}"
+        rm -rf ${repo_firefox}${profile_firefox}
+        sudo cp -r ${local_firefox}${profile_firefox} ${repo_firefox}
+        printf '%s\n' "-> Done!.."
     fi
 elif [[ ${1} == '--local' ]]; then
     if [[ ${2} == 'firefox' ]]; then
         printf '%s\n' ":: Will update ${repo_firefox}${profile_firefox} => ${local_firefox}${profile_firefox}"
-	rm -rf ${local_firefox}${profile_firefox}
-	sudo cp -r ${repo_firefox}${profile_firefox} ${local_firefox}
-	sudo chown --recursive ${USER} ${local_firefox}${profile_firefox}
-	
+        rm -rf ${local_firefox}${profile_firefox}
+        sudo cp -r ${repo_firefox}${profile_firefox} ${local_firefox}
+        sudo chown --recursive ${USER} ${local_firefox}${profile_firefox}
         printf '%s\n' "-> Done!.."
     fi
 fi

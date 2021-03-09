@@ -2,7 +2,7 @@
 "
 " .vimrc:
 "   created:       '2021-02-23 02:54:43 UTC'
-"   updated:       '2021-03-06 03:33:36 UTC'
+"   updated:       '2021-03-09 16:00:47 UTC'
 "   description:   'VIM main configuration file.' 
 "   application:   'vim'
 "   target:        '${HOME}/.vimrc'
@@ -73,6 +73,15 @@
   nmap <leader>k :silent execute '!man <cword>'<cr>:redraw!<cr>
 " -- View Python documentation of word under cursor.
   nmap <leader>hp :silent execute '!pydoc <cword>'<cr>:redraw!<cr>
+
+"----------{ HIGHLIGHT LINE }
+
+  " -- ref. https://vimtricks.com/p/highlight-specific-lines/
+
+  " -- Highlight the current line.
+  nnoremap <silent> <Leader>hl :call matchadd('LineHighlight', '\%'.line('.').'l')<CR>
+  " -- Clear all the highlighted lines.
+  nnoremap <silent> <Leader>hc :call clearmatches()<CR>
 
 "----------{ LINEBREAK AND WRAP }
 
@@ -224,21 +233,35 @@ nnoremap <silent> <leader>td :BLines <!-- <CR>
 
 "----------{COLORSCHEME}
 
+  " -- Colors:
+  " .. 0   Black
+  " .. 10  Lime
+
   set t_Co=256
+
+  " -- iceberg: https://github.com/cocopon/iceberg.vim/blob/master/src/iceberg.vim
+  " -- blaquemagick: https://github.com/xero/blaquemagick.vim/blob/master/colors/blaquemagick.vim
+
+  " colorscheme default
+  colorscheme iceberg
   set background=dark
 
-" -- iceberg: https://github.com/cocopon/iceberg.vim/blob/master/src/iceberg.vim
-" -- blaquemagick: https://github.com/xero/blaquemagick.vim/blob/master/colors/blaquemagick.vim
+  highlight ColorColumn   cterm=NONE    ctermfg=NONE  ctermbg=238
+  highlight Comment       cterm=BOLD    ctermfg=31    ctermbg=NONE
+  highlight CursorLine    cterm=NONE    ctermfg=NONE  ctermbg=238
+  highlight Function      cterm=BOLD    ctermfg=150   ctermbg=NONE
+  highlight LineHighlight cterm=NONE    ctermfg=0     ctermbg=10
+  highlight LineNr        cterm=NONE    ctermfg=246   ctermbg=238
+  highlight Search        cterm=NONE    ctermfg=16    ctermbg=11
+  highlight Statement     cterm=ITALIC  ctermfg=110   ctermbg=NONE
+  highlight StatusLine    cterm=NONE    ctermfg=246   ctermbg=238
+  highlight StatusLineNC  cterm=NONE    ctermfg=0     ctermbg=238
+  highlight Visual        cterm=NONE    ctermfg=16    ctermbg=11
 
-  colorscheme default
-
-  highlight ColorColumn   cterm=NONE  ctermfg=NONE  ctermbg=238
-  highlight Comment       cterm=BOLD  ctermfg=31    ctermbg=NONE
-  highlight CursorLine    cterm=NONE  ctermfg=NONE  ctermbg=238
-  highlight LineNr        cterm=NONE  ctermfg=246   ctermbg=238
-  highlight Search        cterm=NONE  ctermfg=16    ctermbg=11
-  highlight StatusLine    cterm=NONE  ctermfg=246   ctermbg=238
-  highlight StatusLineNC  cterm=NONE  ctermfg=0     ctermbg=238
-  highlight Visual        cterm=NONE  ctermfg=16    ctermbg=11
+  " -- html/md
+  " .. ref. http://vimdoc.sourceforge.net/htmldoc/syntax.html
+  highlight htmlTagName   cterm=BOLD    ctermfg=23    ctermbg=NONE
+  highlight link htmlTag    htmlTagName
+  highlight link htmlEndTag htmlTagName
 
 "--{ file:fin }----------------------------------------------------------------

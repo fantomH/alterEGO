@@ -14,6 +14,10 @@
 
 export ffconf="${HOME}/.mozilla/firefox/alterego-firefox.default"
 
+#----------{ VAVIABLES }
+
+  export TERM="xterm-256color"
+
 #----------{ DEFAULT APPLICATIONS }
 
   export FZF_DEFAULT_COMMAND='rg --files --hidden '
@@ -23,7 +27,7 @@ PS1='[\u@\h \W]\$ '
 #--[ ALIASES ]
 
 alias ls='ls --all --color=auto'
-alias tmux="env TERM=screen-256colors tmux -u"
+alias tmux="env TERM=screen-256color tmux -u"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 

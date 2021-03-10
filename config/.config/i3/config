@@ -2,7 +2,7 @@
 #
 # i3config:
 #   created:       '2021-02-26 09:37:37 UTC'
-#   updated:       '2021-02-26 09:37:37 UTC'
+#   updated:       '2021-03-10 02:59:32 UTC'
 #   description:   'i3vm configuration file.' 
 #   app:           'i3'
 #   target:        '.config/i3/config'
@@ -51,7 +51,7 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec xfce4-terminal --hide-toolbar --hide-menubar --hide-scrollbar -e "tmux"
+bindsym $mod+Return exec xfce4-terminal --hide-toolbar --hide-menubar --hide-scrollbar -e "env TERM=screen-256color tmux -u"
 
 # kill focused window
 bindsym $mod+Shift+q kill

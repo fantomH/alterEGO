@@ -253,7 +253,7 @@ nnoremap <silent> <leader>td :BLines <!-- <CR>
   highlight LineHighlight cterm=NONE    ctermfg=0     ctermbg=10
   highlight LineNr        cterm=NONE    ctermfg=246   ctermbg=238
   highlight Search        cterm=NONE    ctermfg=16    ctermbg=11
-  highlight Statement     cterm=ITALIC  ctermfg=110   ctermbg=NONE
+  highlight Statement     cterm=italic  ctermfg=110   ctermbg=red
   highlight StatusLine    cterm=NONE    ctermfg=246   ctermbg=238
   highlight StatusLineNC  cterm=NONE    ctermfg=0     ctermbg=238
   highlight Visual        cterm=NONE    ctermfg=16    ctermbg=11
@@ -263,5 +263,7 @@ nnoremap <silent> <leader>td :BLines <!-- <CR>
   highlight htmlTagName   cterm=BOLD    ctermfg=23    ctermbg=NONE
   highlight link htmlTag    htmlTagName
   highlight link htmlEndTag htmlTagName
+
+
 
 "--{ file:fin }----------------------------------------------------------------

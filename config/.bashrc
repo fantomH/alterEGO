@@ -28,6 +28,7 @@ alias ll='ls --all --human-readable -l --color=auto'
 alias ls='ls --all --color=auto'
 alias reload="source ${HOME}/.bashrc"
 # alias tmux="env TERM=screen-256color tmux -u"
+alias attack="source ${HOME}/.attackrc"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 

@@ -2,7 +2,7 @@
 "
 " .vimrc:
 "   created:       '2021-02-23 02:54:43 UTC'
-"   updated:       '2021-03-09 16:00:47 UTC'
+"   updated:       '2021-03-13 01:14:50 UTC'
 "   description:   'VIM main configuration file.' 
 "   application:   'vim'
 "   target:        '${HOME}/.vimrc'
@@ -221,9 +221,15 @@ autocmd VimEnter *
 
 "-----[ PLUGIN: fzf.vim ]
 
+" -- Buffers list.
+nnoremap <silent> <leader>ls :Buffers<CR>
+" -- Open files in $HOME.
 nnoremap <silent> <C-o> :Files<CR>
+" -- Open files from /.
 nnoremap <silent> <leader>os :Files /<CR>
+" -- Find lines containing.
 nnoremap <silent> <C-f> :BLines<CR>
+" -- Droidnotes TOC find.
 nnoremap <silent> <leader>td :BLines <!-- <CR>
 
 "-----[ PLUGIN: emmet-vim ]

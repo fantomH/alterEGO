@@ -16,3 +16,11 @@ Wordlists are found in /usr/local/share/wordlist/.
 #### best1050.txt
 https://raw.githubusercontent.com/danielmiessler/SecLists/master/Passwords/Common-Credentials/best1050.txt
 List of 1050 common password. 
+
+## Scripts
+
+### EGOmenu.sh
+
+  - alterEGO script.
+
+### Linpeas

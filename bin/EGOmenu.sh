@@ -30,7 +30,7 @@ function tmux_background() {
   tmux new-session -d -s ${session}
   sleep 0.5
   tmux send-keys -t ${session} "nohup ${cmd} & disown && exit" enter
-}#--{ func:fin }
+} #--{ func:fin }
 
 #----------{ FZF MENU }
 

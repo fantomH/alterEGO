@@ -1,0 +1,14 @@
+#--{ ZmFudG9tSA==: "Open the vault of knowledge" }-----------------------------
+#
+# .extrarc:
+#   created:       '2021-03-16 10:15:03 UTC'
+#   updated:       '2021-03-16 10:15:14 UTC'
+#   description:   'Shell config to unclog bashrc.' 
+#   app:           'bash'
+#   target:        '$HOME/.extrarc'
+#
+#------------------------------{ alterEGO Linux }------------------------------
+
+alias attack="source ${HOME}/.attackrc"
+
+#--{ file:fin }----------------------------------------------------------------

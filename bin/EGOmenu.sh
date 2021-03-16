@@ -10,17 +10,35 @@
 #
 #------------------------------{ alterEGO Linux }------------------------------
 
+  _TERMINAL="xfce4-terminal --hide-scrollbar --hide-menubar --hide-toolbar"
+  _field_sep=";;"
+
 #----------{ MENU LIST }
 # -- List the application here.
 # .. APP_NAME|FUNCTION|COMMAND|SESSION/TITLE
 
 _list="\
-Burp Suite|tmux_background|burpsuite|BURP
-Firefox|tmux_background|firefox|FIREFOX
-Firefox --private|tmux_background|firefox --private-window|SHUTTT
+burp suite;;tmux_background;;burpsuite;;BURP
+exit i3;;execute;;i3-msg exit;;null
+firefox;;tmux_background;;firefox;;FIREFOX
+firefox --private;;tmux_background;;firefox --private-window;;SHUTTT
+htop;;terminal;;htop;;null
+ranger;;terminal;;ranger;;RANGER
+reboot;;execute;;reboot;;null
+shrug;;execute;;echo '¯\_(ツ)_/¯';;null
+shutdown;;execute;;shutdown now;;null
+star wars;;terminal;;telnet towel.blinkenlights.nl;;null
+thunar;;tmux_background;;thunar;;THUNAR
+thunar for admin;;tmux_background;;sudo thunar;;SUDOTHUNAR
+view history;;execute;;cat ${HOME}/.bash_history | fzf;;null
+wireshark;;tmux_background;;sudo wireshark;;WIRESHARK
 "
 
 #----------{ FUNCTIONS }
+
+function terminal() {
+  $_TERMINAL --command="$cmd"
+} #--{ func:fin }
 
 function tmux_background() {
   # -- Sends commands to a detached session.
@@ -29,23 +47,35 @@ function tmux_background() {
 
   tmux new-session -d -s ${session}
   sleep 0.5
-  tmux send-keys -t ${session} "nohup ${cmd} & disown && exit" enter
+  tmux send-keys -t ${session} "nohup ${cmd} >/dev/null 2>&1 & disown && exit" enter
 } #--{ func:fin }
 
-#----------{ FZF MENU }
+#----------{ MENU }
 
-_selection=$(for app in "$(awk -F '|' '{print $1}' <<< ${_list})"; do echo "${app}"; done                  \
-        | fzf) 
+_selection=$(for app in "$(awk -F ';;' '{print $1}' <<< ${_list})"; do        \
+                 echo "${app}";                                               \
+             done                                                             \
+             | fzf --reverse) 
 [[ -z ${_selection} ]]
 
-_config=$(grep -E "^${_selection}\|" <<< "${_list}") 
-_run=$(awk -F '|' '{print $2}' <<< ${_config})
+_config=$(grep -E "^${_selection};;" <<< "${_list}") 
+_run=$(awk -F ';;' '{print $2}' <<< ${_config})
 
 case $_run in
 
+    execute )
+        cmd=$(awk -F ';;' '{print $3}' <<< "${_config}")
+        eval $cmd
+        ;;
+
+    terminal )
+        cmd=$(awk -F ';;' '{print $3}' <<< "${_config}")
+        terminal
+        ;;
+
     tmux_background )
-        session="$(awk -F '|' '{print $4}' <<< "${_config}")${RANDOM}"
-        cmd="$(awk -F '|' '{print $3}' <<< "${_config}")"
+        session="$(awk -F ';;' '{print $4}' <<< "${_config}")${RANDOM}"
+        cmd="$(awk -F ';;' '{print $3}' <<< "${_config}")"
         tmux_background
         ;;
 

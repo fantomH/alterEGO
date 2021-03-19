@@ -1,0 +1,15 @@
+#--{ ZmFudG9tSA==: "Open the vault of knowledge" }-----------------------------
+#
+# .egorc:
+#   created:       '2021-03-19 09:37:19 UTC'
+#   updated:       '2021-03-19 09:37:26 UTC'
+#   description:   'Additional shell stuff for EGO Linux.' 
+#   app:           'bash'
+#   target:        '$HOME/.egorc'
+#
+#------------------------------{ alterEGO Linux }------------------------------
+
+export wordlist="/usr/local/share/wordlist"
+export rockyou="${wordlist}/rockyou.txt"
+
+#--{ file:fin }----------------------------------------------------------------

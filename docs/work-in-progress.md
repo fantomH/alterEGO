@@ -12,6 +12,12 @@
 
 ### Nikto
 
+### SQLiteBrowser
+
+    Name            : sqlitebrowser
+    Description     : SQLite Database browser is a light GUI editor for SQLite databases, built on top of Qt
+    URL             : https://sqlitebrowser.org/
+
 ### SQLmap
 
   - Automatic SQL injection and database takeover tool.
@@ -24,7 +30,6 @@
 ### Wireshark
 
 ## Wordlists
-
 Wordlists are found in /usr/local/share/wordlist/.
 
 ### SecLists

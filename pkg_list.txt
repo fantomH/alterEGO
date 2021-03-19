@@ -34,6 +34,7 @@ mtools
 mtr
 net-tools
 nfs-utils
+nikto
 nmap
 notify-osd
 ntfs-3g
@@ -60,6 +61,7 @@ rsync
 screen
 screenkey
 shellcheck
+sqlitebrowser
 sxiv
 tcpdump
 tesseract

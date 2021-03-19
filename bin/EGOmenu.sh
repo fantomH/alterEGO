@@ -3,7 +3,7 @@
 #
 # EGOmenu.sh:
 #   created:       '2021-03-12 19:49:39 UTC'
-#   updated:       '2021-03-12 22:30:41 UTC'
+#   updated:       '2021-03-19 10:04:39 UTC'
 #   description:   'EGO menu using FZF.' 
 #   dependencies:
 #     - fzf
@@ -27,6 +27,7 @@ ranger;;terminal;;ranger;;RANGER
 reboot;;execute;;reboot;;null
 shrug;;execute;;echo '¯\_(ツ)_/¯';;null
 shutdown;;execute;;shutdown now;;null
+sqlitebrowser;;tmux_background;;sqlitebrowser;;SQLB
 star wars;;terminal;;telnet towel.blinkenlights.nl;;null
 thunar;;tmux_background;;thunar;;THUNAR
 thunar for admin;;tmux_background;;sudo thunar;;SUDOTHUNAR

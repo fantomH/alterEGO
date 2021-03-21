@@ -48,4 +48,9 @@ List of 1050 common password.
 
   - alterEGO script.
 
+### Hash Identifier
+  - GitLab: https://gitlab.com/kalilinux/packages/hash-identifier/
+
+    wget https://gitlab.com/kalilinux/packages/hash-identifier/-/raw/kali/master/hash-id.py
+
 ### Linpeas

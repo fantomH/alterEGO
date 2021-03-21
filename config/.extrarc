@@ -9,6 +9,7 @@
 #
 #------------------------------{ alterEGO Linux }------------------------------
 
+export lgit="/usr/local/alterEGO"
 alias attack="source ${HOME}/.attackrc"
 
 #--{ file:fin }----------------------------------------------------------------

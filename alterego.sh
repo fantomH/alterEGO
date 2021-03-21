@@ -3,7 +3,7 @@
 #
 # alterego.sh:
 #   created:       '2021-02-20 02:27:25 UTC'
-#   updated:       '2021-03-21 11:35:24 UTC'
+#   updated:       '2021-03-21 12:47:25 UTC'
 #   description:   'Create an AlterEGO/Arch Linux VM' 
 #   dependencies:
 #
@@ -159,6 +159,18 @@ EOF2
         # -- best1050.txt
         cp ${git_local}/share/wordlist/best1050.txt ${usr_local}/share/wordlist/
         printf '%s\n' " -> Copying best1050.txt to ${usr_local}/share/wordlist/..."
+
+    # -- /usr/local/bin.
+        # -- TODO: ADD SCRIPTS HERE!!!
+        # -- EGOmenu.sh
+        cp ${git_local}/bin/EGOmenu.sh ${usr_local}/bin/
+        printf '%s\n' " -> Copying EGOmenu.py to ${usr_local}/bin/..."
+        # -- hash-id.py
+        cp ${git_local}/bin/hash-id.py ${usr_local}/bin/
+        printf '%s\n' " -> Copying hash-id.py to ${usr_local}/bin/..."
+        # -- linpeas.sh
+        cp ${git_local}/bin/linpeas.sh ${usr_local}/bin/
+        printf '%s\n' " -> Copying linpeas.sh to ${usr_local}/bin/..."
         
   #--[ SWAPFILE ]
 

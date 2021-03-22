@@ -13,7 +13,7 @@ import sqlite3 as sql
 import subprocess
 import webbrowser
 
-con = sql.connect('/home/ghost/fH/alterEGO/share/bookmarks/bookmarks.db')
+con = sql.connect('/usr/local/share/bookmarks/bookmarks.db')
 cur = con.cursor()
 
 sqlite_select_query = """SELECT * from bookmarks"""

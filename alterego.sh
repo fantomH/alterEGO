@@ -3,7 +3,7 @@
 #
 # alterego.sh:
 #   created:       '2021-02-20 02:27:25 UTC'
-#   updated:       '2021-03-21 12:47:25 UTC'
+#   updated:       '2021-03-22 23:29:28 UTC'
 #   description:   'Create an AlterEGO/Arch Linux VM' 
 #   dependencies:
 #
@@ -151,6 +151,11 @@ EOF2
 
     printf '%s\n' ":: Deploying files..."
 
+    # -- /usr/local/share/.
+        # -- bookmarks.db
+        ln -s ${git_local}/share/bookmarks.db ${usr_local}/share/bookmarks.db
+        printf '%s\n' " -> Symlink created for bookmarks.db"
+
     # -- /usr/local/share/wordlist/.
         mkdir /usr/local/share/wordlist
         # -- rockyou.txt
@@ -162,15 +167,18 @@ EOF2
 
     # -- /usr/local/bin.
         # -- TODO: ADD SCRIPTS HERE!!!
+        # -- bookmarks.py
+        ln -s ${git_local}/bin/bookmarks.py ${usr_local}/bin/bookmarks.py
+        printf '%s\n' " -> Symlink created to bookmarks.py"
         # -- EGOmenu.sh
-        cp ${git_local}/bin/EGOmenu.sh ${usr_local}/bin/
-        printf '%s\n' " -> Copying EGOmenu.py to ${usr_local}/bin/..."
+        ln -s ${git_local}/bin/EGOmenu.sh ${usr_local}/bin/EGOmenu.sh
+        printf '%s\n' " -> Symlink created to EGOmenu.sh"
         # -- hash-id.py
-        cp ${git_local}/bin/hash-id.py ${usr_local}/bin/
-        printf '%s\n' " -> Copying hash-id.py to ${usr_local}/bin/..."
+        ln -s ${git_local}/bin/hash-id.py ${usr_local}/bin/hash-id.py
+        printf '%s\n' " -> Symlink created to hash-id.py"
         # -- linpeas.sh
-        cp ${git_local}/bin/linpeas.sh ${usr_local}/bin/
-        printf '%s\n' " -> Copying linpeas.sh to ${usr_local}/bin/..."
+        ln -s ${git_local}/bin/linpeas.sh ${usr_local}/bin/linpeash.sh
+        printf '%s\n' " -> Symlink created to linpeas.sh"
         
   #--[ SWAPFILE ]
 

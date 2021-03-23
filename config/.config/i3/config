@@ -2,7 +2,7 @@
 #
 # i3config:
 #   created:       '2021-02-26 09:37:37 UTC'
-#   updated:       '2021-03-16 13:40:48 UTC'
+#   updated:       '2021-03-23 17:27:04 UTC'
 #   description:   'i3vm configuration file.' 
 #   app:           'i3'
 #   target:        '.config/i3/config'
@@ -197,7 +197,7 @@ bindsym $mod+Return exec xfce4-terminal                                       \
                             --hide-toolbar                                    \
                             --hide-menubar                                    \
                             --hide-scrollbar                                  \
-                            -e "tmux"
+                            -e "env TERM=screen-256color tmux -u"
 
 #---[ BOOKMARKS MENU ]
 bindsym $mod+b exec xfce4-terminal                                            \

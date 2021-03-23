@@ -67,6 +67,13 @@
 
 ### Wireshark
 
+    Name            : wireshark-qt
+    Version         : 3.4.4-1
+    Description     : Network traffic and protocol analyzer/sniffer - Qt GUI
+    Architecture    : x86_64
+    URL             : https://www.wireshark.org/
+    Repository      : ArchLinux/community
+
 ## Wordlists
 Wordlists are found in /usr/local/share/wordlist/.
 

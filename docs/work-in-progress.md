@@ -2,77 +2,82 @@
 
 ### Burp Suite
 
-    Name            : burpsuite
-    Description     : An integrated platform for performing security testing of web applications (free edition)
+    NAME            : burpsuite
+    DESCRIPTION     : An integrated platform for performing security testing of web applications (free edition)
     URL             : https://portswigger.net/burp/
-    Repository      : https://aur.archlinux.org/packages/burpsuite
+    REPOSITORY      : https://aur.archlinux.org/packages/burpsuite
+
+### Dirbuster
+
+    NAME            : dirbuster
+    DESCRIPTION     : An application designed to brute force directories and files names on web/application servers
+    URL             : http://www.owasp.org/index.php/Category:OWASP_DirBuster_Project
+    REPOSITORY      : https://aur.archlinux.org/packages/dirbuster
 
 ### Gobuster
 
-    Name            : gobuster-git
-    Description     : A directory/file & DNS busting tool.
+    NAME            : gobuster-git
+    DESCRIPTION     : A directory/file & DNS busting tool.
     URL             : https://github.com/OJ/gobuster
-    Repository      : https://aur.archlinux.org/packages/gobuster-git
+    REPOSITORY      : https://aur.archlinux.org/packages/gobuster-git
 
 ### John
 
-    Name            : john
-    Description     : John the Ripper password cracker
+    NAME            : john
+    DESCRIPTION     : John the Ripper password cracker
     URL             : https://www.openwall.com/john
-    Repository      : ArchLinux/community
+    REPOSITORY      : ArchLinux/community
 
 ### Metasploit
 
-    Name            : metasploit
-    Description     : Advanced open-source platform for developing, testing, and using exploit code
+    NAME            : metasploit
+    DESCRIPTION     : Advanced open-source platform for developing, testing, and using exploit code
     URL             : https://www.metasploit.com/
-    Repository      : ArchLinux/community
+    REPOSITORY      : ArchLinux/community
 
 ### Nmap
 
-    Name            : nmap
-    Description     : Utility for network discovery and security auditing
+    NAME            : nmap
+    DESCRIPTION     : Utility for network discovery and security auditing
     URL             : https://nmap.org/
-    Repository      : ArchLinux/extra
+    REPOSITORY      : ArchLinux/extra
 
 ### Nikto
 
-    Name            : nikto
-    Description     : A web server scanner which performs comprehensive tests against web servers for multiple items
+    NAME            : nikto
+    DESCRIPTION     : A web server scanner which performs comprehensive tests against web servers for multiple items
     URL             : https://github.com/sullo/nikto
-    Repository      : ArchLinux/community
+    REPOSITORY      : ArchLinux/community
 
 ### SQLiteBrowser
 
-    Name            : sqlitebrowser
-    Description     : SQLite Database browser is a light GUI editor for SQLite databases, built on top of Qt
+    NAME            : sqlitebrowser
+    DESCRIPTION     : SQLite Database browser is a light GUI editor for SQLite databases, built on top of Qt
     URL             : https://sqlitebrowser.org/
-    Repository      : ArchLinux/community
+    REPOSITORY      : ArchLinux/community
 
 ### SQLmap
 
-    Name            : sqlmap
-    Description     : Automatic SQL injection and database takeover tool
+    NAME            : sqlmap
+    DESCRIPTION     : Automatic SQL injection and database takeover tool
     URL             : http://sqlmap.org
-    Repository      : ArchLinux/community
+    REPOSITORY      : ArchLinux/community
 
   - TEST ON: Known Vulns @ https://tryhackme.com/room/owasptop10 [Task 29]
 
 ### Wfuzz
 
-    Name            : wfuzz-git
-    Description     : Web application fuzzer - python3 build of the dev branch
+    NAME            : wfuzz-git
+    DESCRIPTION     : Web application fuzzer - python3 build of the dev branch
     URL             : https://github.com/xmendez/wfuzz
-    Repository      : https://aur.archlinux.org/packages/wfuzz-git
+    REPOSITORY      : https://aur.archlinux.org/packages/wfuzz-git
 
 ### Wireshark
 
-    Name            : wireshark-qt
-    Version         : 3.4.4-1
-    Description     : Network traffic and protocol analyzer/sniffer - Qt GUI
-    Architecture    : x86_64
+    NAME            : wireshark-qt
+    DESCRIPTION     : Network traffic and protocol analyzer/sniffer - Qt GUI
     URL             : https://www.wireshark.org/
-    Repository      : ArchLinux/community
+    REPOSITORY      : ArchLinux/community
 
 ## Wordlists
 Wordlists are found in /usr/local/share/wordlist/.
@@ -106,5 +111,9 @@ List of 1050 common password.
     ORIGIN          : https://gitlab.com/kalilinux/packages/hash-identifier/-/raw/kali/master/hash-id.py
 
 ### Linpeas
+
+    NAME            : linpeas.sh
+    URL             : https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/tree/master/linPEAS
+    ORIGIN          : https://raw.githubusercontent.com/carlospolop/privilege-escalation-awesome-scripts-suite/master/linPEAS/linpeas.sh
 
 <!--{ file:fin }............................................................-->

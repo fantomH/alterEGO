@@ -11,5 +11,6 @@
 
 export lgit="/usr/local/alterEGO"
 alias attack="source ${HOME}/.attackrc"
+alias updateROOT='sudo -u root sh -c "cd $lgit && git pull"'
 
 #--{ file:fin }----------------------------------------------------------------

@@ -7,6 +7,7 @@ bleachbit
 cmatrix
 code
 cronie
+dos2unix
 entr
 exfat-utils
 feh

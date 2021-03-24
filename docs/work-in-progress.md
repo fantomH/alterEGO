@@ -1,5 +1,12 @@
 ## Installed packages + applications
 
+### arp-scan
+
+    NAME            : arp-scan
+    DESCRIPTION     : A tool that uses ARP to discover and fingerprint IP hosts on the local network
+    URL             : https://github.com/royhills/arp-scan
+    REPOSITORY      : ArchLinux/community
+
 ### Burp Suite
 
     NAME            : burpsuite

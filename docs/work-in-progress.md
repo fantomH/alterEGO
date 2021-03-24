@@ -116,4 +116,12 @@ List of 1050 common password.
     URL             : https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/tree/master/linPEAS
     ORIGIN          : https://raw.githubusercontent.com/carlospolop/privilege-escalation-awesome-scripts-suite/master/linPEAS/linpeas.sh
 
+#----------{ NOTES }
+
+#-----[ TO EXPLORE ]
+
+  - From THM encryptioncrypto101 for RSA stuff:
+    - https://github.com/Ganapati/RsaCtfTool
+    - https://github.com/ius/rsatool
+
 <!--{ file:fin }............................................................-->

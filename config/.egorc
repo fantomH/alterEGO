@@ -2,7 +2,7 @@
 #
 # .egorc:
 #   created:       '2021-03-19 09:37:19 UTC'
-#   updated:       '2021-03-19 09:37:26 UTC'
+#   updated:       '2021-03-25 23:15:56 UTC'
 #   description:   'Additional shell stuff for EGO Linux.' 
 #   app:           'bash'
 #   target:        '$HOME/.egorc'
@@ -10,6 +10,7 @@
 #------------------------------{ alterEGO Linux }------------------------------
 
 export wordlist="/usr/local/share/wordlist"
+export best1050="${wordlist}/best1050.txt"
 export rockyou="${wordlist}/rockyou.txt"
 
 #--{ file:fin }----------------------------------------------------------------

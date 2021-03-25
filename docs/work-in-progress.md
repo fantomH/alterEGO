@@ -28,12 +28,22 @@
     URL             : https://github.com/OJ/gobuster
     REPOSITORY      : https://aur.archlinux.org/packages/gobuster-git
 
+### gpg
+
+    NAME            : gpg
+    PKG OWNER       : gnupg
+    DESCRIPTION     : OpenPGP encryption and signing tool.
+    URL             : https://www.gnupg.org/
+    REPOSITORY      : ArchLinux/core
+
 ### John
 
     NAME            : john
     DESCRIPTION     : John the Ripper password cracker
     URL             : https://www.openwall.com/john
     REPOSITORY      : ArchLinux/community
+
+    USEFUL          : - gpg2john
 
 ### Metasploit
 

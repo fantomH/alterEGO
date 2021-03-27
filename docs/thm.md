@@ -10,3 +10,12 @@ This fails because of a python update:
         data = base64.decodestring(data)
     AttributeError: module 'base64' has no attribute 'decodestring'
     $ sed 's/decodestring/decodebytes/' /usr/bin/ssh2john | python3.9 - idrsa.id_rsa > ssh_hash.txt
+
+## ROOM: intro2windows
+
+### Utility tools
+
+  - Read text again.
+
+### Users and Groups Management
+  - Machine for Active Directory.

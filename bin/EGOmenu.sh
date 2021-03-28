@@ -3,7 +3,7 @@
 #
 # EGOmenu.sh:
 #   created:       '2021-03-12 19:49:39 UTC'
-#   updated:       '2021-03-19 10:04:39 UTC'
+#   updated:       '2021-03-28 12:12:25 UTC'
 #   description:   'EGO menu using FZF.' 
 #   dependencies:
 #     - fzf
@@ -25,6 +25,7 @@ firefox --private;;tmux_background;;firefox --private-window;;SHUTTT
 htop;;terminal;;htop;;null
 ranger;;terminal;;ranger;;RANGER
 reboot;;execute;;reboot;;null
+remmina;;tmux_background;;remmina;;REMMINA
 shrug;;execute;;echo '¯\_(ツ)_/¯';;null
 shutdown;;execute;;shutdown now;;null
 sqlitebrowser;;tmux_background;;sqlitebrowser;;SQLB

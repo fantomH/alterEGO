@@ -19,3 +19,5 @@ This fails because of a python update:
 
 ### Users and Groups Management
   - Machine for Active Directory.
+
+## ROOM: activedirectorybasics

@@ -3,11 +3,10 @@
 #
 # EGOmenu.sh:
 #   created:       '2021-03-12 19:49:39 UTC'
-#   updated:       '2021-04-06 01:20:51 UTC'
+#   updated:       '2021-04-06 22:46:32 UTC'
 #   description:   'EGO menu using FZF.' 
 #   dependencies:
 #     - fzf
-#
 #------------------------------------------------------------------------------
 
   _TERMINAL="xfce4-terminal --hide-scrollbar --hide-menubar --hide-toolbar"

@@ -1,0 +1,35 @@
+#--{ ZmFudG9tSA==: "Open the vault of knowledge" }-----------------------------
+#
+# .attackrc:
+#   created:       '2021-03-07 15:10:11 UTC'
+#   updated:       '2021-03-26 10:36:52 UTC'
+#   description:   'Pentesting confing stuff.' 
+#   app:           'NONE'
+#   target:        '$HOME/.attackrc'
+#
+#------------------------------{ alterEGO Linux }------------------------------
+
+export _LHOST='10.6.40.189'
+export _RHOST='10.10.103.97'
+
+export _ROOM='activedirectorybasics'
+export _MAINDIR="${HOME}/.thm"
+export _ROOMDIR="${_MAINDIR}/${_ROOM}"
+
+#----------{ PREP }
+
+  if [[ ! -d "${_MAINDIR}/${_ROOM}" ]]; then
+      mkdir -p ${_MAINDIR}/${_ROOM}
+  fi
+
+  touch ${_MAINDIR}/${_ROOM}/quicknotes.md
+
+#----------{ LAUNCHING }
+
+  if [[ ${1} == 'go' ]]; then
+      sudo openvpn ${HOME}/Downloads/THM.fantomH.ovpn &
+  else
+      printf '%s\n' ":: What Do you want to do??"
+  fi
+
+#--{ file:fin }----------------------------------------------------------------

@@ -15,6 +15,7 @@
 
   export pubip="$(host myip.opendns.com resolver1.opendns.com                 \
                   | grep -oP '(?<=myip.opendns.com has address ).*$')"
-  export lhost="$(ip address | grep -oP "(?<=inet ).*(?=/.*global)")"
+  export locip="$(ip address | grep -oP "(?<=inet ).*(?=/.*enp0)")"
+  export vpnip="$(ip address | grep -oP "(?<=inet ).*(?=/.*tun0)")"
 
 #--{ file:fin }----------------------------------------------------------------

@@ -2,6 +2,7 @@ alsa-utils
 arp-scan
 bat
 bc
+bind
 binwalk
 bleachbit
 cmatrix

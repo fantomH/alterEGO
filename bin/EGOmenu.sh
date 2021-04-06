@@ -19,7 +19,7 @@
 
 _list="\
 burp suite;;tmux_background;;burpsuite;;BURP
-change background/wallpaper;;execute;;ego-background.sh &;;null
+change background/wallpaper;;tmux_background;;ego-background.sh;;null
 exit i3;;execute;;i3-msg exit;;null
 firefox;;tmux_background;;firefox;;FIREFOX
 firefox --private;;tmux_background;;firefox --private-window;;SHUTTT

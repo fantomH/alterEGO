@@ -1,13 +1,13 @@
-"--{ ZmFudG9tSA==: "Open the vault of knowledge" }-----------------------------
+"--{ alterEGO Linux: "Open the vault of knowledge" }---------------------------
 "
 " .vimrc:
 "   created:       '2021-02-23 02:54:43 UTC'
-"   updated:       '2021-03-13 01:14:50 UTC'
+"   updated:       '2021-04-06 01:52:31 UTC'
 "   description:   'VIM main configuration file.' 
 "   application:   'vim'
 "   target:        '${HOME}/.vimrc'
 "
-"------------------------------{ alterEGO Linux }------------------------------
+"------------------------------------------------------------------------------
 
 "----------{ GENERAL CONFIG }
 

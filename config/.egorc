@@ -1,16 +1,20 @@
-#--{ ZmFudG9tSA==: "Open the vault of knowledge" }-----------------------------
+#--{ alterEGO Linux: "Open the vault of knowledge" }---------------------------
 #
 # .egorc:
 #   created:       '2021-03-19 09:37:19 UTC'
-#   updated:       '2021-03-25 23:15:56 UTC'
+#   updated:       '2021-04-06 01:22:37 UTC'
 #   description:   'Additional shell stuff for EGO Linux.' 
 #   app:           'bash'
 #   target:        '$HOME/.egorc'
 #
-#------------------------------{ alterEGO Linux }------------------------------
+#------------------------------------------------------------------------------
 
-export wordlist="/usr/local/share/wordlist"
-export best1050="${wordlist}/best1050.txt"
-export rockyou="${wordlist}/rockyou.txt"
+  export wordlist="/usr/local/share/wordlist"
+  export best1050="${wordlist}/best1050.txt"
+  export rockyou="${wordlist}/rockyou.txt"
+
+  export pubip="$(host myip.opendns.com resolver1.opendns.com                 \
+                  | grep -oP '(?<=myip.opendns.com has address ).*$')"
+  export lhost="$(ip address | grep -oP "(?<=inet ).*(?=/.*global)")"
 
 #--{ file:fin }----------------------------------------------------------------

@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
-#--{ ZmFudG9tSA==: "Open the vault of knowledge" }-----------------------------
+#--{ alterEGO Linux: "Open the vault of knowledge" }---------------------------
 #
 # alterego.sh:
 #   created:       '2021-02-20 02:27:25 UTC'
-#   updated:       '2021-03-22 23:29:28 UTC'
+#   updated:       '2021-04-06 19:32:24 UTC
 #   description:   'Create an AlterEGO/Arch Linux VM' 
 #   dependencies:
 #
-#------------------------------{ alterEGO Linux }------------------------------
+#------------------------------------------------------------------------------
 
-#--{ VARIABLES }
+#----------{ VARIABLES }
 
   declare -r esc=$'\033'
   declare -r blue="${esc}[34m"
@@ -27,7 +27,7 @@
   git_local="${usr_local}/alterEGO"
   git_remote='https://github.com/fantomH/alterEGO.git'
 
-#--{ PARTITION }
+#-----[ PARTITION ]
 
   # --- This uses sfdisk.
   # ... On the HOST, you can get the details with:
@@ -60,19 +60,19 @@ EOF
   mkdir /mnt/home
   sleep 1
 
-#--[ BASIC PACKAGES ]
+#-----[ BASIC PACKAGES ]
 
   printf '%s\n' "${blue}:: Installing base packages...${reset}"
   pacstrap /mnt base base-devel git grub linux networkmanager pacman-contrib vim
   sleep 1
 
-#--[ FSTAB ]
+#-----[ FSTAB ]
 
   printf '%s\n' "${blue}:: Generating fstab...${reset}"
   genfstab -U /mnt >> /mnt/etc/fstab
   sleep 1
 
-#-- [ ARCH-CHROOT ]
+#-----[ ARCH-CHROOT ]
 
   # --- Creating a 'step 2' script in /mnt/root directory in order to run it
   # ... in arch-chroot.
@@ -83,14 +83,14 @@ EOF
     printf '%s\n' "${blue}:: Entering chroot...${reset}"
     sleep 1
 
-  #--[ alterEGO GIT ]
+  #-----[ alterEGO GIT ]
 
     printf '%s\n' "${blue}:: Cloning GIT repo...${reset}"
     cd ${usr_local}
     git clone ${git_remote}
     sleep 1
   
-  #--[ TIMEZONE and CLOCK ]
+  #-----[ TIMEZONE and CLOCK ]
 
     printf '%s\n' "${blue}:: Setting timezone and time...${reset}"
     printf '%s\n' " -> Timezone to New York."
@@ -100,7 +100,7 @@ EOF
     printf '%s\n' " -> Time is now: $(date)."
     sleep 1
 
-  #--[ LOCALE ]
+  #-----[ LOCALE ]
 
     printf '%s\n' "${blue}:: Generating locale...${reset}"
     printf '%s\n' " -> Will be set to en_US.UTF-8"
@@ -110,7 +110,7 @@ EOF
     locale-gen
     sleep 1
 
-  #--[ NETWORK CONFIGURATION ]
+  #-----[ NETWORK CONFIGURATION ]
 
     printf '%s\n' "${blue}:: Setting up network...${reset}"
     echo ${hostname} > /etc/hostname
@@ -124,14 +124,14 @@ EOF2
     systemctl enable NetworkManager.service
     sleep 1
 
-  #--[ POPULATING /etc/skel ]
+  #-----[ POPULATING /etc/skel ]
 
     printf '%s\n' "${blue}:: Creating /etc/skel files...${reset}"
     cp -R ${git_local}/config/. /etc/skel/
     ls -a /etc/skel
     sleep 1
 
-  #--[ USERS and PASSWORDS ]
+  #-----[ USERS and PASSWORDS ]
 
     printf '%s\n' "${blue}:: Configuring users and passwords...${reset}"
     printf "${root_passwd}\n${root_passwd}\n" | passwd
@@ -180,7 +180,7 @@ EOF2
         ln -s ${git_local}/bin/linpeas.sh ${usr_local}/bin/linpeash.sh
         printf '%s\n' " -> Symlink created to linpeas.sh"
         
-  #--[ SWAPFILE ]
+  #-----[ SWAPFILE ]
 
     printf '%s\n' "${blue}:: Creating the swapfile...${reset}"
     fallocate -l 1G /swapfile
@@ -190,7 +190,7 @@ EOF2
     echo "/swapfile none swap defaults 0 0" >> /etc/fstab
     sleep 1
 
-  #--[ FIX PACMAN MIRRORLIST ]
+  #-----[ FIX PACMAN MIRRORLIST ]
 
     printf '%s\n' "${blue}:: Fixing Pacman mirrorlist...${reset}"
     # curl -o /etc/pacman.d/mirrorlist https://archlinux.org/mirrorlist/all/
@@ -202,13 +202,13 @@ EOF2
     # rankmirrors /etc/pacman.d/mirrorlist
     sleep 1
 
-  #--[ PACKAGES INSTALL ]
+  #-----[ PACKAGES INSTALL ]
 
     printf '%s\n' "${blue}:: Installing packages...${reset}"
     pacman -Syu --noconfirm - < ${git_local}/pkg_list.txt
     sleep 1
 
-  #--[ YAY ]
+  #-----[ YAY ]
 
     printf '%s\n' "${blue}:: Installing YAY...${reset}"
     cd /opt
@@ -222,14 +222,14 @@ EOF2
     sudo -u ${user} /bin/bash -c "yay -S --noconfirm - < ${git_local}/pkg_aur.txt"
     sleep 1
 
-  #--[ BOOTLOADER ]
+  #-----[ BOOTLOADER ]
 
     printf '%s\n' "${blue}:: Installing and configuring the bootloader...${reset}"
     grub-install /dev/sda
     grub-mkconfig -o /boot/grub/grub.cfg
     sleep 1
 
-  #--[ VIRTUALBOX VM OPTIONS ]
+  #-----[ VIRTUALBOX VM OPTIONS ]
 
     systemctl start vboxservice.service 
     systemctl enable vboxservice.service 
@@ -244,7 +244,7 @@ EOF
   umount -R /mnt
   shutdown now
 
-#-- { NOTES }
+#----------{ NOTES }
   # --- Find Arch Linux iso link (on Canada mirror) and download.
   # iso_link=$(curl --silent https://archlinux.org/download/ | grep -A 10 -i "canada" | grep --max-count 1 -oP "(?<=href\=\").*(?=\")")
   # iso_name=$(curl --silent ${iso_link} | grep -oP "(?<=href\=\")archlinux.*\.iso(?=\")")

@@ -1,13 +1,13 @@
 #!/usr/bin/env python
-#--{ ZmFudG9tSA==: "Open the vault of knowledge" }-----------------------------
+#--{ alterEGO Linux: "Open the vault of knowledge" }---------------------------
 #
 # bookmarks.py:
 #   created:       '2021-03-21 14:39:13 UTC'
-#   updated:       '2021-03-23 08:57:19 UTC'
+#   updated:       '2021-04-06 19:27:40 UTC'
 #   description:   'Bookmarks.' 
 #   dependencies:
 #
-#------------------------------{ alterEGO Linux }------------------------------
+#------------------------------------------------------------------------------
 
 import sqlite3 as sql
 import subprocess

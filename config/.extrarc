@@ -1,16 +1,16 @@
-#--{ ZmFudG9tSA==: "Open the vault of knowledge" }-----------------------------
+#--{ alterEGO Linux: "Open the vault of knowledge" }---------------------------
 #
 # .extrarc:
 #   created:       '2021-03-16 10:15:03 UTC'
-#   updated:       '2021-03-16 10:15:14 UTC'
+#   updated:       '2021-04-06 01:19:11 UTC'
 #   description:   'Shell config to unclog bashrc.' 
 #   app:           'bash'
 #   target:        '$HOME/.extrarc'
 #
-#------------------------------{ alterEGO Linux }------------------------------
+#------------------------------------------------------------------------------
 
-export lgit="/usr/local/alterEGO"
-alias attack="source ${HOME}/.attackrc"
-alias updateROOT='sudo -u root sh -c "cd $lgit && git pull"'
+  export lgit="/usr/local/alterEGO"
+  alias attack="source ${HOME}/.attackrc"
+  alias updateROOT='sudo -u root sh -c "cd $lgit && git pull"'
 
 #--{ file:fin }----------------------------------------------------------------

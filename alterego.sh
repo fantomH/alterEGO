@@ -3,7 +3,7 @@
 #
 # alterego.sh:
 #   created:       '2021-02-20 02:27:25 UTC'
-#   updated:       '2021-04-06 19:32:24 UTC
+#   updated:       '2021-04-07 19:59:49 UTC'
 #   description:   'Create an AlterEGO/Arch Linux VM' 
 #   dependencies:
 #
@@ -179,6 +179,9 @@ EOF2
         # -- best1050.txt
         cp ${git_local}/share/wordlist/best1050.txt ${usr_local}/share/wordlist/
         printf '%s\n' " -> Copying best1050.txt to ${usr_local}/share/wordlist/..."
+        # -- xplateform.txt
+        cp ${git_local}/share/wordlist/xplateform.txt ${usr_local}/share/wordlist/
+        printf '%s\n' " -> Copying xplateform.txt to ${usr_local}/share/wordlist/..."
 
     # -- /usr/local/share/reverse_shell/.
         mkdir /usr/local/share/reverse_shell/.

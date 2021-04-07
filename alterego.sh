@@ -29,10 +29,10 @@
 
 #-----[ PARTITION ]
 
-  # --- This uses sfdisk.
-  # ... On the HOST, you can get the details with:
-  # sudo sfdisk -d /dev/sda > sda.sfdisk
-  # ... ref. https://superuser.com/questions/332252/how-to-create-and-format-a-partition-using-a-bash-script
+  # -- This uses sfdisk.
+  # .. On the HOST, you can get the details with:
+  # .. $ sudo sfdisk -d /dev/sda > sda.sfdisk
+  # .. ref. https://superuser.com/questions/332252/how-to-create-and-format-a-partition-using-a-bash-script
 
   cat <<EOF | sfdisk /dev/sda
 label: dos
@@ -43,7 +43,7 @@ sector-size: 512
 /dev/sda1 : start=        2048, type=83, bootable
 EOF
 
-  # --- Formating & mounting partition.
+  # -- Formating & mounting partition.
 
   printf '%s\n' "${blue}:: Formating the partition...${reset}"
   printf '%s\n' " -> mkfs.ext4 /dev/sda1"
@@ -74,9 +74,9 @@ EOF
 
 #-----[ ARCH-CHROOT ]
 
-  # --- Creating a 'step 2' script in /mnt/root directory in order to run it
-  # ... in arch-chroot.
-  # ... ref. https://bbs.archlinux.org/viewtopic.php?id=204252
+  # -- Creating a 'step 2' script in /mnt/root directory in order to run it
+  # .. in arch-chroot.
+  # .. ref. https://bbs.archlinux.org/viewtopic.php?id=204252
 
   cat <<EOF > /mnt/root/sysconfig.sh
 
@@ -156,15 +156,6 @@ EOF2
         ln -s ${git_local}/share/bookmarks.db ${usr_local}/share/bookmarks.db
         printf '%s\n' " -> Symlink created for bookmarks.db"
 
-    # -- /usr/local/share/wordlist/.
-        mkdir /usr/local/share/wordlist
-        # -- rockyou.txt
-        tar -xzf ${git_local}/share/wordlist/rockyou.tar.gz --directory ${usr_local}/share/wordlist/
-        printf '%s\n' " -> Copying rockyou.txt to ${usr_local}/share/wordlist/..."
-        # -- best1050.txt
-        cp ${git_local}/share/wordlist/best1050.txt ${usr_local}/share/wordlist/
-        printf '%s\n' " -> Copying best1050.txt to ${usr_local}/share/wordlist/..."
-
     # -- /usr/local/bin.
         # -- TODO: ADD SCRIPTS HERE!!!
         # -- bookmarks.py
@@ -179,6 +170,21 @@ EOF2
         # -- linpeas.sh
         ln -s ${git_local}/bin/linpeas.sh ${usr_local}/bin/linpeash.sh
         printf '%s\n' " -> Symlink created to linpeas.sh"
+
+    # -- /usr/local/share/wordlist/.
+        mkdir /usr/local/share/wordlist
+        # -- rockyou.txt
+        tar -xzf ${git_local}/share/wordlist/rockyou.tar.gz --directory ${usr_local}/share/wordlist/
+        printf '%s\n' " -> Copying rockyou.txt to ${usr_local}/share/wordlist/..."
+        # -- best1050.txt
+        cp ${git_local}/share/wordlist/best1050.txt ${usr_local}/share/wordlist/
+        printf '%s\n' " -> Copying best1050.txt to ${usr_local}/share/wordlist/..."
+
+    # -- /usr/local/share/reverse_shell/.
+        mkdir /usr/local/share/reverse_shell/.
+        # -- Pentest Monkey php reverse shell.
+        cp ${git_local}/share/wordlist/php-reverse-shell.php ${usr_local}/share/reverse_shell/
+        printf '%s\n' " -> Copying php-reverse-shell.php to ${usr_local}/share/reverse_shell/..."
         
   #-----[ SWAPFILE ]
 

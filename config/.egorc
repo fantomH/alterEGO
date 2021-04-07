@@ -12,7 +12,7 @@
   export wordlist="/usr/local/share/wordlist"
   export best1050="${wordlist}/best1050.txt"
   export rockyou="${wordlist}/rockyou.txt"
-  export xplateform="${wordlist}/xplateform.txt"
+  export xplatform="${wordlist}/xplatform.txt"
 
 #-----[ REVERSE SHELL ]
   export revshell="/usr/local/share/reverse_shell"

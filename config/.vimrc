@@ -2,11 +2,10 @@
 "
 " .vimrc:
 "   created:       '2021-02-23 02:54:43 UTC'
-"   updated:       '2021-04-06 01:52:31 UTC'
+"   updated:       '2021-04-09 10:34:29 UTC'
 "   description:   'VIM main configuration file.' 
 "   application:   'vim'
 "   target:        '${HOME}/.vimrc'
-"
 "------------------------------------------------------------------------------
 
 "----------{ GENERAL CONFIG }
@@ -82,6 +81,111 @@
   nnoremap <silent> <Leader>hl :call matchadd('LineHighlight', '\%'.line('.').'l')<CR>
   " -- Clear all the highlighted lines.
   nnoremap <silent> <Leader>hc :call clearmatches()<CR>
+
+"----------{ HTML MAPPING }
+
+  augroup filetype_html, filetype_htmldjango
+    autocmd!
+
+    " -- Create a document.
+    autocmd FileType html inoremap html<TAB> 
+    \<!DOCTYPE html><CR>
+    \<html lang="en"><CR>
+    \<head><CR>
+    \<space><space><meta charset="UTF-8"><CR>
+    \<space><space><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"><CR>
+    \<space><space><meta http-equiv="X-UA-Compatible" content="ie=edge"><CR>
+    \<space><space><title></title><CR>
+    \</head><CR>
+    \<CR>
+    \<body><CR>
+    \<CR>
+    \</body><CR>
+    \</html><ESC>?<title><CR>cit
+
+    " -- a + target="_blank"
+    autocmd FileType html inoremap <buffer>a<TAB> 
+    \<a href="" target="_blank"></a><ESC>?=""<CR>ei
+
+    " -- blockquote
+    autocmd FileType html inoremap <buffer>bq<TAB> 
+    \<blockquote></blockquote><ESC>2bli
+
+    " -- bold
+    autocmd FileType html inoremap b<TAB> 
+    \<b></b><ESC>3hi
+
+    " -- break line
+    autocmd FileType html inoremap br<TAB> 
+    \<br<space>/><ESC>a
+
+    " -- code
+    autocmd FileType html inoremap code<TAB> 
+    \<code></code><ESC>6hi
+
+    " -- comment
+    autocmd FileType html inoremap cmt<TAB> 
+    \<!--<space><space>--><ESC>3hi
+
+    " -- div
+    autocmd FileType html inoremap div<TAB> 
+    \<div><CR><space><space><CR></div><ESC>2k0viwyjPj0.k$a
+
+    " -- h1
+    autocmd FileType html inoremap h1<TAB> 
+    \<h1></h1><ESC>4hi
+
+    " -- h2
+    autocmd FileType html inoremap h2<TAB> 
+    \<h2></h2><ESC>4hi
+
+    " -- h3
+    autocmd FileType html inoremap h3<TAB> 
+    \<h3></h3><ESC>4hi
+
+    " -- horizontal line
+    autocmd FileType html inoremap hr<TAB> 
+    \<hr><CR><ESC>a
+
+    " -- italic
+    autocmd FileType html inoremap em<TAB> 
+    \<em></em><ESC>4hi
+
+    " -- li
+    autocmd FileType html inoremap li<TAB> 
+    \<li></li><ESC>4hi
+
+    " -- paragraph
+    autocmd FileType html inoremap p<TAB> 
+    \<p></p><ESC>3hi
+
+    " -- preformated text
+    autocmd FileType html inoremap pre<TAB> 
+    \<pre><ESC>Vypa/<ESC>O
+
+    " ** [droidnotes new article]
+    autocmd FileType html inoremap dart<TAB> 
+    \<!-- title -->
+    \<CR><article id="id" class="article_show">
+    \<CR><space><space><div class="article_head">
+    \<CR><space><space><space><space><div class="article_title">
+    \<CR><space><space><space><space><space><space><h1 class="title">title</h1>
+    \<CR><space><space><space><space></div>
+    \<CR><space><space><space><space><div class="article_closebtn">
+    \<CR><space><space><space><space><space><space><span class="closebtn">&times;</span>
+    \<CR><space><space><space><space></div>
+    \<CR><space><space></div>
+    \<CR><space><space><div class="article_content">
+    \<CR><space><space></div>
+    \<CR><space><space><div class="tags">tag here</div>
+    \<CR></article>
+
+    "--[ autocomplete tags ]
+    "--- ref. https://stackoverflow.com/a/532656
+    autocmd FileType html inoremap /<TAB> 
+    \</<C-x><C-o><ESC>
+
+  autogroup end
 
 "----------{ LINEBREAK AND WRAP }
 

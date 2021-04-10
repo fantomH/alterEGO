@@ -185,7 +185,7 @@
     autocmd FileType html inoremap /<TAB> 
     \</<C-x><C-o><ESC>
 
-  autogroup end
+  augroup end
 
 "----------{ LINEBREAK AND WRAP }
 

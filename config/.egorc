@@ -2,7 +2,7 @@
 #
 # .egorc:
 #   created:       '2021-03-19 09:37:19 UTC'
-#   updated:       '2021-04-07 19:59:00 UTC'
+#   updated:       '2021-04-11 11:54:43 UTC'
 #   description:   'Additional shell stuff for EGO Linux.' 
 #   app:           'bash'
 #   target:        '$HOME/.egorc'
@@ -11,6 +11,7 @@
 #-----[ WORDLISTS ]
   export wordlist="/usr/local/share/wordlist"
   export best1050="${wordlist}/best1050.txt"
+  export big="${wordlist}/seclist-big.txt"
   export rockyou="${wordlist}/rockyou.txt"
   export xplatform="${wordlist}/xplatform.txt"
 
@@ -19,6 +20,7 @@
   export revshell_php="${revshell}/php-reverse-shell.php"
 
 #-----[ IP ADDRESSES ]
+  # -- `host` is provided by the package 'bind'.
   export pubip="$(host myip.opendns.com resolver1.opendns.com                 \
                   | grep -oP '(?<=myip.opendns.com has address ).*$')"
   export locip="$(ip address | grep -oP "(?<=inet ).*(?=/.*enp0)")"

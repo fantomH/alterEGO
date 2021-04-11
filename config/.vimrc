@@ -48,7 +48,7 @@
 "----------{ EDIT .vimrc }
 
   nnoremap <leader>ev :tabedit $MYVIMRC<cr>
-  nnoremap <leader>so :source $MYVIMRC<cr>
+  nnoremap <leader>so :source $MYVIMRC
 
 "----------{ ENCODING }
 
@@ -163,22 +163,22 @@
     autocmd FileType html inoremap pre<TAB> 
     \<pre><ESC>Vypa/<ESC>O
 
-    " ** [droidnotes new article]
+    "-----[ DROIDNOTES NEW ARTICLE ]
     autocmd FileType html inoremap dart<TAB> 
-    \<!-- title -->
-    \<CR><article id="id" class="article_show">
-    \<CR><space><space><div class="article_head">
-    \<CR><space><space><space><space><div class="article_title">
-    \<CR><space><space><space><space><space><space><h1 class="title">title</h1>
-    \<CR><space><space><space><space></div>
-    \<CR><space><space><space><space><div class="article_closebtn">
-    \<CR><space><space><space><space><space><space><span class="closebtn">&times;</span>
-    \<CR><space><space><space><space></div>
-    \<CR><space><space></div>
-    \<CR><space><space><div class="article_content">
-    \<CR><space><space></div>
-    \<CR><space><space><div class="tags">tag here</div>
-    \<CR></article>
+    \<CR><space><space><space><space><!-- TITLE -->
+    \<CR><space><space><space><space><article id="id" class="_show">
+    \<CR><space><space><space><space><space><space><div class="_head">
+    \<CR><space><space><space><space><space><space><space><space><div class="_left">
+    \<CR><space><space><space><space><space><space><space><space><space><space><h1 class="_title">title</h1>
+    \<CR><space><space><space><space><space><space><space><space></div>
+    \<CR><space><space><space><space><space><space><space><space><div class="_right">
+    \<CR><space><space><space><space><space><space><space><space><space><space><span class="_close_button">&times;</span>
+    \<CR><space><space><space><space><space><space><space><space></div>
+    \<CR><space><space><space><space><space><space></div>
+    \<CR><space><space><space><space><space><space><div class="_content">
+    \<CR><space><space><space><space><space><space></div>
+    \<CR><space><space><space><space><space><space><div class="_tags">[null]</div>
+    \<CR><space><space><space><space></article>
 
     "--[ autocomplete tags ]
     "--- ref. https://stackoverflow.com/a/532656

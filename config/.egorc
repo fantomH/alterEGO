@@ -2,7 +2,7 @@
 #
 # .egorc:
 #   created:       '2021-03-19 09:37:19 UTC'
-#   updated:       '2021-04-11 11:54:43 UTC'
+#   updated:       '2021-04-12 13:17:14 UTC'
 #   description:   'Additional shell stuff for EGO Linux.' 
 #   app:           'bash'
 #   target:        '$HOME/.egorc'
@@ -13,6 +13,7 @@
   export best1050="${wordlist}/best1050.txt"
   export big="${wordlist}/seclist-big.txt"
   export rockyou="${wordlist}/rockyou.txt"
+  export largefiles="${wordlist}/raft-large-files.txt"
   export xplatform="${wordlist}/xplatform.txt"
 
 #-----[ REVERSE SHELL ]

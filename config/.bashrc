@@ -2,11 +2,10 @@
 #
 # .bashrc:
 #   created:       '2021-02-26 02:54:43 UTC'
-#   updated:       '2021-04-05 14:12:37 UTC'
+#   updated:       '2021-04-12 13:16:03 UTC'
 #   description:   'Bash config file.' 
 #   app:           'bash'
 #   target:        '$HOME/.bashrc'
-#
 #------------------------------------------------------------------------------
 
 # If not running interactively, don't do anything

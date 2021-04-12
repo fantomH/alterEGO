@@ -3,7 +3,7 @@
 #
 # alterego.sh:
 #   created:       '2021-02-20 02:27:25 UTC'
-#   updated:       '2021-04-11 12:15:08 UTC'
+#   updated:       '2021-04-12 13:12:25 UTC'
 #   description:   'Create an AlterEGO/Arch Linux VM' 
 #   dependencies:
 #
@@ -172,16 +172,25 @@ EOF2
         printf '%s\n' " -> Symlink created to linpeas.sh"
 
     # -- /usr/local/share/wordlist/.
+
         mkdir /usr/local/share/wordlist
-        # -- rockyou.txt
-        tar -xzf ${git_local}/share/wordlist/rockyou.tar.gz --directory ${usr_local}/share/wordlist/
-        printf '%s\n' " -> Copying rockyou.txt to ${usr_local}/share/wordlist/..."
+
         # -- best1050.txt
         cp ${git_local}/share/wordlist/best1050.txt ${usr_local}/share/wordlist/
         printf '%s\n' " -> Copying best1050.txt to ${usr_local}/share/wordlist/..."
+
         # -- seclist-big.txt
         cp ${git_local}/share/wordlist/seclist-big.txt ${usr_local}/share/wordlist/
         printf '%s\n' " -> Copying seclist-big.txt to ${usr_local}/share/wordlist/..."
+
+        # -- raft-large-files.txt
+        cp ${git_local}/share/wordlist/raft-large-files.txt ${usr_local}/share/wordlist/
+        printf '%s\n' " -> Copying raft-large-files.txt to ${usr_local}/share/wordlist/..."
+
+        # -- rockyou.txt
+        tar -xzf ${git_local}/share/wordlist/rockyou.tar.gz --directory ${usr_local}/share/wordlist/
+        printf '%s\n' " -> Copying rockyou.txt to ${usr_local}/share/wordlist/..."
+
         # -- xplateform.txt
         cp ${git_local}/share/wordlist/xplateform.txt ${usr_local}/share/wordlist/
         printf '%s\n' " -> Copying xplateform.txt to ${usr_local}/share/wordlist/..."

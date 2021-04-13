@@ -1,12 +1,10 @@
 #!/usr/bin/env bash
 #--{ alterEGO Linux: "Open the vault of knowledge" }---------------------------
 #
-# alterego.sh:
-#   created:       '2021-02-20 02:27:25 UTC'
-#   updated:       '2021-04-12 13:12:25 UTC'
-#   description:   'Create an AlterEGO/Arch Linux VM' 
-#   dependencies:
-#
+# alterego.sh
+#   created     : 2021-02-20 02:27:25 UTC
+#   updated     : 2021-04-13 12:33:03 UTC
+#   description : Create an AlterEGO/Arch Linux VM.
 #------------------------------------------------------------------------------
 
 #----------{ VARIABLES }
@@ -182,6 +180,10 @@ EOF2
         # -- seclist-big.txt
         cp ${git_local}/share/wordlist/seclist-big.txt ${usr_local}/share/wordlist/
         printf '%s\n' " -> Copying seclist-big.txt to ${usr_local}/share/wordlist/..."
+
+        # -- directory-list-2.3-medium.txt
+        cp ${git_local}/share/wordlist/directory-list-2.3-medium.txt ${usr_local}/share/wordlist/
+        printf '%s\n' " -> Copying directory-list-2.3-medium.txt to ${usr_local}/share/wordlist/..."
 
         # -- raft-large-files.txt
         cp ${git_local}/share/wordlist/raft-large-files.txt ${usr_local}/share/wordlist/

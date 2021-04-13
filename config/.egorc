@@ -1,17 +1,18 @@
 #--{ alterEGO Linux: "Open the vault of knowledge" }---------------------------
 #
-# .egorc:
-#   created:       '2021-03-19 09:37:19 UTC'
-#   updated:       '2021-04-12 13:17:14 UTC'
-#   description:   'Additional shell stuff for EGO Linux.' 
-#   app:           'bash'
-#   target:        '$HOME/.egorc'
+# .egorc
+#   created     : 2021-03-19 09:37:19 UTC
+#   updated     : 2021-04-13 12:38:28 UTC
+#   description : Additional shell stuff for EGO Linux.
+#   app         : bash
+#   target      : $HOME/.egorc
 #------------------------------------------------------------------------------
 
 #-----[ WORDLISTS ]
   export wordlist="/usr/local/share/wordlist"
   export best1050="${wordlist}/best1050.txt"
   export big="${wordlist}/seclist-big.txt"
+  export dirmedium="${wordlist}/directory-list-2.3-medium.txt"
   export rockyou="${wordlist}/rockyou.txt"
   export largefiles="${wordlist}/raft-large-files.txt"
   export xplatform="${wordlist}/xplatform.txt"

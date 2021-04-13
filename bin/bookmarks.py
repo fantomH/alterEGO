@@ -5,8 +5,6 @@
 #   created:       '2021-03-21 14:39:13 UTC'
 #   updated:       '2021-04-06 19:27:40 UTC'
 #   description:   'Bookmarks.' 
-#   dependencies:
-#
 #------------------------------------------------------------------------------
 
 import sqlite3 as sql

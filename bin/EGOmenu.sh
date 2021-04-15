@@ -1,12 +1,11 @@
 #!/usr/bin/env bash
 #--{ alterEGO Linux: "Open the vault of knowledge" }---------------------------
 #
-# EGOmenu.sh:
-#   created:       '2021-03-12 19:49:39 UTC'
-#   updated:       '2021-04-06 22:46:32 UTC'
-#   description:   'EGO menu using FZF.' 
-#   dependencies:
-#     - fzf
+# EGOmenu.sh
+#   created     : 2021-03-12 19:49:39 UTC
+#   updated     : 2021-04-06 22:46:32 UTC
+#   description : EGO menu using FZF.
+#   dependencies: - fzf
 #------------------------------------------------------------------------------
 
   _TERMINAL="xfce4-terminal --hide-scrollbar --hide-menubar --hide-toolbar"
@@ -33,6 +32,7 @@ star wars;;terminal;;telnet towel.blinkenlights.nl;;null
 thunar;;tmux_background;;thunar;;THUNAR
 thunar for admin;;tmux_background;;sudo thunar;;SUDOTHUNAR
 view history;;execute;;cat ${HOME}/.bash_history | fzf;;null
+volume;;tmux_background;;pavucontrol;;VOLUME
 wireshark;;tmux_background;;sudo wireshark;;WIRESHARK
 "
 

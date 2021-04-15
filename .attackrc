@@ -1,18 +1,16 @@
-#--{ ZmFudG9tSA==: "Open the vault of knowledge" }-----------------------------
+#--{ alterEGO Linux: "Open the vault of knowledge" }---------------------------
 #
-# .attackrc:
-#   created:       '2021-03-07 15:10:11 UTC'
-#   updated:       '2021-03-26 10:36:52 UTC'
-#   description:   'Pentesting confing stuff.' 
-#   app:           'NONE'
-#   target:        '$HOME/.attackrc'
-#
-#------------------------------{ alterEGO Linux }------------------------------
+# .attackrc
+#   created     : 2021-03-07 15:10:11 UTC
+#   updated     : 2021-04-15 11:31:24 UTC
+#   description : Pentesting confing stuff. 
+#   target      : $HOME/.attackrc
+#------------------------------------------------------------------------------
 
 export _LHOST='10.6.40.189'
-export _RHOST='10.10.103.97'
+export _RHOST='10.10.201.26'
 
-export _ROOM='activedirectorybasics'
+export _ROOM='blue'
 export _MAINDIR="${HOME}/.thm"
 export _ROOMDIR="${_MAINDIR}/${_ROOM}"
 
@@ -22,7 +20,7 @@ export _ROOMDIR="${_MAINDIR}/${_ROOM}"
       mkdir -p ${_MAINDIR}/${_ROOM}
   fi
 
-  touch ${_MAINDIR}/${_ROOM}/quicknotes.md
+  # touch ${_MAINDIR}/${_ROOM}/quicknotes.md
 
 #----------{ LAUNCHING }
 

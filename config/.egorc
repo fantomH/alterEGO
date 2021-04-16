@@ -24,8 +24,8 @@
 #-----[ IP ADDRESSES ]
   # -- `host` is provided by the package 'bind'.
   export pubip="$(host myip.opendns.com resolver1.opendns.com                 \
-                  | grep -oP '(?<=myip.opendns.com has address ).*$')"
-  export locip="$(ip address | grep -oP "(?<=inet ).*(?=/.*enp0)")"
-  export vpnip="$(ip address | grep -oP "(?<=inet ).*(?=/.*tun0)")"
+                  | grep --color=never -oP '(?<=myip.opendns.com has address ).*$')"
+  export locip="$(ip address | grep --color=never -oP "(?<=inet ).*(?=/.*enp0)")"
+  export vpnip="$(ip address | grep --color=never -oP "(?<=inet ).*(?=/.*tun0)")"
 
 #--{ file:fin }----------------------------------------------------------------

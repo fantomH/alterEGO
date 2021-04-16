@@ -8,7 +8,7 @@
 #------------------------------------------------------------------------------
 
 export _LHOST='10.6.40.189'
-export _RHOST='10.10.201.26'
+export _RHOST='10.10.217.214'
 
 export _ROOM='blue'
 export _MAINDIR="${HOME}/.thm"

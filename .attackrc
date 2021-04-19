@@ -8,7 +8,7 @@
 #------------------------------------------------------------------------------
 
 export _LHOST='10.6.40.189'
-export _RHOST='10.10.102.100'
+export _RHOST='10.10.28.138'
 
 export _ROOM='uploadvulns'
 export _MAINDIR="${HOME}/.thm"

@@ -3,7 +3,7 @@
 #
 # EGOmenu.sh
 #   created     : 2021-03-12 19:49:39 UTC
-#   updated     : 2021-04-06 22:46:32 UTC
+#   updated     : 2021-04-19 09:41:05 UTC
 #   description : EGO menu using FZF.
 #   dependencies: - fzf
 #------------------------------------------------------------------------------
@@ -25,6 +25,8 @@ htop;;terminal;;htop;;null
 ranger;;terminal;;ranger;;RANGER
 reboot;;execute;;reboot;;null
 remmina;;tmux_background;;remmina;;REMMINA
+scout man pages;;execute;;scout_man.py;;null
+scout python modules;;execute;;scout_pymodules.py;;null
 shrug;;execute;;echo '¯\_(ツ)_/¯';;null
 shutdown;;execute;;shutdown now;;null
 sqlitebrowser;;tmux_background;;sqlitebrowser;;SQLB

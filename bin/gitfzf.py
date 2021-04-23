@@ -27,10 +27,27 @@ def get_gits():
     return choices
 
 def get_status(directory):
+    _status = {}
+
     os.chdir(directory)
-    _status = subprocess.Popen(['git', 'ls-files'], stdout=subprocess.PIPE)
-    for x in _status.stdout:
-        print(x.decode('utf-8'))
+
+    _types_of_statuses = ['--others', '--modified', '--deleted', '--cache']
+    for _type in _types_of_statuses:
+        _check_status = subprocess.Popen(['git', 'ls-files', _type], stdout=subprocess.PIPE)
+        for _file in _check_status.stdout:
+            _file = _file.decode('utf-8')[:-1]
+            if _type == '--others':
+                _status[_file] = 'untracked'
+            elif _type == '--modified':
+                _status[_file] = 'modified'
+            elif _type == '--deleted':
+                _status[_file] = 'deleted'
+            elif _type == '--cache' and _file not in _status:
+                _status[_file] = 'new file'
+            
+    
+
+    print(_status)
 
 choices = get_gits()
 viewer = 'ls {} | less'

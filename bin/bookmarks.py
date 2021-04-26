@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 #--{ alterEGO Linux: "Open the vault of knowledge" }---------------------------
 #
-# bookmarks.py:
-#   created:       '2021-03-21 14:39:13 UTC'
-#   updated:       '2021-04-06 19:27:40 UTC'
-#   description:   'Bookmarks.' 
+# bookmarks.py
+#   created        : 2021-03-21 14:39:13 UTC
+#   updated        : 2021-04-26 13:34:27 UTC
+#   description    : Bookmarks.
 #------------------------------------------------------------------------------
 
 import sqlite3 as sql

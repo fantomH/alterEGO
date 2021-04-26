@@ -12,6 +12,16 @@ import subprocess
 
 home = os.path.expanduser('~')
 
+def run_fzf(_input):
+    viewer = 'ls {} | less'
+    fzf = subprocess.Popen(
+                    ['fzf',
+                    '--no-hscroll',
+                    '-i',
+                    '--exact'], stdin=_input.stdout, stdout=subprocess.PIPE)
+
+    return fzf.stdout
+
 def get_gits():
     gits = []
 
@@ -26,56 +36,49 @@ def get_gits():
     choices = '\n'.join(sorted(gits))
     return choices
 
-def get_status(directory):
-    _status = {}
+def get_status(_directory):
 
-    os.chdir(directory)
+    _statuses_list = {
+                        '??': 'Untracked',
+                        'A ': 'New file',
+                        'AD': 'New and Deleted',
+                        ' D': 'Deleted',
+                        'AM': 'New and Modified',
+                        ' M': 'Modified',
+                     }
+    _files_status = []
+    os.chdir(_directory)
 
-    _types_of_statuses = ['--others', '--modified', '--deleted', '--cache']
-    for _type in _types_of_statuses:
-        _check_status = subprocess.Popen(['git', 'ls-files', _type], stdout=subprocess.PIPE)
-        for _file in _check_status.stdout:
-            _file = _file.decode('utf-8')[:-1]
-            if _type == '--others':
-                _status[_file] = 'untracked'
-            elif _type == '--modified':
-                _status[_file] = 'modified'
-            elif _type == '--deleted':
-                _status[_file] = 'deleted'
-            elif _type == '--cache' and _file not in _status:
-                _status[_file] = 'new file'
-            
-    
+    _get_statuses = subprocess.Popen(['git', 'status', '--porcelain'], stdout=subprocess.PIPE)
 
-    print(_status)
+    _statuses = _get_statuses.stdout
 
+    for _line in _statuses:
+        _line = _line.decode('utf-8')[:-1]
+        _status = _statuses_list.get(_line[:2])
+        _file = _line[3:]
+        _files_status.append((_file, _status))
+
+    _files_status.sort(key=lambda f: f[0].lower())
+
+    return _files_status
+        
 choices = get_gits()
-viewer = 'ls {} | less'
 
 gitdirs = subprocess.Popen(['echo', choices], stdout=subprocess.PIPE)
 
-fzf = subprocess.Popen(
-                ['fzf',
-                 '--no-hscroll',
-                 '-i',
-                 '--exact',
-                 '--preview-window=down:80%',
-                 '--preview', viewer], stdin=gitdirs.stdout, stdout=subprocess.PIPE)
+fzfout = run_fzf(gitdirs)
 
-for result_git in fzf.stdout:
+for result_git in fzfout:
     if result_git is not None:
         result_git = result_git[:-1].decode('utf-8')
         actions = ['cd', 'ls', 'status']
 
         action_choices = subprocess.Popen(['echo', '\n'.join(actions)], stdout=subprocess.PIPE)
 
-        fzf = subprocess.Popen(
-                        ['fzf',
-                        '--no-hscroll',
-                        '-i',
-                        '--exact'], stdin=action_choices.stdout, stdout=subprocess.PIPE)
+        fzfout = run_fzf(action_choices)
 
-        for result_action in fzf.stdout:
+        for result_action in fzfout:
             result_action = result_action[:-1].decode('utf-8')
 
             if result_action == 'cd':
@@ -85,8 +88,6 @@ for result_git in fzf.stdout:
             if result_action == 'ls':
                 print(os.listdir(result_git))
             if result_action == 'status':
-                get_status(result_git)
+                print(get_status(result_git))
                 
-
-
 #--{ file:fin }----------------------------------------------------------------

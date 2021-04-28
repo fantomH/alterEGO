@@ -62,6 +62,7 @@ remmina
 rsync
 screen
 screenkey
+sddm
 shellcheck
 sqlitebrowser
 sxiv

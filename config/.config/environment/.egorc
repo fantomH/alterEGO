@@ -2,11 +2,13 @@
 #
 # .egorc
 #   created     : 2021-03-19 09:37:19 UTC
-#   updated     : 2021-04-13 12:38:28 UTC
+#   updated     : 2021-04-29 19:01:07 UTC
 #   description : Additional shell stuff for EGO Linux.
-#   app         : bash
-#   target      : $HOME/.egorc
+#   app         : sh
+#   target      : ${HOME}/.config/environment/.egorc
 #------------------------------------------------------------------------------
+
+  export EGORC="OK"
 
 #-----[ WORDLISTS ]
   export wordlist="/usr/local/share/wordlist"
@@ -23,9 +25,11 @@
 
 #-----[ IP ADDRESSES ]
   # -- `host` is provided by the package 'bind'.
+  
   export pubip="$(host myip.opendns.com resolver1.opendns.com                 \
                   | grep --color=never -oP '(?<=myip.opendns.com has address ).*$')"
+
   export locip="$(ip address | grep --color=never -oP "(?<=inet ).*(?=/.*enp0)")"
   export vpnip="$(ip address | grep --color=never -oP "(?<=inet ).*(?=/.*tun0)")"
 
-#--{ file:fin }----------------------------------------------------------------
+#--{ file:FIN }----------------------------------------------------------------

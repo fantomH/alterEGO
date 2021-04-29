@@ -8,8 +8,14 @@
 #   target         : ${HOME}/.bash_profile
 # -----------------------------------------------------------------------------
 
+  # -- Safeguard.
+  # .. If .bash_profile exists, .profile isn't processed.
   if [[ ${ENVRC} != 'OK' ]]; then
       [[ -f ${HOME}/.config/environment/.envrc ]] && source ${HOME}/.config/environment/.envrc
+  fi
+
+  if [[ ${EGORC} != 'OK' ]]; then
+      [[ -f ${HOME}/.config/environment/.egorc ]] && source ${HOME}/.config/environment/.egorc
   fi
 
   [[ -f ${HOME}/.bashrc ]] && source ${HOME}/.bashrc

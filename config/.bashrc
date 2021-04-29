@@ -2,7 +2,7 @@
 #
 # .bashrc
 #   created        : 2021-02-26 02:54:43 UTC
-#   updated        : 2021-04-27 13:19:12 UTC
+#   updated        : 2021-04-29 19:06:03 UTC
 #   description    : Bash config file. 
 #   app            : bash
 #   target         : $HOME/.bashrc
@@ -40,6 +40,8 @@
 #----------{ FUNCTIONS }
 
 busy() {
+    # -- v. 2021-04-27 13:46:04 UTC
+
     # -- When the boss comes around to look busy.
     # .. ref: https://www.commandlinefu.com/commands/view/6663/pretend-to-be-busy-in-office-to-enjoy-a-cup-of-coffee
     # .. CTRL+c to quit.
@@ -48,22 +50,21 @@ busy() {
     | hexdump -C                                                              \
     | grep --color=always 'ca fe'
 
-    # -- v. 2021-04-27 13:46:04 UTC
 } #--{ function:FIN }
 
 fuck() {
+    # -- v. 2021-04-27 13:52:55 UTC
+
     # -- Repeat last cmd with sudo if forgotten.
 
     sudo $(history -p !!)
 
-    # -- v. 2021-04-27 13:52:55 UTC
 } #--{ function:FIN }
 
 #----------{ SOURCING }
 
   [ -f ~/.fzf.bash ] && source ~/.fzf.bash
   [ -f ~/.extrarc ] && source ~/.extrarc
-  [ -f ~/.egorc ] && source ~/.egorc
 
 # vim: syntax=sh
-#--{ file:fin }----------------------------------------------------------------
+#--{ file:FIN }----------------------------------------------------------------

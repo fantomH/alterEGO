@@ -15,14 +15,6 @@
 
   export TERM="xterm-256color"
 
-#----------{ DEFAULT APPLICATIONS }
-
-  export BROWSER=firefox
-  export FZF_DEFAULT_COMMAND='rg --files --hidden '
-  export TERMINAL="xfce4-terminal --hide-scrollbar --hide-menubar --hide-toolbar"
-  export VISUAL=vim
-  export EDITOR=${VISUAL}
-
 #----------{ PROMPTS }
 
   PS1='[\u@\h \W]\$ '

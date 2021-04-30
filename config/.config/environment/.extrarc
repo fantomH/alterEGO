@@ -2,10 +2,10 @@
 #
 # .extrarc
 #   created        : 2021-03-16 10:15:03 UTC
-#   updatedi       : 2021-04-13 12:45:17 UTC
+#   updatedi       : 2021-04-30 02:35:32 UTC
 #   description    : Shell config to unclog bashrc. 
 #   app            : bash
-#   target         : $HOME/.extrarc
+#   target         : ${HOME}/config/environment/.extrarc
 #------------------------------------------------------------------------------
 
   export lgit="/usr/local/alterEGO"
@@ -13,4 +13,4 @@
   alias updateROOT='sudo -u root sh -c "cd $lgit && git pull"'
   alias vinotes="vim ~/repositories/droidnotes/droidnotes.html"
 
-#--{ file:fin }----------------------------------------------------------------
+#--{ file:FIN }----------------------------------------------------------------

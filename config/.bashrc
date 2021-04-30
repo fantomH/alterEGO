@@ -64,7 +64,6 @@ fuck() {
 #----------{ SOURCING }
 
   [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-  [ -f ~/.extrarc ] && source ~/.extrarc
 
 # vim: syntax=sh
 #--{ file:FIN }----------------------------------------------------------------

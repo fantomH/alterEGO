@@ -10,6 +10,7 @@
 
   # -- Safeguard.
   # .. If .bash_profile exists, .profile isn't processed.
+
   if [[ ${ENVRC} != 'OK' ]]; then
       [[ -f ${HOME}/.config/environment/.envrc ]] && source ${HOME}/.config/environment/.envrc
   fi
@@ -18,6 +19,11 @@
       [[ -f ${HOME}/.config/environment/.egorc ]] && source ${HOME}/.config/environment/.egorc
   fi
 
+  if [[ ${EXTRARC} != 'OK' ]]; then
+      [[ -f ${HOME}/.config/environment/.extrarc ]] && source ${HOME}/.config/environment/.extrarc
+  fi
+
+  # -- Sourcing .bashrc in case it is a login shell.
   [[ -f ${HOME}/.bashrc ]] && source ${HOME}/.bashrc
 
 # vim: syntax=sh

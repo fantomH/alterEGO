@@ -10,6 +10,7 @@
 
   [ -f ${HOME}/.config/environment/.envrc ] && . ${HOME}/.config/environment/.envrc
   [ -f ${HOME}/.config/environment/.egorc ] && . ${HOME}/.config/environment/.egorc
+  [ -f ${HOME}/.config/environment/.extrarc ] && . ${HOME}/.config/environment/.extrarc
 
 # vim: syntax=sh
 #--{ file:FIN }----------------------------------------------------------------

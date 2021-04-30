@@ -3,7 +3,7 @@
 #
 # bookmarks.py
 #   created        : 2021-03-21 14:39:13 UTC
-#   updated        : 2021-04-26 13:34:27 UTC
+#   updated        : 2021-04-30 14:21:51 UTC
 #   description    : Bookmarks.
 #------------------------------------------------------------------------------
 
@@ -18,23 +18,26 @@ sqlite_select_query = """SELECT * from bookmarks"""
 cur.execute(sqlite_select_query)
 records = cur.fetchall()
 
-selection = ''
+selection = set()
 for row in records:
     try:
         title = f'{row[1]} - {row[2]}'
-        selection = selection + f'{title:<60}: {row[3]}\n'
     except:
         title = f'{row[1]}'
-        selection = selection + f'{title:<60}: {row[3]}\n'
+
+    bk = f'{title:<60}: {row[3]} : {row[4]} TAGS: {row[5]}\n'
+    selection.add(bk)
+
+selection = ''.join(sorted(list(selection)))
 
 echo = subprocess.Popen(['echo', selection], stdout=subprocess.PIPE)
 fzf = subprocess.Popen(['fzf', '--no-hscroll'], stdin=echo.stdout, stdout=subprocess.PIPE)
 
 result = fzf.stdout
 for x in result:
-    url = x.decode('ascii').replace('\n', '').split(': ')[1]
+    url = x.decode('ascii').split(': ')[1]
     webbrowser.open_new_tab(url)
 
 con.close()
 
-#--{ file:fin }----------------------------------------------------------------
+#--{ file:FIN }----------------------------------------------------------------

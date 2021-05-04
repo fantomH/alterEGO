@@ -8,7 +8,7 @@
 #------------------------------------------------------------------------------
 
 export _LHOST='10.6.40.189'
-export _RHOST='10.10.116.64'
+export _RHOST='10.10.145.187'
 
 export _ROOM='uploadvulns'
 export _MAINDIR="${HOME}/.thm"
@@ -27,7 +27,7 @@ export _ROOMDIR="${_MAINDIR}/${_ROOM}"
   if [[ ${1} == 'go' ]]; then
       sudo openvpn ${HOME}/Downloads/THM.fantomH.ovpn &
   else
-      printf '%s\n' ":: What Do you want to do??"
+      cd ${_ROOMDIR}
   fi
 
 #--{ file:fin }----------------------------------------------------------------

@@ -20,11 +20,13 @@
   export xplatform="${wordlist}/xplatform.txt"
 
 #-----[ REVERSE SHELL ]
+  export patt_nodeJS="${revshell}/patt_nodeJS.js"
   export revshell="/usr/local/share/reverse_shell"
   export revshell_php="${revshell}/php-reverse-shell.php"
+  export webshell="${revshell}/webshell.php"
 
 #-----[ IP ADDRESSES ]
-  # -- `host` is provided by the package 'bind'.
+  #### `host` is provided by the package 'bind'.
   
   export pubip="$(host myip.opendns.com resolver1.opendns.com                 \
                   | grep --color=never -oP '(?<=myip.opendns.com has address ).*$')"

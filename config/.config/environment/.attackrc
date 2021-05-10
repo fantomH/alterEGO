@@ -2,15 +2,15 @@
 #
 # .attackrc
 #   created     : 2021-03-07 15:10:11 UTC
-#   updated     : 2021-04-21 19:25:03 UTC
+#   updated     : 2021-05-10 09:55:18 UTC
 #   description : Pentesting confing stuff. 
-#   target      : $HOME/.attackrc
+#   target      : ${HOME}/.config/environment/.attackrc
 #------------------------------------------------------------------------------
 
 export _LHOST='10.6.40.189'
 export _RHOST='10.10.165.248'
 
-export _ROOM='uploadvulns'
+export _ROOM='introtoshells'
 export _MAINDIR="${HOME}/.thm"
 export _ROOMDIR="${_MAINDIR}/${_ROOM}"
 

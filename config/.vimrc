@@ -1,11 +1,11 @@
 "--{ alterEGO Linux: "Open the vault of knowledge" }---------------------------
 "
-" .vimrc:
-"   created:       '2021-02-23 02:54:43 UTC'
-"   updated:       '2021-04-09 10:34:29 UTC'
-"   description:   'VIM main configuration file.' 
-"   application:   'vim'
-"   target:        '${HOME}/.vimrc'
+" .vimrc
+"   created        : 2021-02-23 02:54:43 UTC
+"   updated        : 2021-05-12 09:55:17 UTC
+"   description    : VIM main configuration file. 
+"   application    : vim
+"   target         : ${HOME}/.vimrc
 "------------------------------------------------------------------------------
 
 "----------{ GENERAL CONFIG }
@@ -75,11 +75,11 @@
 
 "----------{ HIGHLIGHT LINE }
 
-  " -- ref. https://vimtricks.com/p/highlight-specific-lines/
+  """" ref. https://vimtricks.com/p/highlight-specific-lines/
 
-  " -- Highlight the current line.
+  """" Highlight the current line.
   nnoremap <silent> <Leader>hl :call matchadd('LineHighlight', '\%'.line('.').'l')<CR>
-  " -- Clear all the highlighted lines.
+  """" Clear all the highlighted lines.
   nnoremap <silent> <Leader>hc :call clearmatches()<CR>
 
 "----------{ HTML MAPPING }
@@ -210,10 +210,19 @@
 
 "----------{ RUN SCRIPT }
 
-" -- Requires tmux, with a second pane open.
-" .. Python:
-  nnoremap <leader>p :!tmux send-key -t 1 "python '%:p'" enter;<cr><C-l>
+"-----[ Python ]
+  """" Requires tmux, with a second pane open.
+
+  function! RunPython()
+      let pycmd = systemlist('command -v python')[0]
+      let filename = expand('%:p')
+      silent! call system('tmux send-key -t 1 "' . pycmd . ' ' . filename . '" enter;')
+  endfunction
+  nnoremap <leader>p :call RunPython()<CR>
+
+  """" Kills the script.
   nnoremap <leader>ss :!tmux send-keys -t 1 "C-c";<CR><C-l>
+
 
 "----------{ SAVE FILE }
 
@@ -374,4 +383,4 @@ nnoremap <silent> <leader>td :BLines <!-- <CR>
   highlight link htmlTag    htmlTagName
   highlight link htmlEndTag htmlTagName
 
-"--{ file:fin }----------------------------------------------------------------
+"--{ file:FIN }----------------------------------------------------------------

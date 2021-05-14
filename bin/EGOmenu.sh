@@ -3,7 +3,7 @@
 #
 # EGOmenu.sh
 #   created     : 2021-03-12 19:49:39 UTC
-#   updated     : 2021-04-19 09:41:05 UTC
+#   updated     : 2021-05-14 22:31:54 UTC
 #   description : EGO menu using FZF.
 #   dependencies: - fzf
 #------------------------------------------------------------------------------
@@ -22,6 +22,7 @@ exit i3;;execute;;i3-msg exit;;null
 firefox;;tmux_background;;firefox;;FIREFOX
 firefox --private;;tmux_background;;firefox --private-window;;SHUTTT
 htop;;terminal;;htop;;null
+pavucontrol;;tmux_background;;pavucontrol;;PAVU
 ranger;;terminal;;ranger;;RANGER
 reboot;;execute;;reboot;;null
 remmina;;tmux_background;;remmina;;REMMINA

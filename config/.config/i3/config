@@ -1,12 +1,11 @@
 #--{ alterEGO Linux: "Open the vault of knowledge" }---------------------------
 #
-# i3config:
-#   created:       '2021-02-26 09:37:37 UTC'
-#   updated:       '2021-04-06 01:17:56 UTC'
-#   description:   'i3vm configuration file.' 
-#   app:           'i3'
-#   target:        '.config/i3/config'
-#
+# i3config
+#   created        : 2021-02-26 09:37:37 UTC
+#   updated        : 2021-05-19 13:06:12 UTC
+#   description    : i3vm configuration file. 
+#   app            : i3
+#   target         : ${HOME}/.config/i3/config
 #------------------------------------------------------------------------------
 
 set $mod Mod1
@@ -45,9 +44,6 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 for_window [class="^.*"]\
     border pixel 5
     gaps inner 20
-
-# Use Mouse+$mod to drag floating windows to their wanted position
-floating_modifier $mod
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -90,9 +86,6 @@ bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
-# toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
-
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
 
@@ -102,15 +95,26 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
+#----------{ FLOATING WINDOWS }
+
+  #### Toggle tiling/floating.
+  bindsym $mod+Shift+space floating toggle
+
+  #### Drag floating windows to their wanted position.
+  floating_modifier $mod
+
+  #### Make floating window sticky.
+  bindsym $mod+Shift+s sticky toggle
+
 #----------{ SCRATCHPAD }
 
-  # -- Make the currently focused window a scratchpad.
+  #### Make the currently focused window a scratchpad.
   bindsym $mod+Shift+minus floating toggle,                                   \
     resize set 1390px 850px,                                                  \
     move position center,                                                     \
     move scratchpad
 
-  # -- Show scratchpad window.
+  #### Show scratchpad window.
   bindsym $mod+minus scratchpad show
 
 # Define names for default workspaces for which we configure key bindings later on.

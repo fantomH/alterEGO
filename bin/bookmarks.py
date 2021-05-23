@@ -25,7 +25,7 @@ for row in records:
     except:
         title = f'{row[1]}'
 
-    bk = f'{title:<60}: {row[3]} : {row[4]} TAGS: {row[5]}\n'
+    bk = f'{title:}: {row[3]} : TAGS: {row[5]}\n'
     selection.add(bk)
 
 selection = ''.join(sorted(list(selection)))

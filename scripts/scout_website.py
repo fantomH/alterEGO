@@ -141,7 +141,7 @@ def wordcount(urls):
                 else:
                     word_count[w] += 1
 
-    word_count = dict(sorted(word_count.items(), key=lambda item: item[1]), reverse=True)
+    word_count = dict(sorted(word_count.items(), key=lambda item: item[1], reverse=True))
     return word_count
 
 def main():

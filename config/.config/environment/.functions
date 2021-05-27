@@ -1,0 +1,25 @@
+#--{ alterEGO Linux: "Open the vault of knowledge" }---------------------------
+#
+# .functions
+#   created        : 2021-05-25 19:40:20 UTC
+#   updated        : 2021-05-25 19:40:26 UTC
+#   description    : shell functions. 
+#   app            : sh
+#   target         : ${HOME}/.config/environment/.functions
+#------------------------------------------------------------------------------
+
+function heraser(){
+  choices=$( history | grep --color=none "${@}" | fzf )
+  [[ -z "${choices}" ]] && exit 1
+
+  confirm=$(printf "yes\ncancel" | fzf)
+  
+  if [[ ${confirm} == 'yes' ]]; then
+      to_delete=$(awk '{ print $1 }' <<< "${choices}")
+      history -d ${to_delete}
+  fi
+
+}
+
+# vim: syntax=sh
+#--{ file:FIN }----------------------------------------------------------------

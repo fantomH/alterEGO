@@ -3,7 +3,7 @@
 #
 # bookmarks.py
 #   created        : 2021-03-21 14:39:13 UTC
-#   updated        : 2021-05-24 14:43:22 UTC
+#   updated        : 2021-06-27 13:59:04 UTC
 #   description    : Bookmarks.
 #------------------------------------------------------------------------------
 
@@ -20,7 +20,7 @@ sqlite_select_query = """SELECT * from bookmarks"""
 cur.execute(sqlite_select_query)
 records = cur.fetchall()
 
-selection = set()
+options = set()
 for row in records:
     try:
         title = f'{row[1]} - {row[2]}'
@@ -28,22 +28,27 @@ for row in records:
         title = f'{row[1]}'
 
     bk = f'{title:<100}: {row[3]} : {row[4]} : TAGS: {row[5]}\n'
-    selection.add(bk)
+    options.add(bk)
 
-selection = ''.join(sorted(list(selection)))
+options = ''.join(sorted(list(options)))
 
 with tempfile.NamedTemporaryFile(mode='w', delete=False) as f:
-    f.write(selection)
+    f.write(options)
     f.seek(0)
     dumpfile = f.name
 
-cat = subprocess.Popen(['cat', dumpfile], stdout=subprocess.PIPE)
-fzf = subprocess.Popen(['fzf', '--no-hscroll'], stdin=cat.stdout, stdout=subprocess.PIPE)
+with open(dumpfile, 'r') as f:
+    data = f.read().encode('UTF-8')
 
-result = fzf.stdout
-for x in result:
-    url = x.decode('ascii').split(': ')[1]
+try:
+    fzf = subprocess.run(['fzf', '--no-hscroll'], input=data, stdout=subprocess.PIPE)
+
+    selection = fzf.stdout
+    url = selection.decode('ascii').split(': ')[1]
+
     webbrowser.open_new_tab(url)
+except:
+    pass
 
 con.close()
 os.remove(dumpfile)

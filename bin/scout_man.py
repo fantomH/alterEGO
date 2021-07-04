@@ -22,6 +22,9 @@ fzf = subprocess.Popen(
                  '--preview', viewer], stdin=manpages.stdout, stdout=subprocess.PIPE)
 
 for result in fzf.stdout:
-    pass
+    result = result.decode('UTF-8').split('- ')[0].strip()
+    man_page = result.replace(')', '').split(' (') 
+    man = f'man {man_page[1]} {man_page[0]} | less'
+    subprocess.run(man, shell=True)
 
 #--{ file:fin }----------------------------------------------------------------

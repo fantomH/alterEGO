@@ -13,45 +13,48 @@ import subprocess
 from collections import namedtuple
 from time import sleep
 
-MenuOption = namedtuple('MenuOption', ['name', 'run', 'cmd', 'session', 'is_floating'])
+MenuOption = namedtuple('MenuOption', ['name', 'run', 'cmd', 'session', 'description', 'is_floating'])
 
 options = [
-    MenuOption('arp-scan local', 'stay_in_terminal', 'sudo arp-scan; read -p \'\nWould you like to scan the local network? \' REPLY; if [[ \$REPLY =~ ^([yY][eE][sS]|[yY])$ ]]; then sudo arp-scan --localnet; else :; fi', 'ARPSCAN', True),
-    MenuOption('burp suite', 'launch', 'burpsuite', 'BURP', False),
-    MenuOption('bookmarks', 'terminal', 'bookmarks.py', 'BOOKMARKS', True),
-    MenuOption('change background/wallpaper', 'launch', 'ego-background.sh', 'null', False),
-    MenuOption('exit i3', 'execute', 'i3-msg exit', 'null', False),
-    MenuOption('firefox --private', 'launch', 'firefox --private-window', 'SHUTTT', False),
-    MenuOption('firefox', 'launch', 'firefox', 'FIREFOX', False),
-    MenuOption('htop', 'terminal', 'htop', 'HTOP', True),
-    MenuOption('pavucontrol', 'launch', 'pavucontrol', 'PAVU', False),
-    MenuOption('ranger', 'terminal', 'ranger', 'RANGER', False),
-    MenuOption('reboot', 'execute', 'reboot', 'null', False),
-    MenuOption('remmina', 'launch', 'remmina', 'REMMINA', False),
-    MenuOption('scout man pages', 'terminal', 'scout_man.py', 'null', False),
-    MenuOption('scout python modules', 'terminal', 'scout_pymodules.py', 'null', False),
-    MenuOption('shrug', 'stay_in_terminal', 'echo \'¯\_(ツ)_/¯\'', 'null', False),
-    MenuOption('ls', 'stay_in_terminal', 'ls', 'null', True),
-    MenuOption('shutdown', 'execute', 'shutdown now', 'null', False),
-    MenuOption('sqlitebrowser', 'launch', 'sqlitebrowser', 'SQLB', False),
-    MenuOption('star wars', 'stay_in_terminal', 'telnet towel.blinkenlights.nl', 'STARWARS', False),
-    MenuOption('thunar for admin', 'launch', 'sudo thunar', 'SUDOTHUNAR', False),
-    MenuOption('thunar', 'launch', 'thunar', 'THUNAR', False),
-    MenuOption('tmux attach', 'terminal', 'tmuxplus.sh -a', 'ATTACH', True),
-    MenuOption('view history', 'stay_in_terminal', 'cat ${HOME}/.bash_history | fzf', 'HISTORY', True),
-    MenuOption('volume', 'launch', 'pavucontrol', 'VOLUME', False),
-    MenuOption('wireshark', 'launch', 'sudo wireshark', 'WIRESHARK', False),
+    MenuOption('arp-scan local', 'stay_in_terminal', 'sudo arp-scan; read -p \'\nWould you like to scan the local network? \' REPLY; if [[ \$REPLY =~ ^([yY][eE][sS]|[yY])$ ]]; then sudo arp-scan --localnet; else :; fi', 'ARPSCAN', 'MAC Address scan.', True),
+    MenuOption('burp suite', 'launch', 'burpsuite', 'BURP', 'Web applications security testing.', False),
+    MenuOption('bookmarks', 'terminal', 'bookmarks.py', 'BOOKMARKS', 'Bookmarks manager.', True),
+    MenuOption('change background/wallpaper', 'launch', 'ego-background.sh', 'null', 'Change wallpapers', False),
+    MenuOption('dirbuster', 'stay_in_terminal', 'dirbuster --help', 'DIRBUSTER', 'Description', False),
+    MenuOption('exit i3', 'execute', 'i3-msg exit', 'null', 'Exit i3 window manager.', False),
+    MenuOption('firefox', 'launch', 'firefox', 'FIREFOX', 'Web browser.', False),
+    MenuOption('firefox --private', 'launch', 'firefox --private-window', 'SHUTTT', 'Web browser, private session.', False),
+    MenuOption('gobuster', 'stay_in_terminal', 'gobuster --help', 'GOBUSTER', 'Description', False),
+    MenuOption('htop', 'terminal', 'htop', 'HTOP', 'Description', True),
+    MenuOption('pavucontrol', 'launch', 'pavucontrol', 'PAVU', 'Volume control.', False),
+    MenuOption('public IP', 'launch', 'curl --silent http://ipecho.net/plain | xclip -selection clipboard', 'PUBIP', 'Get your public IP > clipboard.', False),
+    MenuOption('ranger', 'terminal', 'ranger', 'RANGER', 'TUI file manager.', False),
+    MenuOption('reboot', 'execute', 'reboot', 'null', 'Description', False),
+    MenuOption('remmina', 'launch', 'remmina', 'REMMINA', 'Description', False),
+    MenuOption('scout man pages', 'terminal', 'scout_man.py', 'null', 'Description', False),
+    MenuOption('scout python modules', 'terminal', 'scout_pymodules.py', 'null', 'Description', False),
+    MenuOption('shrug', 'launch', 'echo -n \'¯\_(ツ)_/¯\' | xclip -selection clipboard', 'null', '¯\_(ツ)_/¯ > clipboard', False),
+    MenuOption('shutdown', 'execute', 'shutdown now', 'null', 'Description', False),
+    MenuOption('sqlitebrowser', 'launch', 'sqlitebrowser', 'SQLB', 'Sqlite GUI browser', False),
+    MenuOption('star wars', 'stay_in_terminal', 'telnet towel.blinkenlights.nl', 'STARWARS', 'Watch ASCII StarWars.', False),
+    MenuOption('thumbs up!', 'launch', 'echo -n \'👍\' | xclip -selection clipboard', 'THUMBSUP', '👍 > clipboard', True),
+    MenuOption('thunar', 'launch', 'thunar', 'THUNAR', 'GUI File manager.', False),
+    MenuOption('thunar for admin', 'launch', 'sudo thunar', 'THUNARROOT', 'GUI File manager, elevated priviledges.', False),
+    MenuOption('tmux attach', 'terminal', 'tmuxplus.sh -a', 'ATTACH', 'List Tmux sessions and attach.', True),
+    MenuOption('view history', 'stay_in_terminal', 'cat ${HOME}/.bash_history | fzf', 'HISTORY', 'View latest bash history.', True),
+    MenuOption('volume', 'launch', 'pavucontrol', 'VOLUME', 'Volume control.', False),
+    MenuOption('wireshark', 'launch', 'sudo wireshark', 'WIRESHARK', 'Network traffic analyser.', False),
     ]
 
 def main():
 
     #### Menu options generator.
-    opt = ''.join([f"{o.name}\n" for o in options]).encode('UTF-8')
+    opt = ''.join([f"{o.name:<40}{o.description}\n" for o in options]).encode('UTF-8')
 
     menu = subprocess.run(['fzf', '--reverse'], input=opt, stdout=subprocess.PIPE)
 
     for o in options:
-        if o.name == menu.stdout.strip().decode('UTF-8'):
+        if o.name == menu.stdout.decode('UTF-8').split('  ')[0].strip():
             selection = o
 
             add_float = ''

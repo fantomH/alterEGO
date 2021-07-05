@@ -3,7 +3,7 @@
 #
 # scout_pymodules.py
 #   created        : 2021-04-18 13:53:49 UTC
-#   updated        : 2021-04-18 15:43:33 UTC
+#   updated        : 2021-07-05 11:02:20 UTC
 #   description    : Search Python modules.
 #------------------------------------------------------------------------------
 
@@ -30,6 +30,7 @@ fzf = subprocess.Popen(
                  '--preview', viewer], stdin=echo.stdout, stdout=subprocess.PIPE)
 
 for result in fzf.stdout:
-    pass
+    result = result.decode('UTF-8').split()[0].strip()
+    subprocess.run(f"python -m pydoc {result} | less", shell=True)
 
-#--{ file:fin }----------------------------------------------------------------
+#--{ file:FIN }----------------------------------------------------------------

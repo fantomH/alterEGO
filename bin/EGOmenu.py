@@ -3,11 +3,12 @@
 #
 # EGOmenu.py
 #   created     : 2021-06-28 11:42:57 UTC
-#   updated     : 2021-07-01 14:52:58 UTC
+#   updated     : 2021-07-06 12:32:17 UTC
 #   description : EGO menu using FZF.
 #   dependencies: - fzf
 #------------------------------------------------------------------------------
 
+import random
 import shlex
 import subprocess
 from collections import namedtuple
@@ -26,6 +27,11 @@ options = [
     MenuOption('firefox --private', 'launch', 'firefox --private-window', 'SHUTTT', 'Web browser, private session.', False),
     MenuOption('gobuster', 'stay_in_terminal', 'gobuster --help', 'GOBUSTER', 'Description', False),
     MenuOption('htop', 'terminal', 'htop', 'HTOP', 'Description', True),
+    MenuOption('john', 'stay_in_terminal', 'john --help', 'JOHN', 'John the Ripper password cracker.', False),
+    MenuOption('metasploit', 'stay_in_terminal', 'msfconsole', 'METASPLOIT', 'Penetration testing framework.', False),
+    MenuOption('netcat', 'stay_in_terminal', 'nc --help', 'NETCAT', 'Utility for network discovery and security auditing.', False),
+    MenuOption('nmap', 'stay_in_terminal', 'nmap --help | more', 'NMAP', 'Network exploration tool and security / port scanner.', False),
+    MenuOption('nmap NSE', 'terminal', '/usr/local/bin/nmapNSE.sh', 'NMAPNSE', 'Nmap Scripting Engine (NSE) scripts', True),
     MenuOption('pavucontrol', 'launch', 'pavucontrol', 'PAVU', 'Volume control.', False),
     MenuOption('public IP', 'launch', 'curl --silent http://ipecho.net/plain | xclip -selection clipboard', 'PUBIP', 'Get your public IP > clipboard.', False),
     MenuOption('ranger', 'terminal', 'ranger', 'RANGER', 'TUI file manager.', False),
@@ -59,20 +65,21 @@ def main():
 
             add_float = ''
             command = selection.cmd
+            session = f"{selection.session}{random.randint(0, 10000)}"
             if selection.is_floating is True:
                 add_float = f"&& i3-msg \"[id=$(xdotool getactivewindow)] floating enable, resize set 800px 500px, move position center\""
 
             if selection.run == 'execute':
                 subprocess.run(f"{command} {add_float}", shell=True)
             elif selection.run == 'launch':
-                subprocess.run(f"tmux new-session -d -s {selection.session}", shell=True)
+                subprocess.run(f"tmux new-session -d -s {session}", shell=True)
                 sleep(0.5)
-                subprocess.run(f"tmux send-keys -t {selection.session} \"nohup {command} >/dev/null 2>&1 & disown && exit\" enter {add_float}", shell=True)
+                subprocess.run(f"tmux send-keys -t {session} \"nohup {command} >/dev/null 2>&1 & disown && exit\" enter {add_float}", shell=True)
             elif selection.run == 'stay_in_terminal':
-                subprocess.run(f"tmux new-session -d -s {selection.session}", shell=True)
+                subprocess.run(f"tmux new-session -d -s {session}", shell=True)
                 sleep(0.5)
-                subprocess.run(f"tmux send-keys -t {selection.session} \"{command}\" enter", shell=True)
-                subprocess.run(f"xfce4-terminal --hide-scrollbar --hide-menubar --hide-toolbar --command=\"env TERM=screen-256color tmux -u a -t '{selection.session}'\" {add_float}", shell=True)
+                subprocess.run(f"tmux send-keys -t {session} \"{command}\" enter", shell=True)
+                subprocess.run(f"xfce4-terminal --hide-scrollbar --hide-menubar --hide-toolbar --command=\"env TERM=screen-256color tmux -u a -t '{session}'\" {add_float}", shell=True)
             elif selection.run == 'terminal':
                 subprocess.run(f"xfce4-terminal --hide-scrollbar --hide-menubar --hide-toolbar --command=\"{command}\" {add_float}", shell=True)
 

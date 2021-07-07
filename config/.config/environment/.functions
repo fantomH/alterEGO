@@ -8,6 +8,10 @@
 #   target         : ${HOME}/.config/environment/.functions
 #------------------------------------------------------------------------------
 
+function gitall(){
+  git add . && git commit && git push
+}
+
 function heraser(){
   choices=$( history | grep --color=none "${@}" | fzf )
   [[ -z "${choices}" ]] && exit 1

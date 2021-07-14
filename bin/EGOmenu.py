@@ -8,16 +8,20 @@
 #   dependencies: - fzf
 #------------------------------------------------------------------------------
 
+from collections import namedtuple
+import os
 import random
 import shlex
 import subprocess
-from collections import namedtuple
+import sys
 from time import sleep
 
 MenuOption = namedtuple('MenuOption', ['name', 'run', 'cmd', 'session', 'description', 'is_floating'])
 
 options = [
     MenuOption('arp-scan local', 'stay_in_terminal', 'sudo arp-scan; read -p \'\nWould you like to scan the local network? \' REPLY; if [[ \$REPLY =~ ^([yY][eE][sS]|[yY])$ ]]; then sudo arp-scan --localnet; else :; fi', 'ARPSCAN', 'MAC Address scan.', True),
+    MenuOption('bleachbit', 'launch', 'bleachbit', 'BLEACHBIT', 'Deletes unneeded files to free disk space and maintain privacy.', False),
+    MenuOption('bleachbit as admin', 'launch', 'sudo bleachbit', 'BLEACHBIT', 'Deletes unneeded files to free disk space and maintain privacy.', False),
     MenuOption('burp suite', 'launch', 'burpsuite', 'BURP', 'Web applications security testing.', False),
     MenuOption('bookmarks', 'terminal', 'bookmarks.py', 'BOOKMARKS', 'Bookmarks manager.', True),
     MenuOption('change background/wallpaper', 'launch', 'ego-background.sh', 'null', 'Change wallpapers', False),
@@ -25,9 +29,12 @@ options = [
     MenuOption('exit i3', 'execute', 'i3-msg exit', 'null', 'Exit i3 window manager.', False),
     MenuOption('firefox', 'launch', 'firefox', 'FIREFOX', 'Web browser.', False),
     MenuOption('firefox --private', 'launch', 'firefox --private-window', 'SHUTTT', 'Web browser, private session.', False),
+    MenuOption('gimp', 'launch', 'gimp', 'GIMP', 'Drawing app.', False),
     MenuOption('gobuster', 'stay_in_terminal', 'gobuster --help', 'GOBUSTER', 'Description', False),
     MenuOption('htop', 'terminal', 'htop', 'HTOP', 'Description', True),
+    MenuOption('inkscape', 'launch', 'inkscape', 'INKSCAPE', 'Drawing app.', False),
     MenuOption('john', 'stay_in_terminal', 'john --help', 'JOHN', 'John the Ripper password cracker.', False),
+    MenuOption('libreoffice', 'launch', 'libreoffice', 'LIBREOFFICE', 'Office suite.', False),
     MenuOption('metasploit', 'stay_in_terminal', 'msfconsole', 'METASPLOIT', 'Penetration testing framework.', False),
     MenuOption('netcat', 'stay_in_terminal', 'nc --help', 'NETCAT', 'Utility for network discovery and security auditing.', False),
     MenuOption('nmap', 'stay_in_terminal', 'nmap --help | more', 'NMAP', 'Network exploration tool and security / port scanner.', False),
@@ -52,6 +59,15 @@ options = [
     MenuOption('wireshark', 'launch', 'sudo wireshark', 'WIRESHARK', 'Network traffic analyser.', False),
     ]
 
+#### Allows additional, per site, menu options.
+config_dir = os.path.join(os.path.expanduser('~'), '.config', 'egomenu')
+config_file = os.path.join(config_dir, 'egoconfig.py')
+if os.path.exists(config_file):
+    sys.path.append(config_dir)
+
+    import egoconfig
+    options = options + egoconfig.additional_options
+
 def main():
 
     #### Menu options generator.
@@ -67,7 +83,7 @@ def main():
             command = selection.cmd
             session = f"{selection.session}{random.randint(0, 10000)}"
             if selection.is_floating is True:
-                add_float = f"&& i3-msg \"[id=$(xdotool getactivewindow)] floating enable, resize set 800px 500px, move position center\""
+                add_float = f"&& sleep 0.1 && i3-msg \"[id=$(xdotool getactivewindow)] floating enable, resize set 800px 500px, move position center\""
 
             if selection.run == 'execute':
                 subprocess.run(f"{command} {add_float}", shell=True)

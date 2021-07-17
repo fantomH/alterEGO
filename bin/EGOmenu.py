@@ -19,7 +19,7 @@ from time import sleep
 MenuOption = namedtuple('MenuOption', ['name', 'run', 'cmd', 'session', 'description', 'is_floating'])
 
 options = [
-    MenuOption('arp-scan local', 'stay_in_terminal', 'sudo arp-scan; read -p \'\nWould you like to scan the local network? \' REPLY; if [[ \$REPLY =~ ^([yY][eE][sS]|[yY])$ ]]; then sudo arp-scan --localnet; else :; fi', 'ARPSCAN', 'MAC Address scan.', True),
+    MenuOption('arp-scan local', 'stay_in_terminal', r"""sudo arp-scan; read -p $'\nWould you like to scan the local network? ' REPLY; if [[ \$REPLY =~ ^([yY][eE][sS]|[yY])$ ]]; then sudo arp-scan --localnet; else :; fi""", 'ARPSCAN', 'MAC Address scan.', True),
     MenuOption('bleachbit', 'launch', 'bleachbit', 'BLEACHBIT', 'Deletes unneeded files to free disk space and maintain privacy.', False),
     MenuOption('bleachbit as admin', 'launch', 'sudo bleachbit', 'BLEACHBIT', 'Deletes unneeded files to free disk space and maintain privacy.', False),
     MenuOption('burp suite', 'launch', 'burpsuite', 'BURP', 'Web applications security testing.', False),
@@ -40,21 +40,22 @@ options = [
     MenuOption('nmap', 'stay_in_terminal', 'nmap --help | more', 'NMAP', 'Network exploration tool and security / port scanner.', False),
     MenuOption('nmap NSE', 'terminal', '/usr/local/bin/nmapNSE.sh', 'NMAPNSE', 'Nmap Scripting Engine (NSE) scripts', True),
     MenuOption('pavucontrol', 'launch', 'pavucontrol', 'PAVU', 'Volume control.', False),
-    MenuOption('public IP', 'launch', 'curl --silent http://ipecho.net/plain | xclip -selection clipboard', 'PUBIP', 'Get your public IP > clipboard.', False),
+    MenuOption('public IP', 'launch', r"""curl --silent http://ipecho.net/plain | xclip -selection clipboard""", 'PUBIP', 'Get your public IP > clipboard.', False),
     MenuOption('ranger', 'terminal', 'ranger', 'RANGER', 'TUI file manager.', False),
     MenuOption('reboot', 'execute', 'reboot', 'null', 'Description', False),
     MenuOption('remmina', 'launch', 'remmina', 'REMMINA', 'Description', False),
     MenuOption('scout man pages', 'terminal', 'scout_man.py', 'null', 'Description', False),
     MenuOption('scout python modules', 'terminal', 'scout_pymodules.py', 'null', 'Description', False),
-    MenuOption('shrug', 'launch', 'echo -n \'¯\_(ツ)_/¯\' | xclip -selection clipboard', 'null', '¯\_(ツ)_/¯ > clipboard', False),
+    MenuOption('shrug', 'launch', r"""echo -n '¯\_(ツ)_/¯' | xclip -selection clipboard""", 'null', '¯\_(ツ)_/¯ > clipboard', False),
     MenuOption('shutdown', 'execute', 'shutdown now', 'null', 'Description', False),
     MenuOption('sqlitebrowser', 'launch', 'sqlitebrowser', 'SQLB', 'Sqlite GUI browser', False),
     MenuOption('star wars', 'stay_in_terminal', 'telnet towel.blinkenlights.nl', 'STARWARS', 'Watch ASCII StarWars.', False),
-    MenuOption('thumbs up!', 'launch', 'echo -n \'👍\' | xclip -selection clipboard', 'THUMBSUP', '👍 > clipboard', True),
+    MenuOption('thumbs up!', 'launch', r"""echo -n '👍' | xclip -selection clipboard""", 'THUMBSUP', '👍 > clipboard', True),
     MenuOption('thunar', 'launch', 'thunar', 'THUNAR', 'GUI File manager.', False),
     MenuOption('thunar for admin', 'launch', 'sudo thunar', 'THUNARROOT', 'GUI File manager, elevated priviledges.', False),
     MenuOption('tmux attach', 'terminal', 'tmuxplus.sh -a', 'ATTACH', 'List Tmux sessions and attach.', True),
-    MenuOption('view history', 'stay_in_terminal', 'cat ${HOME}/.bash_history | fzf', 'HISTORY', 'View latest bash history.', True),
+    MenuOption('vbox', 'stay_in_terminal', r"""vboxmanage list vms | awk -F '\"' '{ print \$2 }' | fzf | sed 's/\ /\\\ /g' | xargs vboxmanage startvm && exit""", 'VBOX', 'Select a virtual machine.', True),
+    MenuOption('view history', 'stay_in_terminal', r"""cat ${HOME}/.bash_history | fzf""", 'HISTORY', 'View latest bash history.', True),
     MenuOption('volume', 'launch', 'pavucontrol', 'VOLUME', 'Volume control.', False),
     MenuOption('wireshark', 'launch', 'sudo wireshark', 'WIRESHARK', 'Network traffic analyser.', False),
     ]
@@ -83,18 +84,18 @@ def main():
             command = selection.cmd
             session = f"{selection.session}{random.randint(0, 10000)}"
             if selection.is_floating is True:
-                add_float = f"&& sleep 0.1 && i3-msg \"[id=$(xdotool getactivewindow)] floating enable, resize set 800px 500px, move position center\""
+                add_float = f'''&& sleep 0.05 && i3-msg "[id=$(xdotool getactivewindow)] floating enable, resize set 800px 500px, move position center"'''
 
             if selection.run == 'execute':
                 subprocess.run(f"{command} {add_float}", shell=True)
             elif selection.run == 'launch':
                 subprocess.run(f"tmux new-session -d -s {session}", shell=True)
-                sleep(0.5)
+                sleep(0.1)
                 subprocess.run(f"tmux send-keys -t {session} \"nohup {command} >/dev/null 2>&1 & disown && exit\" enter {add_float}", shell=True)
             elif selection.run == 'stay_in_terminal':
                 subprocess.run(f"tmux new-session -d -s {session}", shell=True)
-                sleep(0.5)
-                subprocess.run(f"tmux send-keys -t {session} \"{command}\" enter", shell=True)
+                sleep(0.1)
+                subprocess.run(f'''tmux send-keys -t {session} "{command}" enter''', shell=True)
                 subprocess.run(f"xfce4-terminal --hide-scrollbar --hide-menubar --hide-toolbar --command=\"env TERM=screen-256color tmux -u a -t '{session}'\" {add_float}", shell=True)
             elif selection.run == 'terminal':
                 subprocess.run(f"xfce4-terminal --hide-scrollbar --hide-menubar --hide-toolbar --command=\"{command}\" {add_float}", shell=True)

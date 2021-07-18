@@ -11,5 +11,6 @@ additional_options = [
     MenuOption('dicom', 'terminal', 'bash ${HOME}/fH/scripts/dicomTAG.sh', 'DICOM', 'Browse DICOM tags.', True),
     MenuOption('emojis', 'stay_in_terminal', r"""bash ${HOME}/fH/scripts/emojis.sh && exit""", 'EMOJIS', 'Select emojis.', True),
     MenuOption('pamac', 'launch', 'pamac-manager', 'PAMAC', 'Package Manager based on libalpm with AUR and Appstream support.', False),
+    MenuOption('pdfman', 'stay_in_terminal', '${HOME}/fH/scripts/pdfman.sh && exit', 'PDFMAN', 'Open man in pdf.', True),
     MenuOption('Work RDP', 'launch', 'remmina --connect=/home/ghost/.local/share/remmina/group_rdp_work_ws-18-02-mtl-radiologymontreal-com.remmina', 'WILLWORK', 'Connect to work. mstsc', False),
     ]

@@ -40,7 +40,6 @@ options = [
     MenuOption('nmap', 'stay_in_terminal', 'nmap --help | more', 'NMAP', 'Network exploration tool and security / port scanner.', False),
     MenuOption('nmap NSE', 'terminal', '/usr/local/bin/nmapNSE.sh', 'NMAPNSE', 'Nmap Scripting Engine (NSE) scripts', True),
     MenuOption('pavucontrol', 'launch', 'pavucontrol', 'PAVU', 'Volume control.', False),
-    MenuOption('pdfman', 'stay_in_terminal', '${HOME}/fH/scripts/pdfman.sh && exit', 'PDFMAN', 'Open man in pdf.', True),
     MenuOption('public IP', 'launch', r"""curl --silent http://ipecho.net/plain | xclip -selection clipboard""", 'PUBIP', 'Get your public IP > clipboard.', False),
     MenuOption('ranger', 'terminal', 'ranger', 'RANGER', 'TUI file manager.', False),
     MenuOption('reboot', 'execute', 'reboot', 'null', 'Description', False),
@@ -75,7 +74,7 @@ def main():
     #### Menu options generator.
     opt = ''.join([f"{o.name:<40}{o.description}\n" for o in options]).encode('UTF-8')
 
-    menu = subprocess.run(['fzf', '--reverse'], input=opt, stdout=subprocess.PIPE)
+    menu = subprocess.run(['fzf', '--reverse', '--prompt=LAUNCH: ', '--no-info', '--no-hscroll', '--pointer=•'], input=opt, stdout=subprocess.PIPE)
 
     for o in options:
         if o.name == menu.stdout.decode('UTF-8').split('  ')[0].strip():

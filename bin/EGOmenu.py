@@ -3,7 +3,7 @@
 #
 # EGOmenu.py
 #   created     : 2021-06-28 11:42:57 UTC
-#   updated     : 2021-07-06 12:32:17 UTC
+#   updated     : 2021-07-19 02:11:17 UTC
 #   description : EGO menu using FZF.
 #   dependencies: - fzf
 #------------------------------------------------------------------------------
@@ -54,6 +54,7 @@ options = [
     MenuOption('thunar', 'launch', 'thunar', 'THUNAR', 'GUI File manager.', False),
     MenuOption('thunar for admin', 'launch', 'sudo thunar', 'THUNARROOT', 'GUI File manager, elevated priviledges.', False),
     MenuOption('tmux attach', 'terminal', 'tmuxplus.sh -a', 'ATTACH', 'List Tmux sessions and attach.', True),
+    MenuOption('toggle connection', 'launch', 'bash /usr/local/bin/toggle_connection.sh', 'CONNECT', 'START/STOP Internet connection.', False),
     MenuOption('vbox', 'stay_in_terminal', r"""vboxmanage list vms | awk -F '\"' '{ print \$2 }' | fzf | sed 's/\ /\\\ /g' | xargs vboxmanage startvm && exit""", 'VBOX', 'Select a virtual machine.', True),
     MenuOption('view history', 'stay_in_terminal', r"""cat ${HOME}/.bash_history | fzf""", 'HISTORY', 'View latest bash history.', True),
     MenuOption('volume', 'launch', 'pavucontrol', 'VOLUME', 'Volume control.', False),

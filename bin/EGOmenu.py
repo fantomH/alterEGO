@@ -25,6 +25,7 @@ options = [
     MenuOption('burp suite', 'launch', 'burpsuite', 'BURP', 'Web applications security testing.', False),
     MenuOption('bookmarks', 'terminal', 'bookmarks.py', 'BOOKMARKS', 'Bookmarks manager.', True),
     MenuOption('change background/wallpaper', 'launch', 'ego-background.sh', 'null', 'Change wallpapers', False),
+    MenuOption('clean bash history', 'launch', 'code ${HOME}/.bash_history', 'CODE', 'Clean .bash_history', False),
     MenuOption('dirbuster', 'stay_in_terminal', 'dirbuster --help', 'DIRBUSTER', 'Description', False),
     MenuOption('exit i3', 'execute', 'i3-msg exit', 'null', 'Exit i3 window manager.', False),
     MenuOption('firefox', 'launch', 'firefox', 'FIREFOX', 'Web browser.', False),

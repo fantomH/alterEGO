@@ -1,11 +1,11 @@
 #!/usr/bin/env python
-#--{ alterEGO Linux: "Open the vault of knowledge" }---------------------------
-#
+
+# --{ alterEGO Linux: "Open the vault of knowledge" }
 # bookmarks.py
 #   created        : 2021-03-21 14:39:13 UTC
 #   updated        : 2021-06-27 13:59:04 UTC
 #   description    : Bookmarks.
-#------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 
 import os
 import sqlite3 as sql
@@ -53,4 +53,4 @@ except:
 con.close()
 os.remove(dumpfile)
 
-#--{ file:FIN }----------------------------------------------------------------
+# -{ file:FIN }----------------------------------------------------------------

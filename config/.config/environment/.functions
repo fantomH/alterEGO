@@ -1,15 +1,15 @@
-#--{ alterEGO Linux: "Open the vault of knowledge" }---------------------------
+# { alterEGO Linux: "Open the vault of knowledge" }
 #
 # .functions
 #   created        : 2021-05-25 19:40:20 UTC
-#   updated        : 2021-05-25 19:40:26 UTC
+#   updated        : 2021-08-03 09:58:28 UTC
 #   description    : shell functions. 
 #   app            : sh
 #   target         : ${HOME}/.config/environment/.functions
-#------------------------------------------------------------------------------
+# _____________________________________________________________________________
 
 function gitall(){
-  git add . && git commit && git push
+  git pull && git add . && git commit && git push
 }
 
 function heraser(){
@@ -26,4 +26,4 @@ function heraser(){
 }
 
 # vim: syntax=sh
-#--{ file:FIN }----------------------------------------------------------------
+# { file:FIN }_________________________________________________________________

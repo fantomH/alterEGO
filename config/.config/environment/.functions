@@ -8,22 +8,48 @@
 #   target         : ${HOME}/.config/environment/.functions
 # _____________________________________________________________________________
 
-function gitall(){
-  git pull && git add . && git commit && git push
-}
+  function busy() {
+      # -- v. 2021-04-27 13:46:04 UTC
 
-function heraser(){
-  choices=$( history | grep --color=none "${@}" | fzf )
-  [[ -z "${choices}" ]] && exit 1
+      # -- When the boss comes around to look busy.
+      # .. ref: https://www.commandlinefu.com/commands/view/6663/pretend-to-be-busy-in-office-to-enjoy-a-cup-of-coffee
+      # .. CTRL+c to quit.
 
-  confirm=$(printf "yes\ncancel" | fzf)
-  
-  if [[ ${confirm} == 'yes' ]]; then
-      to_delete=$(awk '{ print $1 }' <<< "${choices}")
-      history -d ${to_delete}
-  fi
+      cat /dev/urandom                                                        \
+      | hexdump -C                                                            \
+      | grep --color=always 'ca fe'
+  }
 
-}
+  function fuck() {
+      # -- v. 2021-04-27 13:52:55 UTC
+
+      # -- Repeat last cmd with sudo if forgotten.
+
+      sudo $(history -p !!)
+  }
+
+  function gitall() {
+      # -- v. 2021-08-03 10:14:27 UTC
+
+      git pull && git add . && git commit && git push
+  }
+
+  function heraser() {
+      # -- v. 2021-08-03 10:15:16 UTC
+
+      # -- Uses `fzf` to sort through the bash history and let you delete an 
+      # .. entry.
+
+      choices=$( history | grep --color=none "${@}" | fzf )
+      [[ -z "${choices}" ]] && exit 1
+
+      confirm=$(printf "yes\ncancel" | fzf)
+      
+      if [[ ${confirm} == 'yes' ]]; then
+          to_delete=$(awk '{ print $1 }' <<< "${choices}")
+          history -d ${to_delete}
+      fi
+  }
 
 # vim: syntax=sh
 # { file:FIN }_________________________________________________________________

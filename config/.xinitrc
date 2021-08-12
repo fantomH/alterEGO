@@ -14,6 +14,16 @@ if [ -d /etc/X11/xinit/xinitrc.d ]; then
     unset f
 fi
 
-exec /usr/bin/i3
+case ${2} in
+
+    qtile)
+        exec /usr/bin/qtile start
+        ;;
+        
+    *)
+        exec /usr/bin/i3
+        ;;
+
+esac
 
 # FILE: fin ________________________________________________________ ¯\_(ツ)_/¯

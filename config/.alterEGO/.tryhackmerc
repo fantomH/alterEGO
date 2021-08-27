@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+
+## { alterEGO Linux: "Open the vault of knowledge" }___________________________
+##
+## .attackrc
+##   created     : 2021-03-07 15:10:11 UTC
+##   updated     : 2021-08-27 12:38:09 UTC
+##   description : TryHackMe stuff 
+##   target      : ${HOME}/.alterEGO/.tryhackmerc
+## ____________________________________________________________________________
+
+export THM_PLAYER="fantomH"
+export THM_MAINDIR="${HOME}/.tryhackme"
+# export _LHOST='10.6.40.189'
+# export _RHOST='10.10.27.9'
+
+# export _ROOM='introtoshells'
+# export _ROOMDIR="${_MAINDIR}/${_ROOM}"
+
+## [ VERIFICATION ]
+
+  [[ ! -d ${THM_MAINDIR} ]] && mkdir ${THM_MAINDIR}
+
+#----------{ PREP }
+
+  # if [[ ! -d "${_MAINDIR}/${_ROOM}" ]]; then
+      # mkdir -p ${_MAINDIR}/${_ROOM}
+  # fi
+
+  # touch ${_MAINDIR}/${_ROOM}/quicknotes.md
+
+## [ LAUNCHER ]
+
+  case $@ in
+    start )
+      vpn="${HOME}/.alterEGO/tryhackme/${THM_PLAYER}.ovpn"
+      if [[ -f ${vpn} ]]; then
+        sudo openvpn ${vpn} &
+        cd ${THM_MAINDIR}
+      else
+        $BROWSER "https://tryhackme.com/vpn/get-config"
+      fi
+      ;;
+    * ) :
+  esac
+
+## { FIN }_____________________________________________________________________

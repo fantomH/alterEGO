@@ -1,18 +1,22 @@
 #!/usr/bin/env sh
 
-## { alterEGO Linux: "Open the vault of knowledge" }
+## { alterEGO Linux: "Open the vault of knowledge" }___________________________
 ##
 ## .egorc
 ##   created     : 2021-03-19 09:37:19 UTC
-##   updated     : 2021-08-27 09:40:45 UTC
+##   updated     : 2021-08-27 11:46:36 UTC
 ##   description : Additional shell stuff for EGO Linux.
 ##   app         : sh
-##   target      : ${HOME}/.config/environment/.egorc
+##   target      : ${HOME}/.alterEGO/.egorc
 ## ____________________________________________________________________________
 
   export EGORC="OK"
 
-  alias reload_egorc="echo $1"
+
+  function egorc_reload() {
+    source "${HOME}/.alterEGO/.egorc"
+    echo "egorc reloaded on $(date)"
+  }
 
 ## [ WORDLISTS ]
   export wordlist="/usr/local/share/wordlist"
@@ -30,9 +34,13 @@
   export webshell="${revshell}/webshell.php"
 
 ## [ IP ADDRESSES ]
-  #### `host` is provided by the package 'bind'.
-  
-  ipaddr() {
+
+  function ipaddr() {
+    #### IP addresses will be exported when .egorc is sourced with the
+    #### function call, but can also be 'refreshed' when calling ipaddr
+    #### from the terminal (ex. after starting a VPN connection).
+
+    #### `host` is provided by the package 'bind'.
     export pubip="$(host myip.opendns.com resolver1.opendns.com                 \
                     | grep --color=never -oP '(?<=myip.opendns.com has address ).*$')"
 
@@ -40,5 +48,11 @@
     export vpnip="$(ip address | grep --color=never -oP "(?<=inet ).*(?=/.*tun)")"
   }
   ipaddr
+
+## [ TryHackMe ]
+
+  TRYHACKMERC="${HOME}/.alterEGO/.tryhackmerc"
+  [[ -f ${HOME}/.alterEGO/.tryhackmerc ]] && . ${HOME}/.alterEGO/.tryhackmerc
+  alias attack="bash ${HOME}/.alterEGO/.tryhackmerc"
 
 ## { FIN }_____________________________________________________________________

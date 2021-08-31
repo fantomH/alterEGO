@@ -52,4 +52,12 @@
 
   alias attack=". ${HOME}/.alterEGO/.tryhackmerc"
 
+## [ Damn Vulnerable Web App (DVWA) ]
+
+  function dvwa() {
+      #### Will install or run the Damn Vulnerable Web App (DVWA) docker.
+      sudo systemctl start docker.service
+      docker run --rm -it -p 8080:8080 vulnerables/web-dvwa
+      }
+
 ## { FIN }_____________________________________________________________________

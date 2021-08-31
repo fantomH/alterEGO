@@ -1,0 +1,47 @@
+## { alterEGO Linux: "Open the vault of knowledge" }---------------------------
+##
+## .functions
+##   created        : 2021-05-25 19:40:20 UTC
+##   updated        : 2021-08-31 22:21:30 UTC
+##   description    : Shell functions. 
+##   app            : sh
+##   target         : ${HOME}/.alterEGO/.functions
+## ____________________________________________________________________________
+
+  function busy() {
+      #### When the boss comes around to look busy.
+      #### ref. https://www.commandlinefu.com/commands/view/6663/pretend-to-be-busy-in-office-to-enjoy-a-cup-of-coffee
+      #### CTRL+c to quit.
+
+      cat /dev/urandom                                                        \
+      | hexdump -C                                                            \
+      | grep --color=always 'ca fe'
+  }
+
+  function fuck() {
+      #### Repeat last cmd with sudo if forgotten.
+
+      sudo $(history -p !!)
+  }
+
+  function gitall() {
+      git pull && git add . && git commit && git push
+  }
+
+  function heraser() {
+      #### Uses `fzf` to sort through the bash history and let you delete an 
+      #### entry.
+
+      choices=$( history | grep --color=none "${@}" | fzf )
+      [[ -z "${choices}" ]] && exit 1
+
+      confirm=$(printf "yes\ncancel" | fzf)
+      
+      if [[ ${confirm} == 'yes' ]]; then
+          to_delete=$(awk '{ print $1 }' <<< "${choices}")
+          history -d ${to_delete}
+      fi
+  }
+
+# vim: syntax=sh
+## { FIN }_____________________________________________________________________

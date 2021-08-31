@@ -1,11 +1,11 @@
 #!/usr/bin/env sh
 
-## { alterEGO Linux: "Open the vault of knowledge" }___________________________
+## { alterEGO Linux: "Open the vault of knowledge" }---------------------------
 ##
 ## .egorc
 ##   created     : 2021-03-19 09:37:19 UTC
-##   updated     : 2021-08-31 12:39:06 UTC
-##   description : Additional shell stuff for EGO Linux.
+##   updated     : 2021-08-31 21:42:15 UTC
+##   description : Additional shell stuff for alterEGO Linux.
 ##   app         : sh
 ##   target      : ${HOME}/.alterEGO/.egorc
 ## ____________________________________________________________________________
@@ -56,13 +56,20 @@
 
   function dvwa() {
       #### Will install or run the Damn Vulnerable Web App (DVWA) docker.
-      sudo systemctl start docker.service
-      docker run --rm -it -p 81:80 vulnerables/web-dvwa &
-      sleep 2
-      $BROWSER "http://localhost:81/login.php"
-      # docker stop $(docker ps | grep "vulnerables/web-dvwa" | cut -d ' ' -f1)
-      # sudo systemctl stop docker.proxy
-      # sudo systemctl stop docker.service
+      if [[ "$1" == 'start' ]]; then
+        sudo systemctl start docker.service
+        docker run --rm -it -p 81:80 vulnerables/web-dvwa &
+        sleep 2
+        $BROWSER "http://localhost:81/login.php"
+      elif [[ "$1" == 'stop' ]]; then
+        docker stop $(docker ps | grep "vulnerables/web-dvwa" | cut -d ' ' -f1)
+        sudo systemctl stop docker.socket
+        sudo systemctl stop docker.service
+      else
+        cat <<EOF
+Usage: dvwa start|stop
+EOF
+      fi
       }
 
 ## { FIN }_____________________________________________________________________

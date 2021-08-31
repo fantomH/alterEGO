@@ -2,36 +2,19 @@
 
 ## { alterEGO Linux: "Open the vault of knowledge" }___________________________
 ##
-## .attackrc
+## .tryhackmerc
 ##   created     : 2021-03-07 15:10:11 UTC
-##   updated     : 2021-08-27 12:38:09 UTC
+##   updated     : 2021-08-31 09:31:46 UTC
 ##   description : TryHackMe stuff 
 ##   target      : ${HOME}/.alterEGO/.tryhackmerc
 ## ____________________________________________________________________________
 
-export THM_PLAYER="fantomH"
-export THM_MAINDIR="${HOME}/.tryhackme"
-# export _LHOST='10.6.40.189'
-# export _RHOST='10.10.27.9'
-
-# export _ROOM='introtoshells'
-# export _ROOMDIR="${_MAINDIR}/${_ROOM}"
-
-## [ VERIFICATION ]
-
-  [[ ! -d ${THM_MAINDIR} ]] && mkdir ${THM_MAINDIR}
-
-#----------{ PREP }
-
-  # if [[ ! -d "${_MAINDIR}/${_ROOM}" ]]; then
-      # mkdir -p ${_MAINDIR}/${_ROOM}
-  # fi
-
-  # touch ${_MAINDIR}/${_ROOM}/quicknotes.md
+  CONFIG="${HOME}/.alterEGO/.tryhackme.conf"
+  [[ -f ${CONFIG} ]] && . ${CONFIG}
 
 ## [ LAUNCHER ]
 
-  case $@ in
+  case "${1}" in
     start )
       vpn="${HOME}/.alterEGO/tryhackme/${THM_PLAYER}.ovpn"
       if [[ -f ${vpn} ]]; then
@@ -41,7 +24,70 @@ export THM_MAINDIR="${HOME}/.tryhackme"
         $BROWSER "https://tryhackme.com/vpn/get-config"
       fi
       ;;
-    * ) :
+    set-player )
+        shift
+          _thm_player="${1}"
+          sed -i -e "s/\(THM_PLAYER=\).*/\1'${_thm_player}'/g" ${CONFIG}
+        ;;
+    set-rhost )
+        shift
+          _thm_rhost="${1}"
+          sed -i -e "s/\(THM_RHOST=\).*/\1'${_thm_rhost}'/g" ${CONFIG}
+        ;;
+    set-room )
+        shift
+          _thm_room="${1}"
+          sed -i -e "s/\(THM_ROOM=\).*/\1'${_thm_room}'/g" ${CONFIG}
+        ;;
+    msf )
+        msfconsole -x "db_connect ${USER}@msf" -r ~/.msf4/thm.rc
+        ;;
   esac
+
+  ## [ THM_PLAYER ]
+  if [[ ${THM_PLAYER} == 'UNKNOWN' ]]; then
+    read -r -p "Who's playing? " _thm_player
+    sed -i -e "s/\(THM_PLAYER=\).*/\1'${_thm_player}'/g" ${CONFIG}
+  fi
+
+  ## [ MAIN DIR ]
+  [[ ! -d "${THM_MAINDIR}" ]] && mkdir "${THM_MAINDIR}"
+
+  ## [ ROOM ]
+  if [[ ${THM_ROOM} == 'UNKNOWN' ]]; then
+    read -r -p "Which room? " _thm_room
+    sed -i -e "s/\(THM_ROOM=\).*/\1'${_thm_room}'/g" ${CONFIG}
+    mkdir -p ${THM_MAINDIR}/${_thm_room}
+  fi
+
+  ## [ TOOLS DIR ] 
+  [[ ! -d "${THM_MAINDIR}/tools" ]] && mkdir "${THM_MAINDIR}/tools"
+
+  ## [ EXPORT ]
+  [[ -f ${CONFIG} ]] && . ${CONFIG}
+  export THM_PLAYER
+  export THM_ROOM
+  export THM_RHOST
+  export THM_LHOST
+  export THM_MAINDIR
+  export THM_PATH="$THM_MAINDIR/$THM_ROOM"
+  export THM_TOOLS="$THM_MAINDIR/tools"
+
+  ## [ DISPLAY INFO ]
+  printf '%s\n' "PLAYER     =   $(env | grep --color=none -oP "(?<=THM_PLAYER=).*(?=$)")"
+  printf '%s\n' "ROOM       =   $(env | grep --color=none -oP "(?<=THM_ROOM=).*(?=$)")"
+  printf '%s\n' "RHOST      =   $(env | grep --color=none -oP "(?<=THM_RHOST=).*(?=$)")"
+  printf '%s\n' "LHOST      =   $(env | grep --color=none -oP "(?<=THM_LHOST=).*(?=$)")"
+  printf '%s\n' "MAIN DIR   =   $(env | grep --color=none -oP "(?<=THM_MAINDIR=).*(?=$)")"
+  printf '%s\n' "ROOM PATH  =   $(env | grep --color=none -oP "(?<=THM_PATH=).*(?=$)")"
+  printf '%s\n' "TOOLS DIR  =   $(env | grep --color=none -oP "(?<=THM_TOOLS=).*(?=$)")"
+
+  ## [ METASPLOIT ]
+  #### Create msfconsole resource file.
+  cat << EOF > ~/.msf4/thm.rc
+load alias
+alias setlhost "set LHOST ${THM_LHOST}"
+alias setrhost "set RHOSTS ${THM_RHOST}"
+EOF
 
 ## { FIN }_____________________________________________________________________

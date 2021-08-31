@@ -12,7 +12,6 @@
 
   export EGORC="OK"
 
-
   function egorc_reload() {
     source "${HOME}/.alterEGO/.egorc"
     echo "egorc reloaded on $(date)"
@@ -51,8 +50,6 @@
 
 ## [ TryHackMe ]
 
-  TRYHACKMERC="${HOME}/.alterEGO/.tryhackmerc"
-  [[ -f ${HOME}/.alterEGO/.tryhackmerc ]] && . ${HOME}/.alterEGO/.tryhackmerc
-  alias attack="bash ${HOME}/.alterEGO/.tryhackmerc"
+  alias attack=". ${HOME}/.alterEGO/.tryhackmerc"
 
 ## { FIN }_____________________________________________________________________

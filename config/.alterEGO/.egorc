@@ -40,7 +40,7 @@
     #### from the terminal (ex. after starting a VPN connection).
 
     #### `host` is provided by the package 'bind'.
-    export pubip="$(host myip.opendns.com resolver1.opendns.com                 \
+    export pubip="$(host myip.opendns.com resolver1.opendns.com               \
                     | grep --color=never -oP '(?<=myip.opendns.com has address ).*$')"
 
     export locip="$(ip address | grep --color=never -oP "(?<=inet ).*(?=/.*enp)")"

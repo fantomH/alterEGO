@@ -2,7 +2,7 @@
 ##
 ## .functions
 ##   created        : 2021-05-25 19:40:20 UTC
-##   updated        : 2021-08-31 22:21:30 UTC
+##   updated        : 2021-09-01 11:05:12 UTC
 ##   description    : Shell functions. 
 ##   app            : sh
 ##   target         : ${HOME}/.alterEGO/.functions
@@ -16,6 +16,38 @@
       cat /dev/urandom                                                        \
       | hexdump -C                                                            \
       | grep --color=always 'ca fe'
+  }
+
+  function cheat() {
+    #### Query https://cheat.sh.
+    #### Menu with `fzf` and display with `less`.
+
+    cheat="$(curl -s cheat.sh/:list                                           \
+             | fzf --layout="reverse"                                         \
+                   --prompt='::'                                              \
+                   --preview-window=up:80%                                    \
+                   --preview 'cat <(curl -s cheat.sh/{})')"
+
+    [[ -z ${cheat} ]] && exit 0
+
+    curl -s cheat.sh/${cheat} | less -R
+  }
+
+  function fixout() {
+    #### Fix history and exit.
+    #### Don't try to put this code in a shell script, it won't work.
+    #### `history` don't play well in scripts.
+
+    history -n && history                                                     \
+    | sort -k2 -k1nr                                                          \
+    | uniq -f1                                                                \
+    | sort -n                                                                 \
+    | cut -c8- > ~/.tmp$$                                                     \
+    && history -c                                                             \
+    && history -r ~/.tmp$$                                                    \
+    && history -w                                                             \
+    && rm ~/.tmp$$                                                            \
+    && exit
   }
 
   function fuck() {
@@ -41,6 +73,29 @@
           to_delete=$(awk '{ print $1 }' <<< "${choices}")
           history -d ${to_delete}
       fi
+  }
+
+  function ispeed() {
+    #### Test Internet speed.
+
+    curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py \
+    | python -
+
+  }
+
+  function tagalog() {
+
+    wget -U "Mozilla/5.0" -qO - "http://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=tl&dt=t&q=${@}" \
+    | awk -F '"' '{print $2}'                                                 \
+    | head -n 1
+  }
+
+  function translate() {
+    #### Add language abbr after string to translate.
+    #### For example, translate "Hello world" fr
+    wget -U "Mozilla/5.0" -qO - "http://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${2}&dt=t&q=${1}" \
+    | awk -F '"' '{print $2}'                                                 \
+    | head -n 1
   }
 
 # vim: syntax=sh

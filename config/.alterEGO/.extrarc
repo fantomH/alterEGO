@@ -2,15 +2,14 @@
 ##
 ## .extrarc
 ##   created        : 2021-03-16 10:15:03 UTC
-##   updatedi       : 2021-08-31 22:14:11 UTC
+##   updatedi       : 2021-09-03 11:14:43 UTC
 ##   description    : Shell config specific to this machine
 ##   app            : bash
 ##   target         : ${HOME}/.alterEGO/.extrarc
 ## ____________________________________________________________________________
 
   export lgit="/usr/local/alterEGO"
-  alias attack="source ${HOME}/.attackrc"
   alias updateROOT='sudo -u root sh -c "cd $lgit && git pull"'
   alias vinotes="vim ~/repositories/droidnotes/droidnotes.html"
 
-# { FIN }______________________________________________________________________
+## { FIN }_____________________________________________________________________

@@ -1,12 +1,14 @@
 #!/usr/bin/env python
-#--{ alterEGO Linux: "Open the vault of knowledge" }---------------------------
-#
-# EGOmenu.py
-#   created     : 2021-06-28 11:42:57 UTC
-#   updated     : 2021-07-19 02:11:17 UTC
-#   description : EGO menu using FZF.
-#   dependencies: - fzf
-#------------------------------------------------------------------------------
+
+## { alterEGO Linux: "Open the vault of knowledge" }---------------------------
+##
+## EGOmenu.py
+##   created     : 2021-06-28 11:42:57 UTC
+##   updated     : 2021-09-03 10:38:38 UTC
+##   description : EGO menu using FZF.
+##   target      : /usr/local/share/bin/
+##   dependencies: - fzf
+## ____________________________________________________________________________
 
 from collections import namedtuple
 import os
@@ -105,4 +107,4 @@ def main():
 if __name__ == '__main__':
     main()
 
-#--{ file:FIN }----------------------------------------------------------------
+## { FIN }_____________________________________________________________________

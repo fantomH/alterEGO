@@ -2,7 +2,7 @@
 ##
 ## .extrarc
 ##   created        : 2021-03-16 10:15:03 UTC
-##   updatedi       : 2021-09-03 11:14:43 UTC
+##   updatedi       : 2021-09-05 15:02:09 UTC
 ##   description    : Shell config specific to this machine
 ##   app            : bash
 ##   target         : ${HOME}/.alterEGO/.extrarc
@@ -11,5 +11,14 @@
   export lgit="/usr/local/alterEGO"
   alias updateROOT='sudo -u root sh -c "cd $lgit && git pull"'
   alias vinotes="vim ~/repositories/droidnotes/droidnotes.html"
+
+## [ LOADED ]
+
+  export ALTEREGO_EXTRARC="LOADED"
+  printf "${COLOR_GREEN}[+]${COLOR_RESET} ${COLOR_BOLD}.extrarc loaded @ $(date)...${COLOR_RESET}\n"
+
+  function reload_profile() {
+    source "${HOME}/.atlerEGO/.extrarc"
+  }
 
 ## { FIN }_____________________________________________________________________

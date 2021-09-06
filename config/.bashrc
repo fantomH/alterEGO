@@ -2,7 +2,7 @@
 ##
 ## .bashrc
 ##   created        : 2021-02-26 02:54:43 UTC
-##   updated        : 2021-09-01 11:05:32 UTC
+##   updated        : 2021-09-06 14:23:32 UTC
 ##   description    : Bash config file. 
 ##   app            : bash
 ##   target         : $HOME/.bashrc
@@ -11,13 +11,21 @@
   #### If not running interactively, don't do anything
   [[ $- != *i* ]] && return
 
+  #### Source .profile is not already.
+  if [[ -z $ALTEREGO_PROFILE ]]; then
+    [[ -f ${HOME}/.profile ]] && source ${HOME}/.profile
+  fi
+
+  #### bash-completion
+  [ -r /usr/share/bash-completion/bash_completion ]                           \
+  && . /usr/share/bash-completion/bash_completion
+
 ## [ ALIASES ]
 
   alias grep="grep --color=always"
   alias ll='ls --all --human-readable -l --color=auto'
   alias ls='ls --all --color=auto'
   alias open="xdg-open"
-  alias reload="source ${HOME}/.bashrc"
 
   #### Makes tmux understand the environment is important.
   alias tmux="env TERM=screen-256color tmux -u"
@@ -44,6 +52,15 @@
 ## [ SOURCING ]
 
   [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+## [ LOADED ]
+
+  export ALTEREGO_BASHRC="LOADED"
+  printf "${COLOR_GREEN}[+]${COLOR_RESET} ${COLOR_BOLD}.bashrc loaded @ $(date)...${COLOR_RESET}\n"
+
+  function reload() {
+    source "${HOME}/.bashrc"
+  }
 
 # vim: syntax=sh
 ## { FIN }_____________________________________________________________________

@@ -98,5 +98,14 @@
     | head -n 1
   }
 
+## [ LOADED ]
+
+  export ALTEREGO_FUNCTIONS="LOADED"
+  printf "${COLOR_GREEN}[+]${COLOR_RESET} ${COLOR_BOLD}.functions loaded @ $(date)...${COLOR_RESET}\n"
+
+  function reload_functions() {
+    source "${HOME}/.alterEGO/.functions"
+  }
+
 # vim: syntax=sh
 ## { FIN }_____________________________________________________________________

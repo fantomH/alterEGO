@@ -4,33 +4,26 @@
 ##
 ## .egorc
 ##   created     : 2021-03-19 09:37:19 UTC
-##   updated     : 2021-08-31 21:42:15 UTC
+##   updated     : 2021-09-06 13:24:46 UTC
 ##   description : Additional shell stuff for alterEGO Linux.
 ##   app         : sh
 ##   target      : ${HOME}/.alterEGO/.egorc
 ## ____________________________________________________________________________
 
-  export EGORC="OK"
-
-  function egorc_reload() {
-    source "${HOME}/.alterEGO/.egorc"
-    echo "egorc reloaded on $(date)"
-  }
-
 ## [ WORDLISTS ]
-  export wordlist="/usr/local/share/wordlist"
-  export best1050="${wordlist}/best1050.txt"
-  export big="${wordlist}/seclist-big.txt"
-  export dirmedium="${wordlist}/directory-list-2.3-medium.txt"
-  export rockyou="${wordlist}/rockyou.txt"
-  export largefiles="${wordlist}/raft-large-files.txt"
-  export xplatform="${wordlist}/xplatform.txt"
+  export WORDLIST="/usr/local/share/wordlist"
+  export WL_BEST1050="${wordlist}/best1050.txt"
+  export WL_BIG="${wordlist}/seclist-big.txt"
+  export WL_DIRMEDIUM="${wordlist}/directory-list-2.3-medium.txt"
+  export WL_ROCKYOU="${wordlist}/rockyou.txt"
+  export WL_LARGEFILES="${wordlist}/raft-large-files.txt"
+  export WL_XPLATFORM="${wordlist}/xplatform.txt"
 
 ## [ REVERSE SHELL ]
-  export patt_nodeJS="${revshell}/patt_nodeJS.js"
-  export revshell="/usr/local/share/reverse_shell"
-  export revshell_php="${revshell}/php-reverse-shell.php"
-  export webshell="${revshell}/webshell.php"
+  export REVSHELL="/usr/local/share/reverse_shell"
+  export RS_PATT_NODEJS="${revshell}/patt_nodeJS.js"
+  export RS_REVSHELL_PHP="${revshell}/php-reverse-shell.php"
+  export RS_WEBSHELL="${revshell}/webshell.php"
 
 ## [ IP ADDRESSES ]
 
@@ -47,6 +40,23 @@
     export vpnip="$(ip address | grep --color=never -oP "(?<=inet ).*(?=/.*tun)")"
   }
   ipaddr
+
+## [ GOTO ]
+  #### Requires: bash-completion && sourced in .bashrc
+  #### Usage: `goto @mounted`
+  #### To add a goto link:
+  #### `ln -s /some/directory/path @goto-link` in $HOME/.alterEGO/.goto directory.
+  #### src. https://threkk.medium.com/how-to-use-bookmarks-in-bash-zsh-6b8074e40774
+  #### src. https://twitter.com/mattn_jp/status/1434192554036137995
+
+  if [ -d "${HOME}/.alterEGO/.goto/" ]; then
+    export CDPATH=".:${HOME}/.alterEGO/.goto:/"
+    alias goto="cd -P"
+    _goto() {
+      local IFS=$'\n'
+      COMPREPLY=( $(compgen -W "$(/bin/ls ~/.alterEGO/.goto)" -- ${COMP_WORDS[COMP_CWORD]}) )
+    } && complete -F _goto goto
+  fi
 
 ## [ TryHackMe ]
 
@@ -71,5 +81,14 @@ Usage: dvwa start|stop
 EOF
       fi
       }
+
+## [ LOADED ]
+
+  export ALTEREGO_EGORC="LOADED"
+  printf "${COLOR_GREEN}[+]${COLOR_RESET} ${COLOR_BOLD}.egorc loaded @ $(date)...${COLOR_RESET}\n"
+
+  function reload_egorc() {
+    source "${HOME}/.alterEGO/.egorc"
+  }
 
 ## { FIN }_____________________________________________________________________

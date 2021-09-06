@@ -4,7 +4,7 @@
 ##
 ## .tryhackmerc
 ##   created     : 2021-03-07 15:10:11 UTC
-##   updated     : 2021-08-31 09:31:46 UTC
+##   updated     : 2021-09-06 13:42:24 UTC
 ##   description : TryHackMe stuff 
 ##   target      : ${HOME}/.alterEGO/.tryhackmerc
 ## ____________________________________________________________________________
@@ -84,10 +84,26 @@
 
   ## [ METASPLOIT ]
   #### Create msfconsole resource file.
+  #### To load the resource file in msfconsole:
+  #### `resource thm.rc`
+
+  if [ ! -d "${HOME}/.msf4" ]; then
+    mkdir ${HOME}/.msf4
+  fi
+
   cat << EOF > ~/.msf4/thm.rc
 load alias
 alias setlhost "set LHOST ${THM_LHOST}"
 alias setrhost "set RHOSTS ${THM_RHOST}"
 EOF
+
+## [ LOADED ]
+
+  export ALTEREGO_TRYHACKMERC="LOADED"
+  printf "${COLOR_GREEN}[+]${COLOR_RESET} ${COLOR_BOLD}.tryhackmerc loaded @ $(date)...${COLOR_RESET}\n"
+
+  function reload_tryhackmerc() {
+    source "${HOME}/.alterEGO/.tryhackmerc"
+  }
 
 ## { FIN }_____________________________________________________________________

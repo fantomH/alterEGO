@@ -13,5 +13,14 @@
   [ -f ${HOME}/.alterEGO/.functions ] && . ${HOME}/.alterEGO/.functions
   [ -f ${HOME}/.alterEGO/.extrarc ] && . ${HOME}/.alterEGO/.extrarc
 
+## [ LOADED ]
+
+  export ALTEREGO_PROFILE="LOADED"
+  printf "${COLOR_GREEN}[+]${COLOR_RESET} ${COLOR_BOLD}.profile loaded @ $(date)...${COLOR_RESET}\n"
+
+  function reload_profile() {
+    source "${HOME}/.profile"
+  }
+
 # vim: syntax=sh
 ## { FIN }_____________________________________________________________________

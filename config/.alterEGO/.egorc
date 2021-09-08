@@ -12,18 +12,18 @@
 
 ## [ WORDLISTS ]
   export WORDLIST="/usr/local/share/wordlist"
-  export WL_BEST1050="${wordlist}/best1050.txt"
-  export WL_BIG="${wordlist}/seclist-big.txt"
-  export WL_DIRMEDIUM="${wordlist}/directory-list-2.3-medium.txt"
-  export WL_ROCKYOU="${wordlist}/rockyou.txt"
-  export WL_LARGEFILES="${wordlist}/raft-large-files.txt"
-  export WL_XPLATFORM="${wordlist}/xplatform.txt"
+  export WL_BEST1050="${WORDLIST}/best1050.txt"
+  export WL_BIG="${WORDLIST}/seclist-big.txt"
+  export WL_DIRMEDIUM="${WORDLIST}/directory-list-2.3-medium.txt"
+  export WL_ROCKYOU="${WORDLIST}/rockyou.txt"
+  export WL_LARGEFILES="${WORDLIST}/raft-large-files.txt"
+  export WL_XPLATFORM="${WORDLIST}/xplatform.txt"
 
 ## [ REVERSE SHELL ]
   export REVSHELL="/usr/local/share/reverse_shell"
-  export RS_PATT_NODEJS="${revshell}/patt_nodeJS.js"
-  export RS_REVSHELL_PHP="${revshell}/php-reverse-shell.php"
-  export RS_WEBSHELL="${revshell}/webshell.php"
+  export RS_PATT_NODEJS="${REVSHELL}/patt_nodeJS.js"
+  export RS_REVSHELL_PHP="${REVSHELL}/php-reverse-shell.php"
+  export RS_WEBSHELL="${REVSHELL}/webshell.php"
 
 ## [ IP ADDRESSES ]
 

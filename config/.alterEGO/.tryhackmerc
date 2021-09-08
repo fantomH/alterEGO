@@ -4,7 +4,7 @@
 ##
 ## .tryhackmerc
 ##   created     : 2021-03-07 15:10:11 UTC
-##   updated     : 2021-09-06 13:42:24 UTC
+##   updated     : 2021-09-07 14:39:15 UTC
 ##   description : TryHackMe stuff 
 ##   target      : ${HOME}/.alterEGO/.tryhackmerc
 ## ____________________________________________________________________________
@@ -100,7 +100,11 @@ EOF
 ## [ LOADED ]
 
   export ALTEREGO_TRYHACKMERC="LOADED"
-  printf "${COLOR_GREEN}[+]${COLOR_RESET} ${COLOR_BOLD}.tryhackmerc loaded @ $(date)...${COLOR_RESET}\n"
+  filerc=".tryhackmerc"
+  #### ref. https://stackoverflow.com/questions/2683279/how-to-detect-if-a-script-is-being-sourced
+  (return 0 2>/dev/null)                                                      \
+  && printf "${COLOR_GREEN}[+]${COLOR_RESET} ${COLOR_BOLD}${filerc} loaded @ $(date | sed 's/  / /g')...${COLOR_RESET}\n" \
+  || printf "${COLOR_RED}[?]${COLOR_RESET} ${COLOR_BOLD}Problem loading ${filerc} ${COLOR_RESET}\n"
 
   function reload_tryhackmerc() {
     source "${HOME}/.alterEGO/.tryhackmerc"

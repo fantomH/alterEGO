@@ -4,7 +4,7 @@
 ##
 ## .egorc
 ##   created     : 2021-03-19 09:37:19 UTC
-##   updated     : 2021-09-06 13:24:46 UTC
+##   updated     : 2021-09-08 12:15:33 UTC
 ##   description : Additional shell stuff for alterEGO Linux.
 ##   app         : sh
 ##   target      : ${HOME}/.alterEGO/.egorc
@@ -84,8 +84,12 @@ EOF
 
 ## [ LOADED ]
 
-  export ALTEREGO_EGORC="LOADED"
-  printf "${COLOR_GREEN}[+]${COLOR_RESET} ${COLOR_BOLD}.egorc loaded @ $(date)...${COLOR_RESET}\n"
+  function loaded_egorc() {
+    printf "${COLOR_GREEN}[+]${COLOR_RESET} ${COLOR_BOLD}.egorc loaded @ $(date | sed 's/  / /g')...${COLOR_RESET}\n"
+  }
+  loaded_egorc
+
+## [ RELOAD ]
 
   function reload_egorc() {
     source "${HOME}/.alterEGO/.egorc"

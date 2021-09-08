@@ -2,7 +2,7 @@
 ##
 ## .extrarc
 ##   created        : 2021-03-16 10:15:03 UTC
-##   updatedi       : 2021-09-05 15:02:09 UTC
+##   updatedi       : 2021-09-08 12:20:38 UTC
 ##   description    : Shell config specific to this machine
 ##   app            : bash
 ##   target         : ${HOME}/.alterEGO/.extrarc
@@ -14,11 +14,15 @@
 
 ## [ LOADED ]
 
-  export ALTEREGO_EXTRARC="LOADED"
-  printf "${COLOR_GREEN}[+]${COLOR_RESET} ${COLOR_BOLD}.extrarc loaded @ $(date)...${COLOR_RESET}\n"
+  function loaded_extrarc() {
+    printf "${COLOR_GREEN}[+]${COLOR_RESET} ${COLOR_BOLD}.extrarc loaded @ $(date | sed 's/  / /g')...${COLOR_RESET}\n"
+  }
+  loaded_extrarc
 
-  function reload_profile() {
-    source "${HOME}/.atlerEGO/.extrarc"
+## [ RELOAD ]
+
+  function reload_extrarc() {
+    source "${HOME}/.alterEGO/.extrarc"
   }
 
 ## { FIN }_____________________________________________________________________

@@ -2,19 +2,11 @@
 ##
 ## .bashrc
 ##   created        : 2021-02-26 02:54:43 UTC
-##   updated        : 2021-09-06 14:23:32 UTC
+##   updated        : 2021-09-08 12:07:29 UTC
 ##   description    : Bash config file. 
 ##   app            : bash
 ##   target         : $HOME/.bashrc
 ## ____________________________________________________________________________
-
-  #### If not running interactively, don't do anything
-  [[ $- != *i* ]] && return
-
-  #### Source .profile is not already.
-  if [[ -z $ALTEREGO_PROFILE ]]; then
-    [[ -f ${HOME}/.profile ]] && source ${HOME}/.profile
-  fi
 
   #### bash-completion
   [ -r /usr/share/bash-completion/bash_completion ]                           \
@@ -55,8 +47,16 @@
 
 ## [ LOADED ]
 
-  export ALTEREGO_BASHRC="LOADED"
-  printf "${COLOR_GREEN}[+]${COLOR_RESET} ${COLOR_BOLD}.bashrc loaded @ $(date)...${COLOR_RESET}\n"
+  function loaded_bashrc() {
+    printf "${COLOR_GREEN}[+]${COLOR_RESET} ${COLOR_BOLD}.bashrc loaded @ $(date | sed 's/  / /g')...${COLOR_RESET}\n" 
+  }
+  loaded_bashrc
+
+  if [ ! $(command -v loaded_profile) ]; then
+    [ -f ${HOME}/.profile ] && . ${HOME}/.profile
+  fi
+
+## [ RELOAD ]
 
   function reload() {
     source "${HOME}/.bashrc"

@@ -2,7 +2,7 @@
 ##
 ## .functions
 ##   created        : 2021-05-25 19:40:20 UTC
-##   updated        : 2021-09-01 11:05:12 UTC
+##   updated        : 2021-09-08 12:13:39 UTC
 ##   description    : Shell functions. 
 ##   app            : sh
 ##   target         : ${HOME}/.alterEGO/.functions
@@ -100,8 +100,12 @@
 
 ## [ LOADED ]
 
-  export ALTEREGO_FUNCTIONS="LOADED"
-  printf "${COLOR_GREEN}[+]${COLOR_RESET} ${COLOR_BOLD}.functions loaded @ $(date)...${COLOR_RESET}\n"
+  function loaded_functions() {
+    printf "${COLOR_GREEN}[+]${COLOR_RESET} ${COLOR_BOLD}.functions loaded @ $(date | sed 's/  / /g')...${COLOR_RESET}\n"
+  }
+  loaded_functions
+
+## [ RELOAD ]
 
   function reload_functions() {
     source "${HOME}/.alterEGO/.functions"

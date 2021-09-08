@@ -53,6 +53,7 @@ options = [
     MenuOption('shutdown', 'execute', 'shutdown now', 'null', 'Description', False),
     MenuOption('sqlitebrowser', 'launch', 'sqlitebrowser', 'SQLB', 'Sqlite GUI browser', False),
     MenuOption('star wars', 'stay_in_terminal', 'telnet towel.blinkenlights.nl', 'STARWARS', 'Watch ASCII StarWars.', False),
+    MenuOption('terminal', 'launch', r"\$TERMINAL", 'TERMINAL', 'Launch a terminal.', False),
     MenuOption('thumbs up!', 'launch', r"""echo -n '👍' | xclip -selection clipboard""", 'THUMBSUP', '👍 > clipboard', True),
     MenuOption('thunar', 'launch', 'thunar', 'THUNAR', 'GUI File manager.', False),
     MenuOption('thunar for admin', 'launch', 'sudo thunar', 'THUNARROOT', 'GUI File manager, elevated priviledges.', False),

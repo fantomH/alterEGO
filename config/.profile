@@ -2,7 +2,7 @@
 ##
 ## .profile
 ##   created        : 2021-04-28 14:59:01 UTC
-##   updated        : 2021-09-01 10:21:29 UTC
+##   updated        : 2021-09-08 12:07:44 UTC
 ##   description    : Loaded in non interactive shell. 
 ##   app            : sh
 ##   target         : ${HOME}/.profile
@@ -15,8 +15,16 @@
 
 ## [ LOADED ]
 
-  export ALTEREGO_PROFILE="LOADED"
-  printf "${COLOR_GREEN}[+]${COLOR_RESET} ${COLOR_BOLD}.profile loaded @ $(date)...${COLOR_RESET}\n"
+  function loaded_profile() {
+    printf "${COLOR_GREEN}[+]${COLOR_RESET} ${COLOR_BOLD}.profile loaded @ $(date | sed 's/  / /g')...${COLOR_RESET}\n"
+  }
+  loaded_profile
+
+  if [ ! $(command -v loaded_bashrc) ]; then
+    [ -f ${HOME}/.bashrc ] && . ${HOME}/.bashrc
+  fi
+
+## [ RELOAD ]
 
   function reload_profile() {
     source "${HOME}/.profile"

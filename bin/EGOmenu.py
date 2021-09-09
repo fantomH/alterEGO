@@ -42,6 +42,7 @@ options = [
     MenuOption('netcat', 'stay_in_terminal', 'nc --help', 'NETCAT', 'Utility for network discovery and security auditing.', False),
     MenuOption('nmap', 'stay_in_terminal', 'nmap --help | more', 'NMAP', 'Network exploration tool and security / port scanner.', False),
     MenuOption('nmap NSE', 'terminal', '/usr/local/bin/nmapNSE.sh', 'NMAPNSE', 'Nmap Scripting Engine (NSE) scripts', True),
+    MenuOption('now UTC', 'launch', r"""echo -n $(date --utc "+%F %H:%M:%S %Z") | xclip -selection clipboard""", 'NOWUTC', 'UTC time > clipboard.', False),
     MenuOption('pavucontrol', 'launch', 'pavucontrol', 'PAVU', 'Volume control.', False),
     MenuOption('public IP', 'launch', r"""curl --silent http://ipecho.net/plain | xclip -selection clipboard""", 'PUBIP', 'Get your public IP > clipboard.', False),
     MenuOption('ranger', 'terminal', 'ranger', 'RANGER', 'TUI file manager.', False),

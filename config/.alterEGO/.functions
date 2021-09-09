@@ -2,7 +2,7 @@
 ##
 ## .functions
 ##   created        : 2021-05-25 19:40:20 UTC
-##   updated        : 2021-09-08 12:13:39 UTC
+##   updated        : 2021-09-09 13:12:00 UTC
 ##   description    : Shell functions. 
 ##   app            : sh
 ##   target         : ${HOME}/.alterEGO/.functions
@@ -33,6 +33,31 @@
     curl -s cheat.sh/${cheat} | less -R
   }
 
+  function clean_history() {
+    #### Remove .bash_history entry.
+    #### Usage: `clean_history youtube-dl`
+    #### or `clean_history cd$`
+
+    history -a
+    cp ~/.bash_history /tmp/.clean_history
+    sed -i "/^${1}/d" /tmp/.clean_history
+    history -c                                                                \
+    && history -r /tmp/.clean_history                                         \
+    && history -w
+    rm /tmp/.clean_history
+    history
+  }
+
+  function dirsize() {
+    #### Check size of biggest directories.
+
+    printf "${COLOR_GREEN}[+]${COLOR_RESET} ${COLOR_BOLD}Size of current directory, followed by biggest child directories:\n${COLOR_RESET}"
+    # du -bh --max-depth 1 | sort -rh | head
+    du --bytes --human-readable --max-depth 1                                 \
+    | sort --reverse --human-numeric-sort                                     \
+    | head
+  }
+
   function fixout() {
     #### Fix history and exit.
     #### Don't try to put this code in a shell script, it won't work.
@@ -60,6 +85,43 @@
       git pull && git add . && git commit && git push
   }
 
+  function gitstatus() {
+    #### Get status of local git repository.
+    #### ref. https://gist.github.com/giggio/1704664
+
+    dumpfile="/tmp/git_status.dump"
+
+    if [ -z ${1} ]; then
+      local_git_repository=$(find ${HOME} -name ".git" -type d | grep -v /.cache/ | sed 's/.git//' | fzf)
+    else
+      local_git_repository=${1}
+    fi
+    
+    cd ${local_git_repository}
+    git fetch
+    git status > ${dumpfile}
+    printf "${COLOR_GREEN}[+]${COLOR_RESET} ${COLOR_BOLD}Checking local repository status for\n\t${local_git_repository}\n\n${COLOR_RESET}"
+    cat ${dumpfile}
+    untracked=$(grep "Untracked files" ${dumpfile});
+    unstaged=$(grep "Changes not staged for commit" ${dumpfile});
+    to_commit=$(grep "Changes to be committed" ${dumpfile});
+    is_ahead=$(grep "Your branch is ahead of" ${dumpfile});
+    is_behind=$(grep "Your branch is behind" ${dumpfile});
+    if [[ -n "${untracked}" ]]; then
+      printf "\n${COLOR_BLUE}[-]${COLOR_RESET} ${COLOR_BOLD}ADD Files to add to repo.${COLOR_RESET}\n"
+    elif [[ -n ${unstaged} ]]; then
+      printf "\n${COLOR_BLUE}[-]${COLOR_RESET} ${COLOR_BOLD}ADD Files to be staged.${COLOR_RESET}\n"
+    elif [[ -n "${to_commit}" ]]; then
+      printf "\n${COLOR_BLUE}[-]${COLOR_RESET} ${COLOR_BOLD}COMMIT Files to commit.${COLOR_RESET}\n"
+    elif [[ -n "${is_ahead}" ]]; then
+      printf "\n${COLOR_BLUE}[-]${COLOR_RESET} ${COLOR_BOLD}PUSH Time to push.${COLOR_RESET}\n"
+    elif [[ -n "${is_behind}" ]]; then
+      printf "\n${COLOR_BLUE}[-]${COLOR_RESET} ${COLOR_BOLD}PULL Time to pull.${COLOR_RESET}\n"
+    else
+      printf "\n${COLOR_BLUE}[-]${COLOR_RESET} ${COLOR_BOLD}STAY Nothing to do.${COLOR_RESET}\n"
+    fi
+  }
+
   function heraser() {
       #### Uses `fzf` to sort through the bash history and let you delete an 
       #### entry.
@@ -81,6 +143,16 @@
     curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py \
     | python -
 
+  }
+
+  function now_utc() {
+
+      echo -n $(date --utc "+%F %H:%M:%S %Z")
+  }
+
+  function pywebserver() {
+
+    python -m http.server
   }
 
   function tagalog() {

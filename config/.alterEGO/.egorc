@@ -10,6 +10,8 @@
 ##   target      : ${HOME}/.alterEGO/.egorc
 ## ____________________________________________________________________________
 
+  alias msfconsole='msfconsole -x "db_connect ${USER}@msf"'
+
 ## [ WORDLISTS ]
   export WORDLIST="/usr/local/share/wordlist"
   export WL_BEST1050="${WORDLIST}/best1050.txt"

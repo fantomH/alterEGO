@@ -4,7 +4,7 @@
 ##
 ## EGOmenu.py
 ##   created     : 2021-06-28 11:42:57 UTC
-##   updated     : 2021-09-03 10:38:38 UTC
+##   updated     : 2021-09-12 09:46:54 UTC
 ##   description : EGO menu using FZF.
 ##   target      : /usr/local/share/bin/
 ##   dependencies: - fzf
@@ -67,13 +67,14 @@ options = [
     ]
 
 #### Allows additional, per site, menu options.
-config_dir = os.path.join(os.path.expanduser('~'), '.config', 'egomenu')
-config_file = os.path.join(config_dir, 'egoconfig.py')
+config_dir = os.path.join(os.path.expanduser('~'), '.alterEGO', 'egomenu')
+config_file = os.path.join(config_dir, 'egomenu_config.py')
 if os.path.exists(config_file):
     sys.path.append(config_dir)
 
-    import egoconfig
-    options = options + egoconfig.additional_options
+    import egomenu_config
+    #### TODO: Sort alphabetically.
+    options = options + egomenu_config.additional_options
 
 def main():
 

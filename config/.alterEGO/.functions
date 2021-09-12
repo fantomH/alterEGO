@@ -2,7 +2,7 @@
 ##
 ## .functions
 ##   created        : 2021-05-25 19:40:20 UTC
-##   updated        : 2021-09-09 13:12:00 UTC
+##   updated        : 2021-09-10 11:49:31 UTC
 ##   description    : Shell functions. 
 ##   app            : sh
 ##   target         : ${HOME}/.alterEGO/.functions
@@ -46,6 +46,20 @@
     && history -w
     rm /tmp/.clean_history
     history
+  }
+
+  function delete() {
+
+    if [ -d "${1}" ]; then
+      read -r -p $'\e[34m[-]\e[0m \e[1mAre you sure your want to delete this directory? [y/N]\e[0m ' response
+        if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
+          rm --recursive --force "${1}" 
+        else
+          printf "${COLOR_RED}[!]${COLOR_RESET} ${COLOR_BOLD}OK... Abording deletion!${COLOR_RESET}\n"
+        fi
+    else
+      printf "${COLOR_RED}[!]${COLOR_RESET} ${COLOR_BOLD}There is nothing to do here!${COLOR_RESET}\n"
+    fi
   }
 
   function dirsize() {

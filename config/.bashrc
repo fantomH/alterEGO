@@ -2,7 +2,7 @@
 ##
 ## .bashrc
 ##   created        : 2021-02-26 02:54:43 UTC
-##   updated        : 2021-09-08 12:07:29 UTC
+##   updated        : 2021-09-12 09:50:49 UTC
 ##   description    : Bash config file. 
 ##   app            : bash
 ##   target         : $HOME/.bashrc
@@ -24,10 +24,10 @@
 
 ## [ HISTORY ]
 
-  export HISTIGNORE="exit"
+  export HISTIGNORE="cd:clear:exit:ls"
   export HISTCONTROL=ignoreboth:erasedups
-  export HISTSIZE=10000
-  export HISEFILESIZE=10000
+  export HISTSIZE=1000000
+  export HISEFILESIZE=1000000
   # export HISTTIMEFORMAT="%Y-%m-%d %T %z "
 
 ## [ MAN IN COLOR ]
@@ -62,5 +62,5 @@
     source "${HOME}/.bashrc"
   }
 
-# vim: syntax=sh
+## vim: syntax=sh
 ## { FIN }_____________________________________________________________________

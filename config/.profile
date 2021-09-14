@@ -2,13 +2,12 @@
 ##
 ## .profile
 ##   created        : 2021-04-28 14:59:01 UTC
-##   updated        : 2021-09-08 12:07:44 UTC
+##   updated        : 2021-09-13 15:56:59 UTC
 ##   description    : Loaded in non interactive shell. 
 ##   app            : sh
 ##   target         : ${HOME}/.profile
 ## ____________________________________________________________________________
 
-  [ -f ${HOME}/.alterEGO/.envrc ] && . ${HOME}/.alterEGO/.envrc
   [ -f ${HOME}/.alterEGO/.egorc ] && . ${HOME}/.alterEGO/.egorc
   [ -f ${HOME}/.alterEGO/.functions ] && . ${HOME}/.alterEGO/.functions
   [ -f ${HOME}/.alterEGO/.extrarc ] && . ${HOME}/.alterEGO/.extrarc

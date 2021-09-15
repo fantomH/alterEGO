@@ -4,7 +4,7 @@
 ##
 ## .egorc
 ##   created     : 2021-03-19 09:37:19 UTC
-##   updated     : 2021-09-14 03:31:48 UTC
+##   updated     : 2021-09-14 11:15:36 UTC
 ##   description : Additional shell stuff for alterEGO Linux.
 ##   app         : sh
 ##   target      : ${HOME}/.alterEGO/.egorc
@@ -65,13 +65,13 @@
   # export QT_QPA_PLATFORMTHEME="qt5ct"
 
 ## [ WORDLISTS ]
-  export WORDLIST="/usr/local/share/wordlist"
-  export WL_BEST1050="${WORDLIST}/best1050.txt"
-  export WL_BIG="${WORDLIST}/seclist-big.txt"
-  export WL_DIRMEDIUM="${WORDLIST}/directory-list-2.3-medium.txt"
-  export WL_ROCKYOU="${WORDLIST}/rockyou.txt"
-  export WL_LARGEFILES="${WORDLIST}/raft-large-files.txt"
-  export WL_XPLATFORM="${WORDLIST}/xplatform.txt"
+  export WORDLISTS="/usr/local/share/wordlists"
+  export WL_BEST1050="${WORDLISTS}/best1050.txt"
+  export WL_BIG="${WORDLISTS}/seclist-big.txt"
+  export WL_DIRMEDIUM="${WORDLISTS}/directory-list-2.3-medium.txt"
+  export WL_ROCKYOU="${WORDLISTS}/rockyou.txt"
+  export WL_LARGEFILES="${WORDLISTS}/raft-large-files.txt"
+  export WL_XPLATFORM="${WORDLISTS}/xplatform.txt"
 
 ## [ REVERSE SHELL ]
   export REVSHELL="/usr/local/share/reverse_shell"
@@ -87,10 +87,13 @@
     #### from the terminal (ex. after starting a VPN connection).
 
     #### `host` is provided by the package 'bind'.
-    export pubip="$(host myip.opendns.com resolver1.opendns.com               \
+    export IPPUB="$(host myip.opendns.com resolver1.opendns.com               \
                     | grep --color=never -oP '(?<=myip.opendns.com has address ).*$')"
 
-    export locip="$(ip address | grep --color=never -oP "(?<=inet ).*(?=/.*enp)")"
+    export IPLOC="$(ip address | grep --color=never -oP "(?<=inet ).*(?=/.*enp)")"
+
+    # printf "%s\n" "LAN IP:     ${IPLOC}"
+    # printf "%s\n" "Public IP:  ${IPPUB}"
   }
   ipaddr
 

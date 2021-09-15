@@ -4,7 +4,7 @@
 ##
 ## .tryhackmerc
 ##   created     : 2021-03-07 15:10:11 UTC
-##   updated     : 2021-09-07 14:39:15 UTC
+##   updated     : 2021-09-15 01:40:11 UTC
 ##   description : TryHackMe stuff 
 ##   target      : ${HOME}/.alterEGO/.tryhackmerc
 ## ____________________________________________________________________________
@@ -42,6 +42,24 @@
     msf )
         msfconsole -x "db_connect ${USER}@msf" -r ~/.msf4/thm.rc
         ;;
+
+    info )
+        printf '%s\n' "PLAYER     =   $(env | grep --color=none -oP "(?<=THM_PLAYER=).*(?=$)")"
+        printf '%s\n' "ROOM       =   $(env | grep --color=none -oP "(?<=THM_ROOM=).*(?=$)")"
+        printf '%s\n' "RHOST      =   $(env | grep --color=none -oP "(?<=THM_RHOST=).*(?=$)")"
+        printf '%s\n' "LHOST      =   $(env | grep --color=none -oP "(?<=THM_LHOST=).*(?=$)")"
+        printf '%s\n' "MAIN DIR   =   $(env | grep --color=none -oP "(?<=THM_MAINDIR=).*(?=$)")"
+        printf '%s\n' "ROOM PATH  =   $(env | grep --color=none -oP "(?<=THM_PATH=).*(?=$)")"
+        printf '%s\n' "TOOLS DIR  =   $(env | grep --color=none -oP "(?<=THM_TOOLS=).*(?=$)")"
+        ;;
+
+    help|* )
+        cat <<EOF
+Usage: attack [start|set-player|set-rhost|set-room|msf|help|info]
+
+EOF
+        ;;
+    
   esac
 
   ## [ THM_PLAYER ]
@@ -74,13 +92,6 @@
   export THM_TOOLS="$THM_MAINDIR/tools"
 
   ## [ DISPLAY INFO ]
-  printf '%s\n' "PLAYER     =   $(env | grep --color=none -oP "(?<=THM_PLAYER=).*(?=$)")"
-  printf '%s\n' "ROOM       =   $(env | grep --color=none -oP "(?<=THM_ROOM=).*(?=$)")"
-  printf '%s\n' "RHOST      =   $(env | grep --color=none -oP "(?<=THM_RHOST=).*(?=$)")"
-  printf '%s\n' "LHOST      =   $(env | grep --color=none -oP "(?<=THM_LHOST=).*(?=$)")"
-  printf '%s\n' "MAIN DIR   =   $(env | grep --color=none -oP "(?<=THM_MAINDIR=).*(?=$)")"
-  printf '%s\n' "ROOM PATH  =   $(env | grep --color=none -oP "(?<=THM_PATH=).*(?=$)")"
-  printf '%s\n' "TOOLS DIR  =   $(env | grep --color=none -oP "(?<=THM_TOOLS=).*(?=$)")"
 
   ## [ METASPLOIT ]
   #### Create msfconsole resource file.
@@ -99,15 +110,15 @@ EOF
 
 ## [ LOADED ]
 
-  export ALTEREGO_TRYHACKMERC="LOADED"
-  filerc=".tryhackmerc"
-  #### ref. https://stackoverflow.com/questions/2683279/how-to-detect-if-a-script-is-being-sourced
-  (return 0 2>/dev/null)                                                      \
-  && printf "${COLOR_GREEN}[+]${COLOR_RESET} ${COLOR_BOLD}${filerc} loaded @ $(date | sed 's/  / /g')...${COLOR_RESET}\n" \
-  || printf "${COLOR_RED}[?]${COLOR_RESET} ${COLOR_BOLD}Problem loading ${filerc} ${COLOR_RESET}\n"
+  function loaded_tryhackmerc() {
+    printf "${COLOR_GREEN}[+]${COLOR_RESET} ${COLOR_BOLD}.tryhackmerc loaded @ $(date | sed 's/  / /g')...${COLOR_RESET}\n"
+  }
+  loaded_tryhackmec
+
+## [ RELOAD ]
 
   function reload_tryhackmerc() {
-    source "${HOME}/.alterEGO/.tryhackmerc"
+    source "${HOME}/.alterEGO/.egorc"
   }
 
 ## { FIN }_____________________________________________________________________

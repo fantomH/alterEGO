@@ -4,7 +4,7 @@
 ##
 ## .egorc
 ##   created     : 2021-03-19 09:37:19 UTC
-##   updated     : 2021-09-14 11:15:36 UTC
+##   updated     : 2021-09-15 09:32:40 UTC
 ##   description : Additional shell stuff for alterEGO Linux.
 ##   app         : sh
 ##   target      : ${HOME}/.alterEGO/.egorc
@@ -35,7 +35,7 @@
   export EDITOR=${VISUAL}
 
 ## [ PATH ]
-  #### ref. https://www.linuxjournal.com/content/removing-duplicate-path-entries
+  ##### ref. https://www.linuxjournal.com/content/removing-duplicate-path-entries
 
   PATH="${PATH}:${HOME}/fH/scripts:${HOME}/droid/scripts:${HOME}/scripts:${HOME}/bin"
   PATH=$(echo -n $PATH | awk -v RS=: '!($0 in a) {a[$0]; printf("%s%s", length(a) > 1 ? ":" : "", $0)}')
@@ -44,23 +44,23 @@
 
 ## [ VIM ]
 
-  #### Enable CTRL+s and CTRL+q in vim.
+  ##### Enable CTRL+s and CTRL+q in vim.
   stty -ixon
 
 ## [ QT5 ]
-  #### https://wiki.manjaro.org/index.php/Set_all_Qt_app%27s_to_use_GTK%2B_font_%26_theme_settings
-  #### Set all Qt app's to use GTK+ font & theme settings
-  ####   Overview
-  ####   When using a Desktop Environment or Window Manager that doesn't allow for the settings of QT themes,
-  ####   you can set QT to use your GTK themes instead.
-  ####   Using qt5ct
-  ####   note: In some Manjaro editions, this is already done for you by default
-  ####   Install qt5ct using your favorite package manager or the command:
-  ####   pamac install qt5ct
-  ####   Set environment variables in ~/.profile by adding or updating the following lines:
-  ####   export QT_QPA_PLATFORMTHEME="qt5ct"
-  ####   Run the application QT5 Configuration Manager from the menu or run the command qt5ct.
-  ####   Logout and login again to make the change effective
+  ##### https://wiki.manjaro.org/index.php/Set_all_Qt_app%27s_to_use_GTK%2B_font_%26_theme_settings
+  ##... Set all Qt app's to use GTK+ font & theme settings
+  ##... Overview
+  ##... When using a Desktop Environment or Window Manager that doesn't allow for the settings of QT themes,
+  ##... you can set QT to use your GTK themes instead.
+  ##... Using qt5ct
+  ##... note: In some Manjaro editions, this is already done for you by default
+  ##... Install qt5ct using your favorite package manager or the command:
+  ##... pamac install qt5ct
+  ##... Set environment variables in ~/.profile by adding or updating the following lines:
+  ##... export QT_QPA_PLATFORMTHEME="qt5ct"
+  ##... Run the application QT5 Configuration Manager from the menu or run the command qt5ct.
+  ##... Logout and login again to make the change effective
 
   # export QT_QPA_PLATFORMTHEME="qt5ct"
 
@@ -73,11 +73,11 @@
   export WL_LARGEFILES="${WORDLISTS}/raft-large-files.txt"
   export WL_XPLATFORM="${WORDLISTS}/xplatform.txt"
 
-## [ REVERSE SHELL ]
-  export REVSHELL="/usr/local/share/reverse_shell"
-  export RS_PATT_NODEJS="${REVSHELL}/patt_nodeJS.js"
-  export RS_REVSHELL_PHP="${REVSHELL}/php-reverse-shell.php"
-  export RS_WEBSHELL="${REVSHELL}/webshell.php"
+## [ REVERSE SHELLS ]
+  export REVSHELLS="/usr/local/share/reverse_shells"
+  export RS_PATT_NODEJS="${REVSHELLS}/patt_nodeJS.js"
+  export RS_REVSHELL_PHP="${REVSHELLS}/php-reverse-shell.php"
+  export RS_WEBSHELL="${REVSHELLS}/webshell.php"
 
 ## [ IP ADDRESSES ]
 
@@ -151,7 +151,7 @@ EOF
   function loaded_egorc() {
     printf "${COLOR_GREEN}[+]${COLOR_RESET} ${COLOR_BOLD}.egorc loaded @ $(date | sed 's/  / /g')...${COLOR_RESET}\n"
   }
-  loaded_egorc
+  # loaded_egorc
 
 ## [ RELOAD ]
 

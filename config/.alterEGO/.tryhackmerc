@@ -4,7 +4,7 @@
 ##
 ## .tryhackmerc
 ##   created     : 2021-03-07 15:10:11 UTC
-##   updated     : 2021-09-15 01:40:11 UTC
+##   updated     : 2021-09-15 09:30:57 UTC
 ##   description : TryHackMe stuff 
 ##   target      : ${HOME}/.alterEGO/.tryhackmerc
 ## ____________________________________________________________________________
@@ -91,12 +91,10 @@ EOF
   export THM_PATH="$THM_MAINDIR/$THM_ROOM"
   export THM_TOOLS="$THM_MAINDIR/tools"
 
-  ## [ DISPLAY INFO ]
-
   ## [ METASPLOIT ]
-  #### Create msfconsole resource file.
-  #### To load the resource file in msfconsole:
-  #### `resource thm.rc`
+  ##### Create msfconsole resource file.
+  ##... To load the resource file in msfconsole:
+  ##... `resource thm.rc`
 
   if [ ! -d "${HOME}/.msf4" ]; then
     mkdir ${HOME}/.msf4
@@ -113,7 +111,7 @@ EOF
   function loaded_tryhackmerc() {
     printf "${COLOR_GREEN}[+]${COLOR_RESET} ${COLOR_BOLD}.tryhackmerc loaded @ $(date | sed 's/  / /g')...${COLOR_RESET}\n"
   }
-  loaded_tryhackmec
+  # loaded_tryhackmec
 
 ## [ RELOAD ]
 

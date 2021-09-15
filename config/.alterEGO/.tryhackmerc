@@ -4,7 +4,7 @@
 ##
 ## .tryhackmerc
 ##   created     : 2021-03-07 15:10:11 UTC
-##   updated     : 2021-09-15 09:30:57 UTC
+##   updated     : 2021-09-15 10:24:02 UTC
 ##   description : TryHackMe stuff 
 ##   target      : ${HOME}/.alterEGO/.tryhackmerc
 ## ____________________________________________________________________________
@@ -111,12 +111,13 @@ EOF
   function loaded_tryhackmerc() {
     printf "${COLOR_GREEN}[+]${COLOR_RESET} ${COLOR_BOLD}.tryhackmerc loaded @ $(date | sed 's/  / /g')...${COLOR_RESET}\n"
   }
-  # loaded_tryhackmec
+  # loaded_tryhackmerc
 
 ## [ RELOAD ]
 
   function reload_tryhackmerc() {
     source "${HOME}/.alterEGO/.egorc"
+    loaded_tryhackmerc
   }
 
 ## { FIN }_____________________________________________________________________

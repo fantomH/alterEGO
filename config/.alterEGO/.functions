@@ -2,16 +2,16 @@
 ##
 ## .functions
 ##   created        : 2021-05-25 19:40:20 UTC
-##   updated        : 2021-09-10 11:49:31 UTC
+##   updated        : 2021-09-15 10:27:31 UTC
 ##   description    : Shell functions. 
 ##   app            : sh
 ##   target         : ${HOME}/.alterEGO/.functions
 ## ____________________________________________________________________________
 
   function busy() {
-      #### When the boss comes around to look busy.
-      #### ref. https://www.commandlinefu.com/commands/view/6663/pretend-to-be-busy-in-office-to-enjoy-a-cup-of-coffee
-      #### CTRL+c to quit.
+      ##### When the boss comes around to look busy.
+      ##... ref. https://www.commandlinefu.com/commands/view/6663/pretend-to-be-busy-in-office-to-enjoy-a-cup-of-coffee
+      ##... CTRL+c to quit.
 
       cat /dev/urandom                                                        \
       | hexdump -C                                                            \
@@ -19,8 +19,8 @@
   }
 
   function cheat() {
-    #### Query https://cheat.sh.
-    #### Menu with `fzf` and display with `less`.
+    ##### Query https://cheat.sh.
+    ##... Menu with `fzf` and display with `less`.
 
     cheat="$(curl -s cheat.sh/:list                                           \
              | fzf --layout="reverse"                                         \
@@ -34,9 +34,9 @@
   }
 
   function clean_history() {
-    #### Remove .bash_history entry.
-    #### Usage: `clean_history youtube-dl`
-    #### or `clean_history cd$`
+    ##### Remove .bash_history entry.
+    ##... Usage: `clean_history youtube-dl`
+    ##... or `clean_history cd$`
 
     history -a
     cp ~/.bash_history /tmp/.clean_history
@@ -63,19 +63,19 @@
   }
 
   function dirsize() {
-    #### Check size of biggest directories.
+    ##### Check size of biggest directories.
 
     printf "${COLOR_GREEN}[+]${COLOR_RESET} ${COLOR_BOLD}Size of current directory, followed by biggest child directories:\n${COLOR_RESET}"
-    # du -bh --max-depth 1 | sort -rh | head
+    ##### du -bh --max-depth 1 | sort -rh | head
     du --bytes --human-readable --max-depth 1                                 \
     | sort --reverse --human-numeric-sort                                     \
     | head
   }
 
   function fixout() {
-    #### Fix history and exit.
-    #### Don't try to put this code in a shell script, it won't work.
-    #### `history` don't play well in scripts.
+    ##### Fix history and exit.
+    ##... Don't try to put this code in a shell script, it won't work.
+    ##... `history` don't play well in scripts.
 
     history -n && history                                                     \
     | sort -k2 -k1nr                                                          \
@@ -90,18 +90,18 @@
   }
 
   function fuck() {
-      #### Repeat last cmd with sudo if forgotten.
+    ##### Repeat last cmd with sudo if forgotten.
 
-      sudo $(history -p !!)
+    sudo $(history -p !!)
   }
 
   function gitall() {
-      git pull && git add . && git commit && git push
+    git pull && git add . && git commit && git push
   }
 
   function gitstatus() {
-    #### Get status of local git repository.
-    #### ref. https://gist.github.com/giggio/1704664
+    ##### Get status of local git repository.
+    ##... ref. https://gist.github.com/giggio/1704664
 
     dumpfile="/tmp/git_status.dump"
 
@@ -137,22 +137,22 @@
   }
 
   function heraser() {
-      #### Uses `fzf` to sort through the bash history and let you delete an 
-      #### entry.
+    ##### Uses `fzf` to sort through the bash history and let you delete an 
+    ##... entry.
 
-      choices=$( history | grep --color=none "${@}" | fzf )
-      [[ -z "${choices}" ]] && exit 1
+    choices=$( history | grep --color=none "${@}" | fzf )
+    [[ -z "${choices}" ]] && exit 1
 
-      confirm=$(printf "yes\ncancel" | fzf)
-      
-      if [[ ${confirm} == 'yes' ]]; then
-          to_delete=$(awk '{ print $1 }' <<< "${choices}")
-          history -d ${to_delete}
-      fi
+    confirm=$(printf "yes\ncancel" | fzf)
+    
+    if [[ ${confirm} == 'yes' ]]; then
+        to_delete=$(awk '{ print $1 }' <<< "${choices}")
+        history -d ${to_delete}
+    fi
   }
 
   function ispeed() {
-    #### Test Internet speed.
+    ##### Test Internet speed.
 
     curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py \
     | python -
@@ -161,7 +161,7 @@
 
   function now_utc() {
 
-      echo -n $(date --utc "+%F %H:%M:%S %Z")
+    echo -n $(date --utc "+%F %H:%M:%S %Z")
   }
 
   function pywebserver() {
@@ -177,8 +177,8 @@
   }
 
   function translate() {
-    #### Add language abbr after string to translate.
-    #### For example, translate "Hello world" fr
+    ##### Add language abbr after string to translate.
+    ##... For example, translate "Hello world" fr
     wget -U "Mozilla/5.0" -qO - "http://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${2}&dt=t&q=${1}" \
     | awk -F '"' '{print $2}'                                                 \
     | head -n 1
@@ -189,12 +189,13 @@
   function loaded_functions() {
     printf "${COLOR_GREEN}[+]${COLOR_RESET} ${COLOR_BOLD}.functions loaded @ $(date | sed 's/  / /g')...${COLOR_RESET}\n"
   }
-  loaded_functions
+  # loaded_functions
 
 ## [ RELOAD ]
 
   function reload_functions() {
     source "${HOME}/.alterEGO/.functions"
+    loaded_functions
   }
 
 # vim: syntax=sh

@@ -24,7 +24,7 @@
 # [ ALIAS ]
 
   alias msfconsole='msfconsole -x "db_connect ${USER}@msf"'
-  alias nmap-basic='sudo grc nmap -sV -O -sC'
+  alias nmap-basic='sudo grc nmap -sV -O -sC --traceroute'
 
 ## [ DEFAULT APPLICATIONS ]
 
@@ -82,11 +82,11 @@
 ## [ IP ADDRESSES ]
 
   function ipaddr() {
-    #### IP addresses will be exported when .egorc is sourced with the
-    #### function call, but can also be 'refreshed' when calling ipaddr
-    #### from the terminal (ex. after starting a VPN connection).
+    ##### IP addresses will be exported when .egorc is sourced with the
+    ##... function call, but can also be 'refreshed' when calling ipaddr
+    ##... from the terminal (ex. after starting a VPN connection).
 
-    #### `host` is provided by the package 'bind'.
+    ##### `host` is provided by the package 'bind'.
     export IPPUB="$(host myip.opendns.com resolver1.opendns.com               \
                     | grep --color=never -oP '(?<=myip.opendns.com has address ).*$')"
 
@@ -103,15 +103,15 @@
 
   # export PS1='[\u@\h \W]\$ '
   
-  export PS1="\[${COLOR_GREEN}\]\h [\w] • ${SHLVL} • ${locip}\n\[${COLOR_GREEN}\]$ \[${COLOR_RESET}\]"
+  export PS1="\[${COLOR_GREEN}\]\h [\w] • ${IPLOC}\n\[${COLOR_GREEN}\]$ \[${COLOR_RESET}\]"
 
 ## [ GOTO ]
-  #### Requires: bash-completion && sourced in .bashrc
-  #### Usage: `goto @mounted`
-  #### To add a goto link:
-  #### `ln -s /some/directory/path @goto-link` in $HOME/.alterEGO/.goto directory.
-  #### src. https://threkk.medium.com/how-to-use-bookmarks-in-bash-zsh-6b8074e40774
-  #### src. https://twitter.com/mattn_jp/status/1434192554036137995
+  ##### Requires: bash-completion && sourced in .bashrc
+  ##... Usage: `goto @mounted`
+  ##... To add a goto link:
+  ##... `ln -s /some/directory/path @goto-link` in $HOME/.alterEGO/.goto directory.
+  ##... src. https://threkk.medium.com/how-to-use-bookmarks-in-bash-zsh-6b8074e40774
+  ##... src. https://twitter.com/mattn_jp/status/1434192554036137995
 
   if [ -d "${HOME}/.alterEGO/.goto/" ]; then
     export CDPATH=".:${HOME}/.alterEGO/.goto:/"
@@ -129,7 +129,7 @@
 ## [ Damn Vulnerable Web App (DVWA) ]
 
   function dvwa() {
-      #### Will install or run the Damn Vulnerable Web App (DVWA) docker.
+      ##### Will install or run the Damn Vulnerable Web App (DVWA) docker.
       if [[ "$1" == 'start' ]]; then
         sudo systemctl start docker.service
         docker run --rm -it -p 81:80 vulnerables/web-dvwa &
@@ -157,6 +157,7 @@ EOF
 
   function reload_egorc() {
     source "${HOME}/.alterEGO/.egorc"
+    loaded_egorc
   }
 
 ## { FIN }_____________________________________________________________________

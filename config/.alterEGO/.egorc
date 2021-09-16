@@ -139,6 +139,12 @@
         docker stop $(docker ps | grep "vulnerables/web-dvwa" | cut -d ' ' -f1)
         sudo systemctl stop docker.socket
         sudo systemctl stop docker.service
+        read -r -p $'\e[34m[-]\e[0m \e[1mWould you like to delete docker0 network interface? [y/N]\e[0m ' response
+          if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
+            sudo ip link delete docker0 
+          else
+            printf "${COLOR_RED}[!]${COLOR_RESET} ${COLOR_BOLD}OK... docker0 lives!${COLOR_RESET}\n"
+          fi
       else
         cat <<EOF
 Usage: dvwa start|stop

@@ -19,7 +19,7 @@
   alias ls='ls --all --color=auto'
   alias open="xdg-open"
 
-  #### Makes tmux understand the environment is important.
+  ##### Makes tmux understand the environment is important.
   alias tmux="env TERM=screen-256color tmux -u"
 
 ## [ HISTORY ]
@@ -32,7 +32,7 @@
 
 ## [ MAN IN COLOR ]
 
-  #### TODO Need to work on the colors.
+  ##### TODO Need to work on the colors.
   # export LESS_TERMCAP_mb=$(printf '\e[01;31m') # enter blinking mode – red
   # export LESS_TERMCAP_md=$(printf '\e[01;35m') # enter double-bright mode – bold, magenta
   # export LESS_TERMCAP_me=$(printf '\e[0m') # turn off all appearance modes (mb, md, so, us)
@@ -50,7 +50,7 @@
   function loaded_bashrc() {
     printf "${COLOR_GREEN}[+]${COLOR_RESET} ${COLOR_BOLD}.bashrc loaded @ $(date | sed 's/  / /g')...${COLOR_RESET}\n" 
   }
-  loaded_bashrc
+  # loaded_bashrc
 
   if [ ! $(command -v loaded_profile) ]; then
     [ -f ${HOME}/.profile ] && . ${HOME}/.profile
@@ -60,6 +60,7 @@
 
   function reload() {
     source "${HOME}/.bashrc"
+    loaded_bashrc
   }
 
 ## vim: syntax=sh

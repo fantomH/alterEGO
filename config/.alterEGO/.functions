@@ -2,7 +2,7 @@
 ##
 ## .functions
 ##   created        : 2021-05-25 19:40:20 UTC
-##   updated        : 2021-09-15 10:27:31 UTC
+##   updated        : 2021-09-16 11:20:18 UTC
 ##   description    : Shell functions. 
 ##   app            : sh
 ##   target         : ${HOME}/.alterEGO/.functions
@@ -182,6 +182,11 @@
     wget -U "Mozilla/5.0" -qO - "http://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${2}&dt=t&q=${1}" \
     | awk -F '"' '{print $2}'                                                 \
     | head -n 1
+  }
+
+  function viewips() {
+    printf "%b\n" "${COLOR_GREEN}[+]${COLOR_RESET} ${COLOR_BOLD}Current IP addresses:${COLOR_RESET}"
+    ip address | grep "inet [1-9]" | awk '{ print $NF "\t" $2 }'
   }
 
 ## [ LOADED ]

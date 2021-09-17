@@ -2,7 +2,7 @@
 ##
 ## .bashrc
 ##   created        : 2021-02-26 02:54:43 UTC
-##   updated        : 2021-09-12 09:50:49 UTC
+##   updated        : 2021-09-17 11:32:38 UTC
 ##   description    : Bash config file. 
 ##   app            : bash
 ##   target         : $HOME/.bashrc
@@ -14,7 +14,7 @@
 
 ## [ ALIASES ]
 
-  alias grep="grep --color=always"
+  alias grep="grep --color=auto"
   alias ll='ls --all --human-readable -l --color=auto'
   alias ls='ls --all --color=auto'
   alias open="xdg-open"

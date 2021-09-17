@@ -2,7 +2,7 @@
 ##
 ## .functions
 ##   created        : 2021-05-25 19:40:20 UTC
-##   updated        : 2021-09-16 11:20:18 UTC
+##   updated        : 2021-09-17 19:14:36 UTC
 ##   description    : Shell functions. 
 ##   app            : sh
 ##   target         : ${HOME}/.alterEGO/.functions
@@ -164,8 +164,25 @@
     echo -n $(date --utc "+%F %H:%M:%S %Z")
   }
 
+  function ports() {
+
+    printf "%b\n" "${COLOR_BLUE}[-]${COLOR_RESET} ${COLOR_BOLD}Function <ports> is <sudo netstat -tulanp> ...${COLOR_RESET}"
+    sudo netstat -tulanp
+    
+  }
+
+  function ps-basic() {
+    printf "%b\n" "${COLOR_BLUE}[-]${COLOR_RESET} ${COLOR_BOLD}Function <ps-basic> is <ps aux> ...${COLOR_RESET}"
+    ps aux
+  }
+
+  function psgrep() {
+    ps aux | grep -Ei "$@"
+  }
+
   function pywebserver() {
 
+    printf "%b\n" "${COLOR_BLUE}[-]${COLOR_RESET} ${COLOR_BOLD}Function <pywebserver> is <python -m http.server> ...${COLOR_RESET}"
     python -m http.server
   }
 
@@ -182,6 +199,29 @@
     wget -U "Mozilla/5.0" -qO - "http://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${2}&dt=t&q=${1}" \
     | awk -F '"' '{print $2}'                                                 \
     | head -n 1
+  }
+
+  function tunsrc() {
+
+    printf "%b\n" "INT\tIP ADDR   \tPID\tNAME"
+    while read -r _interface; do
+
+      _ip=$(grep -oP '(?<=inet )(.*)(?=/)' <<<"${_interface}")
+      _tun=$(awk '{ print $NF }' <<<"${_interface}")
+      _ps=$(sudo grep -r $_tun /proc/*/fdinfo 2>/dev/null | cut -d / -f 3)
+      _cmd="$(ps -o cmd --no-headers ${_ps})"
+
+      if [[ $(awk '/openvpn/ && /server/' <<< ${_cmd}) ]]; then
+        _tunname="OpenVPNServer"
+      elif [[ $(awk '/openvpn/ && /tryhackme/' <<< "${_cmd}") ]]; then
+        _tunname="TryHackMe"
+      else
+        _tunname="UNDEFINED"
+      fi
+
+      printf "%b\n" "${_tun}\t${_ip}\t${_ps}\t${_tunname}"
+
+    done <<< $(ip a | grep -E 'inet [1-9].*global.*(tun)')
   }
 
   function viewips() {

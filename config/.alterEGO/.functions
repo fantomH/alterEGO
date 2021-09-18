@@ -72,6 +72,17 @@
     | head
   }
 
+  function docker-stats() {
+
+    printf "%b\n" "CONTAIER ID\tIP ADDR   \tNAME"
+    while read -r d; do
+      _containerID=$(awk '{ print $1 }' <<< "${d}")
+      _name=$(awk '{ print $2 }' <<< "${d}")
+      _ip=$(docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' ${_containerID})
+      printf "%b\n" "${_containerID}\t${_ip}\t${_name}"
+    done <<< $(docker ps | tail -n+2)
+  }
+
   function fixout() {
     ##### Fix history and exit.
     ##... Don't try to put this code in a shell script, it won't work.

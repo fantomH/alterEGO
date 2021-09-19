@@ -1,14 +1,15 @@
 #!/usr/bin/env sh
 
-## { alterEGO Linux: "Open the vault of knowledge" }---------------------------
+## { alterEGO Linux: "Open the vault of knowledge" } ##########################
 ##
 ## .egorc
 ##   created     : 2021-03-19 09:37:19 UTC
-##   updated     : 2021-09-18 10:41:28 UTC
+##   updated     : 2021-09-19 01:07:52 UTC
 ##   description : Additional shell stuff for alterEGO Linux.
 ##   app         : sh
 ##   target      : ${HOME}/.alterEGO/.egorc
-## ____________________________________________________________________________
+##
+## ############################################################################
 
 ## [ COLORS ]
 
@@ -21,7 +22,7 @@
   export COLOR_RED="${COLOR_ESC}[31m"
   export COLOR_RESET="${COLOR_ESC}[0m"
 
-# [ ALIAS ]
+## [ ALIAS ]
 
   alias msfconsole='msfconsole -x "db_connect ${USER}@msf"'
   alias nmap-basic='sudo grc nmap -sV -O -sC --traceroute'
@@ -79,7 +80,7 @@
   export RS_REVSHELL_PHP="${REVSHELLS}/php-reverse-shell.php"
   export RS_WEBSHELL="${REVSHELLS}/webshell.php"
 
-## [ IP ADDRESSES ]
+## { IP ADDRESSES } ###########################################################
 
   function ipaddr() {
     ##### IP addresses will be exported when .egorc is sourced with the
@@ -97,17 +98,19 @@
   }
   ipaddr
 
-## [ PROMPTS ]
+## { PROMPTS } ################################################################
 
   PROMPT_COMMAND='history -a'
 
   # export PS1='[\u@\h \W]\$ '
   
   # export PS1="\[${COLOR_GREEN}\]\h [\w] • ${IPLOC}\n\[${COLOR_GREEN}\]$ \[${COLOR_RESET}\]"
-  ##### Kali style
-  export PS1="${COLOR_GREEN}┌────(${COLOR_RESET}\u@\h${COLOR_GREEN})-[${COLOR_RESET}\w${COLOR_GREEN}]\n└─$ ${COLOR_RESET}"
 
-## [ GOTO ]
+  ## [ KALI STYLE ]
+  export PS1="\[${COLOR_GREEN}\]┌────(\[${COLOR_RESET}\]\u@\h\[${COLOR_GREEN}\])-[\[${COLOR_RESET}\]\w\[${COLOR_GREEN}\]]\n└─$ \[${COLOR_RESET}\]"
+
+## { GOTO } ###################################################################
+
   ##### Requires: bash-completion && sourced in .bashrc
   ##... Usage: `goto @mounted`
   ##... To add a goto link:

@@ -72,6 +72,21 @@
     | head
   }
 
+  docker666() {
+
+    ##### START/STOP docker service
+
+    printf "%b\n" "${COLOR_GREEN}[+]${COLOR_RESET} ${COLOR_BOLD}Runing docker666() ${1}...${COLOR_RESET}"
+    if [ "${1}" = 'start' ]; then
+      if [ $(systemctl is-active docker.service) = 'active' ]; then
+        printf "%b\n" "${COLOR_RED}[!]${COLOR_RESET} ${COLOR_BOLD}Docker is already running...${COLOR_RESET}"
+      else
+        sudo systemctl start docker.service
+        printf "%b\n" "${COLOR_BLUE}[-]${COLOR_RESET} ${COLOR_BOLD}Started docker.service...${COLOR_RESET}"
+      fi
+    fi
+  }
+
   function docker-stats() {
 
     printf "%b\n" "CONTAIER ID\tIP ADDR   \tNAME"

@@ -1,20 +1,19 @@
-## { alterEGO Linux: "Open the vault of knowledge" } ##########################
-##
-## .bashrc
-##   created        : 2021-02-26 02:54:43 UTC
-##   updated        : 2021-09-26 12:04:20 UTC
-##   description    : Bash config file. 
-##   app            : bash
-##   target         : $HOME/.bashrc
-##
-## ############################################################################
+## { alterEGO Linux: "Open the vault of knowledge" } ----------------------- ##
+##                                                                           ##
+## .bashrc                                                                   ##
+##   created        : 2021-02-26 02:54:43 UTC                                ##
+##   updated        : 2021-09-26 12:04:20 UTC                                ##
+##   description    : Bash config file.                                      ##
+##   app            : bash                                                   ##
+##   target         : $HOME/.bashrc                                          ##
+## _________________________________________________________________________ ##
 
-## [ bash-completion ] ########################################################
+## [ bash-completion ] ----------------------------------------------------- ##
 
   [ -r /usr/share/bash-completion/bash_completion ]                           \
   && . /usr/share/bash-completion/bash_completion
 
-## [ ALIASES ] ################################################################
+## [ ALIASES ] ------------------------------------------------------------- ##
 
   alias grep="grep --color=auto"
   alias ll='ls --all --human-readable -l --color=auto'
@@ -24,7 +23,7 @@
   ##### Makes tmux understand the environment is important.
   alias tmux="env TERM=screen-256color tmux -u"
 
-## [ HISTORY ] ################################################################
+## [ HISTORY ] ------------------------------------------------------------- ##
 
   export HISTIGNORE="cd:clear:exit:ls"
   export HISTCONTROL=ignoreboth:erasedups
@@ -32,7 +31,7 @@
   export HISEFILESIZE=1000000
   # export HISTTIMEFORMAT="%Y-%m-%d %T %z "
 
-## [ MAN IN COLOR ] ###########################################################
+## [ MAN IN COLOR ] -------------------------------------------------------- ##
 
   ##### TODO Need to work on the colors.
   # export LESS_TERMCAP_mb=$(printf '\e[01;31m') # enter blinking mode – red
@@ -43,11 +42,11 @@
   # export LESS_TERMCAP_ue=$(printf '\e[0m') # leave underline mode
   # export LESS_TERMCAP_us=$(printf '\e[04;36m') # enter underline mode – cyan
 
-## [ SOURCING ] ###############################################################
+## [ SOURCING ] ------------------------------------------------------------ ##
 
   [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-## [ LOADED ] #################################################################
+## [ LOADED ] -------------------------------------------------------------- ##
 
   function loadedBashrc() {
     printf '%b\n' "${COLOR_GREEN}[+]${COLOR_RESET} ${COLOR_BOLD}.bashrc loaded @ $(date | sed 's/  / /g')...${COLOR_RESET}"
@@ -58,7 +57,7 @@
     [ -f ${HOME}/.profile ] && . ${HOME}/.profile
   fi
 
-## [ RELOAD ] #################################################################
+## [ RELOAD ] -------------------------------------------------------------- ##
 
   function reload() {
     source "${HOME}/.bashrc"
@@ -66,4 +65,4 @@
   }
 
 ## vim: syntax=sh
-## { FIN } ####################################################################
+## FIN _____________________________________________________________ ¯\_(ツ)_/¯

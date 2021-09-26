@@ -1,19 +1,18 @@
-## { alterEGO Linux: "Open the vault of knowledge" } ##########################
-##
-## .profile
-##   created        : 2021-04-28 14:59:01 UTC
-##   updated        : 2021-09-26 12:03:52 UTC
-##   description    : Loaded in non interactive shell. 
-##   app            : sh
-##   target         : ${HOME}/.profile
-##
-## ############################################################################
+## { alterEGO Linux: "Open the vault of knowledge" } ----------------------- ##
+##                                                                           ##
+## .profile                                                                  ##
+##   created        : 2021-04-28 14:59:01 UTC                                ##
+##   updated        : 2021-09-26 12:03:52 UTC                                ##
+##   description    : Loaded in non interactive shell.                       ##
+##   app            : sh                                                     ##
+##   target         : ${HOME}/.profile                                       ##
+## _________________________________________________________________________ ##
 
   [ -f ${HOME}/.alterEGO/.egorc ] && . ${HOME}/.alterEGO/.egorc
   [ -f ${HOME}/.alterEGO/.functions ] && . ${HOME}/.alterEGO/.functions
   [ -f ${HOME}/.alterEGO/.extrarc ] && . ${HOME}/.alterEGO/.extrarc
 
-## [ LOADED ] #################################################################
+## [ LOADED ] -------------------------------------------------------------- ##
 
   function loadedProfile() {
     printf '%b\n' "${COLOR_GREEN}[+]${COLOR_RESET} ${COLOR_BOLD}.profile loaded @ $(date | sed 's/  / /g')...${COLOR_RESET}"
@@ -24,7 +23,7 @@
     [ -f ${HOME}/.bashrc ] && . ${HOME}/.bashrc
   fi
 
-## [ RELOAD ]
+## [ RELOAD ] -------------------------------------------------------------- ##
 
   function reloadProfile() {
     source "${HOME}/.profile"
@@ -32,4 +31,4 @@
   }
 
 # vim: syntax=sh
-## { FIN } ####################################################################
+## FIN _____________________________________________________________ ¯\_(ツ)_/¯

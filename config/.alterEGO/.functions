@@ -1,15 +1,14 @@
 #! /usr/bin/env sh
 
-## { alterEGO Linux: "Open the vault of knowledge" } ##########################
-##
-## .functions
-##   created        : 2021-05-25 19:40:20 UTC
-##   updated        : 2021-09-26 11:51:06 UTC
-##   description    : Shell functions. 
-##   app            : sh
-##   target         : ${HOME}/.alterEGO/.functions
-##
-## ############################################################################
+## { alterEGO Linux: "Open the vault of knowledge" } ----------------------- ##
+##                                                                           ##
+## .functions                                                                ##
+##   created        : 2021-05-25 19:40:20 UTC                                ##
+##   updated        : 2021-09-26 11:51:06 UTC                                ##
+##   description    : Shell functions.                                       ##
+##   app            : sh                                                     ##
+##   target         : ${HOME}/.alterEGO/.functions                           ##
+## _________________________________________________________________________ ##
 
   busy() {
       ##### When the boss comes around to look busy.
@@ -282,7 +281,7 @@
       ip address | grep "inet [1-9]" | awk '{ print $NF "\t" $2 }'
   }
 
-## [ LOADED ] #################################################################
+## [ LOADED ] -------------------------------------------------------------- ##
 
   loadedFunctions() {
 
@@ -290,7 +289,7 @@
   }
   # loadedFunctions
 
-## [ RELOAD ] #################################################################
+## [ RELOAD ] -------------------------------------------------------------- ##
 
   reloadFunctions() {
 
@@ -299,4 +298,4 @@
   }
 
 # vim: syntax=sh
-## { FIN } ####################################################################
+## FIN _____________________________________________________________ ¯\_(ツ)_/¯

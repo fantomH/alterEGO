@@ -1,17 +1,16 @@
 #!/usr/bin/env sh
 
-## { alterEGO Linux: "Open the vault of knowledge" } ##########################
-##
-## .egorc
-##   created     : 2021-03-19 09:37:19 UTC
-##   updated     : 2021-09-26 11:33:52 UTC
-##   description : Additional shell stuff for alterEGO Linux.
-##   app         : sh
-##   target      : ${HOME}/.alterEGO/.egorc
-##
-## ############################################################################
+## { alterEGO Linux: "Open the vault of knowledge" } ----------------------- ##
+##                                                                           ##
+## .egorc                                                                    ##
+##   created     : 2021-03-19 09:37:19 UTC                                   ##
+##   updated     : 2021-09-26 11:33:52 UTC                                   ##
+##   description : Additional shell stuff for alterEGO Linux.                ##
+##   app         : sh                                                        ##
+##   target      : ${HOME}/.alterEGO/.egorc                                  ##
+## _________________________________________________________________________ ##
 
-## [ COLORS ] #################################################################
+## [ COLORS ] -------------------------------------------------------------- ##
 
   export TERM="xterm-256color"
 
@@ -21,12 +20,12 @@
   export COLOR_RED="\033[31m"
   export COLOR_RESET="\033[0m"
 
-## [ ALIAS ] ##################################################################
+## [ ALIAS ] --------------------------------------------------------------- ##
 
   alias msfconsole='msfconsole -x "db_connect ${USER}@msf"'
   alias nmapBasic='sudo grc nmap -sV -O -sC --traceroute'
 
-## [ DEFAULT APPLICATIONS ] ###################################################
+## [ DEFAULT APPLICATIONS ] ------------------------------------------------ ##
 
   export BROWSER=firefox
   export FZF_DEFAULT_COMMAND='rg --files --hidden '
@@ -34,7 +33,7 @@
   export VISUAL=vim
   export EDITOR=${VISUAL}
 
-## [ PATH ] ###################################################################
+## [ PATH ] ---------------------------------------------------------------- ##
 
   ##### ref. https://www.linuxjournal.com/content/removing-duplicate-path-entries
 
@@ -43,12 +42,12 @@
 
   export PATH
 
-## [ VIM ] ####################################################################
+## [ VIM ] ----------------------------------------------------------------- ##
 
   ##### Enable CTRL+s and CTRL+q in vim.
   stty -ixon
 
-## [ QT5 ] ####################################################################
+## [ QT5 ] ----------------------------------------------------------------- ##
 
   ##### https://wiki.manjaro.org/index.php/Set_all_Qt_app%27s_to_use_GTK%2B_font_%26_theme_settings
   ##... Set all Qt app's to use GTK+ font & theme settings
@@ -66,7 +65,7 @@
 
   # export QT_QPA_PLATFORMTHEME="qt5ct"
 
-## [ WORDLISTS ] ##############################################################
+## [ WORDLISTS ] ----------------------------------------------------------- ##
 
   export WORDLISTS="/usr/local/share/wordlists"
   export WL_BEST1050="${WORDLISTS}/best1050.txt"
@@ -76,14 +75,14 @@
   export WL_LARGEFILES="${WORDLISTS}/raft-large-files.txt"
   export WL_XPLATFORM="${WORDLISTS}/xplatform.txt"
 
-## [ REVERSE SHELLS ] #########################################################
+## [ REVERSE SHELLS ] ------------------------------------------------------ ##
 
   export REVSHELLS="/usr/local/share/reverse_shells"
   export RS_PATT_NODEJS="${REVSHELLS}/patt_nodeJS.js"
   export RS_REVSHELL_PHP="${REVSHELLS}/php-reverse-shell.php"
   export RS_WEBSHELL="${REVSHELLS}/webshell.php"
 
-## [ IP ADDRESSES ] ###########################################################
+## [ IP ADDRESSES ] -------------------------------------------------------- ##
 
   ipaddr() {
 
@@ -104,7 +103,7 @@
   }
   ipaddr
 
-## [ PROMPTS ] ################################################################
+## [ PROMPTS ] ------------------------------------------------------------- ##
 
   PROMPT_COMMAND='history -a'
 
@@ -117,7 +116,7 @@
   ## [ KALI STYLE ]
   export PS1="\[${COLOR_GREEN}\]┌────(\[${COLOR_RESET}\]\u@\h\[${COLOR_GREEN}\])-[\[${COLOR_RESET}\]\w\[${COLOR_GREEN}\]]\n\[${COLOR_GREEN}\]└─$ \[${COLOR_RESET}\]"
 
-## [ GOTO ] ###################################################################
+## [ GOTO ] ---------------------------------------------------------------- ##
 
   ##### Requires: bash-completion && sourced in .bashrc
   ##... Usage: `goto @mounted`
@@ -135,11 +134,11 @@
     } && complete -F _goto goto
   fi
 
-## [ TryHackMe ] ##############################################################
+## [ TryHackMe ] ----------------------------------------------------------- ##
 
   alias attack=". ${HOME}/.alterEGO/.tryhackmerc"
 
-## [ Damn Vulnerable Web App (DVWA) ] #########################################
+## [ Damn Vulnerable Web App (DVWA) ] -------------------------------------- ##
 
   dvwa() {
       ##### Will install or run the Damn Vulnerable Web App (DVWA) docker.
@@ -158,7 +157,7 @@ EOF
       fi
       }
 
-## [ OWASP JUICE SHOP ] #######################################################
+## [ OWASP JUICE SHOP ] ---------------------------------------------------- ##
 
   juiceShop() {
     ##### Will install or run the OWASP Juice Shop docker.
@@ -177,18 +176,18 @@ EOF
     fi
   }
 
-## [ LOADED ] #################################################################
+## [ LOADED ] -------------------------------------------------------------- ##
 
   loadedEgorc() {
     printf "${COLOR_GREEN}[+]${COLOR_RESET} ${COLOR_BOLD}.egorc loaded @ $(date | sed 's/  / /g')...${COLOR_RESET}\n"
   }
   # loadedEgorc
 
-## [ RELOAD ] #################################################################
+## [ RELOAD ] -------------------------------------------------------------- ##
 
   reloadEgorc() {
     . "${HOME}/.alterEGO/.egorc"
     loadedEgorc
   }
 
-## { FIN } ####################################################################
+## FIN _____________________________________________________________ ¯\_(ツ)_/¯

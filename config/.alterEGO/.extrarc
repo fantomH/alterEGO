@@ -1,30 +1,29 @@
-## { alterEGO Linux: "Open the vault of knowledge" } ##########################
-##
-## .extrarc
-##   created        : 2021-03-16 10:15:03 UTC
-##   updatedi       : 2021-09-26 13:49:43 UTC
-##   description    : Shell config specific to this machine
-##   app            : bash
-##   target         : ${HOME}/.alterEGO/.extrarc
-##
-## ############################################################################
+## { alterEGO Linux: "Open the vault of knowledge" } ----------------------- ##
+##                                                                           ##
+## .extrarc                                                                  ##
+##   created        : 2021-03-16 10:15:03 UTC                                ##
+##   updatedi       : 2021-09-26 13:49:43 UTC                                ##
+##   description    : Shell config specific to this machine                  ##
+##   app            : bash                                                   ##
+##   target         : ${HOME}/.alterEGO/.extrarc                             ##
+## _________________________________________________________________________ ##
 
   export lgit="/usr/local/alterEGO"
   alias updateROOT='sudo -u root sh -c "cd $lgit && git pull"'
   alias vinotes="vim ~/repositories/droidnotes/droidnotes.html"
 
-## [ LOADED ] #################################################################
+## [ LOADED ] -------------------------------------------------------------- ##
 
   function loadedExtrarc() {
     printf '%b\n' "${COLOR_GREEN}[+]${COLOR_RESET} ${COLOR_BOLD}.extrarc loaded @ $(date | sed 's/  / /g')...${COLOR_RESET}"
   }
   # loadedExtrarc
 
-## [ RELOAD ] #################################################################
+## [ RELOAD ] -------------------------------------------------------------- ##
 
   function reloadExtrarc() {
     source "${HOME}/.alterEGO/.extrarc"
     loadedExtrarc
   }
 
-## { FIN } ####################################################################
+## FIN _____________________________________________________________ ¯\_(ツ)_/¯

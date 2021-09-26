@@ -1,19 +1,18 @@
 #!/usr/bin/env bash
 
-## { alterEGO Linux: "Open the vault of knowledge" } ##########################
-##
-## .tryhackmerc
-##   created     : 2021-03-07 15:10:11 UTC
-##   updated     : 2021-09-26 12:10:37 UTC
-##   description : TryHackMe stuff 
-##   target      : ${HOME}/.alterEGO/.tryhackmerc
-##
-## ############################################################################
+## { alterEGO Linux: "Open the vault of knowledge" } ----------------------- ##
+##                                                                           ##
+## .tryhackmerc                                                              ##
+##   created     : 2021-03-07 15:10:11 UTC                                   ##
+##   updated     : 2021-09-26 12:10:37 UTC                                   ##
+##   description : TryHackMe stuff                                           ##
+##   target      : ${HOME}/.alterEGO/.tryhackmerc                            ##
+## _________________________________________________________________________ ##
 
   CONFIG="${HOME}/.alterEGO/.tryhackme.conf"
   [[ -f ${CONFIG} ]] && . ${CONFIG}
 
-## [ LAUNCHER ] ###############################################################
+## [ LAUNCHER ] ------------------------------------------------------------ ##
 
   case "${1}" in
     start )
@@ -107,18 +106,18 @@ alias setlhost "set LHOST ${THM_LHOST}"
 alias setrhost "set RHOSTS ${THM_RHOST}"
 EOF
 
-## [ LOADED ] #################################################################
+## [ LOADED ] -------------------------------------------------------------- ##
 
   function loadedTryhackmerc() {
     printf '%b\n' "${COLOR_GREEN}[+]${COLOR_RESET} ${COLOR_BOLD}.tryhackmerc loaded @ $(date | sed 's/  / /g')...${COLOR_RESET}"
   }
   # loadedTryhackmerc
 
-## [ RELOAD ] #################################################################
+## [ RELOAD ] -------------------------------------------------------------- ##
 
   function reloadTryhackmerc() {
     source "${HOME}/.alterEGO/.egorc"
     loadedTryhackmerc
   }
 
-## { FIN } ####################################################################
+## FIN _____________________________________________________________ ¯\_(ツ)_/¯

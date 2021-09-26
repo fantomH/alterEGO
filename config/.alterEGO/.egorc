@@ -4,30 +4,29 @@
 ##
 ## .egorc
 ##   created     : 2021-03-19 09:37:19 UTC
-##   updated     : 2021-09-19 01:07:52 UTC
+##   updated     : 2021-09-26 11:33:52 UTC
 ##   description : Additional shell stuff for alterEGO Linux.
 ##   app         : sh
 ##   target      : ${HOME}/.alterEGO/.egorc
 ##
 ## ############################################################################
 
-## [ COLORS ]
+## [ COLORS ] #################################################################
 
   export TERM="xterm-256color"
 
-  export COLOR_ESC=$"\033"
-  export COLOR_BLUE="${COLOR_ESC}[34m"
-  export COLOR_BOLD="${COLOR_ESC}[1m"
-  export COLOR_GREEN="${COLOR_ESC}[32m"
-  export COLOR_RED="${COLOR_ESC}[31m"
-  export COLOR_RESET="${COLOR_ESC}[0m"
+  export COLOR_BLUE="\033[34m"
+  export COLOR_BOLD="\033[1m"
+  export COLOR_GREEN="\033[32m"
+  export COLOR_RED="\033[31m"
+  export COLOR_RESET="\033[0m"
 
-## [ ALIAS ]
+## [ ALIAS ] ##################################################################
 
   alias msfconsole='msfconsole -x "db_connect ${USER}@msf"'
-  alias nmap-basic='sudo grc nmap -sV -O -sC --traceroute'
+  alias nmapBasic='sudo grc nmap -sV -O -sC --traceroute'
 
-## [ DEFAULT APPLICATIONS ]
+## [ DEFAULT APPLICATIONS ] ###################################################
 
   export BROWSER=firefox
   export FZF_DEFAULT_COMMAND='rg --files --hidden '
@@ -35,20 +34,22 @@
   export VISUAL=vim
   export EDITOR=${VISUAL}
 
-## [ PATH ]
+## [ PATH ] ###################################################################
+
   ##### ref. https://www.linuxjournal.com/content/removing-duplicate-path-entries
 
   PATH="${PATH}:${HOME}/fH/scripts:${HOME}/droid/scripts:${HOME}/scripts:${HOME}/bin"
-  PATH=$(echo -n $PATH | awk -v RS=: '!($0 in a) {a[$0]; printf("%s%s", length(a) > 1 ? ":" : "", $0)}')
+  PATH=$(printf '%s' "${PATH}" | awk -v RS=: '!($0 in a) {a[$0]; printf("%s%s", length(a) > 1 ? ":" : "", $0)}')
 
   export PATH
 
-## [ VIM ]
+## [ VIM ] ####################################################################
 
   ##### Enable CTRL+s and CTRL+q in vim.
   stty -ixon
 
-## [ QT5 ]
+## [ QT5 ] ####################################################################
+
   ##### https://wiki.manjaro.org/index.php/Set_all_Qt_app%27s_to_use_GTK%2B_font_%26_theme_settings
   ##... Set all Qt app's to use GTK+ font & theme settings
   ##... Overview
@@ -65,7 +66,8 @@
 
   # export QT_QPA_PLATFORMTHEME="qt5ct"
 
-## [ WORDLISTS ]
+## [ WORDLISTS ] ##############################################################
+
   export WORDLISTS="/usr/local/share/wordlists"
   export WL_BEST1050="${WORDLISTS}/best1050.txt"
   export WL_BIG="${WORDLISTS}/seclist-big.txt"
@@ -74,42 +76,48 @@
   export WL_LARGEFILES="${WORDLISTS}/raft-large-files.txt"
   export WL_XPLATFORM="${WORDLISTS}/xplatform.txt"
 
-## [ REVERSE SHELLS ]
+## [ REVERSE SHELLS ] #########################################################
+
   export REVSHELLS="/usr/local/share/reverse_shells"
   export RS_PATT_NODEJS="${REVSHELLS}/patt_nodeJS.js"
   export RS_REVSHELL_PHP="${REVSHELLS}/php-reverse-shell.php"
   export RS_WEBSHELL="${REVSHELLS}/webshell.php"
 
-## { IP ADDRESSES } ###########################################################
+## [ IP ADDRESSES ] ###########################################################
 
-  function ipaddr() {
+  ipaddr() {
+
     ##### IP addresses will be exported when .egorc is sourced with the
     ##... function call, but can also be 'refreshed' when calling ipaddr
     ##... from the terminal (ex. after starting a VPN connection).
 
     ##### `host` is provided by the package 'bind'.
-    export IPPUB="$(host myip.opendns.com resolver1.opendns.com               \
+    IPPUB="$(host myip.opendns.com resolver1.opendns.com               \
                     | grep --color=never -oP '(?<=myip.opendns.com has address ).*$')"
+    export IPPUB
 
-    export IPLOC="$(ip address | grep --color=never -oP "(?<=inet ).*(?=/.*enp)")"
+    IPLOC="$(ip address | grep --color=never -oP "(?<=inet ).*(?=/.*enp)")"
+    export IPLOC
 
     # printf "%s\n" "LAN IP:     ${IPLOC}"
     # printf "%s\n" "Public IP:  ${IPPUB}"
   }
   ipaddr
 
-## { PROMPTS } ################################################################
+## [ PROMPTS ] ################################################################
 
   PROMPT_COMMAND='history -a'
 
+  ## [ SIMPLE ]
   # export PS1='[\u@\h \W]\$ '
   
+  ## [ EGO ]
   # export PS1="\[${COLOR_GREEN}\]\h [\w] • ${IPLOC}\n\[${COLOR_GREEN}\]$ \[${COLOR_RESET}\]"
 
   ## [ KALI STYLE ]
-  export PS1="\[${COLOR_GREEN}\]┌────(\[${COLOR_RESET}\]\u@\h\[${COLOR_GREEN}\])-[\[${COLOR_RESET}\]\w\[${COLOR_GREEN}\]]\n└─$ \[${COLOR_RESET}\]"
+  export PS1="\[${COLOR_GREEN}\]┌────(\[${COLOR_RESET}\]\u@\h\[${COLOR_GREEN}\])-[\[${COLOR_RESET}\]\w\[${COLOR_GREEN}\]]\n\[${COLOR_GREEN}\]└─$ \[${COLOR_RESET}\]"
 
-## { GOTO } ###################################################################
+## [ GOTO ] ###################################################################
 
   ##### Requires: bash-completion && sourced in .bashrc
   ##... Usage: `goto @mounted`
@@ -127,48 +135,60 @@
     } && complete -F _goto goto
   fi
 
-## [ TryHackMe ]
+## [ TryHackMe ] ##############################################################
 
   alias attack=". ${HOME}/.alterEGO/.tryhackmerc"
 
-## [ Damn Vulnerable Web App (DVWA) ]
+## [ Damn Vulnerable Web App (DVWA) ] #########################################
 
-  function dvwa() {
+  dvwa() {
       ##### Will install or run the Damn Vulnerable Web App (DVWA) docker.
       if [[ "$1" == 'start' ]]; then
-        sudo systemctl start docker.service
+        docker666 start
         docker run --rm -it -p 81:80 vulnerables/web-dvwa &
         sleep 2
         $BROWSER "http://localhost:81/login.php"
       elif [[ "$1" == 'stop' ]]; then
         docker stop $(docker ps | grep "vulnerables/web-dvwa" | cut -d ' ' -f1)
-        sudo systemctl stop docker.socket
-        sudo systemctl stop docker.service
-        read -r -p $'\e[34m[-]\e[0m \e[1mWould you like to delete docker0 network interface? [y/N]\e[0m ' response
-          if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
-            sudo ip link delete docker0 
-          else
-            printf "${COLOR_RED}[!]${COLOR_RESET} ${COLOR_BOLD}OK... docker0 lives!${COLOR_RESET}\n"
-          fi
+        docker666 stop
       else
         cat <<EOF
-Usage: dvwa start|stop
+Usage: dvwa [start|stop]
 EOF
       fi
       }
 
-## [ LOADED ]
+## [ OWASP JUICE SHOP ] #######################################################
 
-  function loaded_egorc() {
+  juiceShop() {
+    ##### Will install or run the OWASP Juice Shop docker.
+    if [[ "$1" == 'start' ]]; then
+      docker666 start
+      docker run --rm -p 3000:3000 bkimminich/juice-shop &
+      sleep 2
+      $BROWSER "http://localhost:3000"
+    elif [[ "$1" == 'stop' ]]; then
+      docker stop $(docker ps | grep "bkimminich/juice-shop" | cut -d ' ' -f1)
+      docker666 stop
+    else
+      cat <<EOF
+Usage: juiceShop [start|stop]
+EOF
+    fi
+  }
+
+## [ LOADED ] #################################################################
+
+  loadedEgorc() {
     printf "${COLOR_GREEN}[+]${COLOR_RESET} ${COLOR_BOLD}.egorc loaded @ $(date | sed 's/  / /g')...${COLOR_RESET}\n"
   }
-  # loaded_egorc
+  # loadedEgorc
 
-## [ RELOAD ]
+## [ RELOAD ] #################################################################
 
-  function reload_egorc() {
-    source "${HOME}/.alterEGO/.egorc"
-    loaded_egorc
+  reloadEgorc() {
+    . "${HOME}/.alterEGO/.egorc"
+    loadedEgorc
   }
 
-## { FIN }_____________________________________________________________________
+## { FIN } ####################################################################

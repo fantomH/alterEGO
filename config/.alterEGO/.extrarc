@@ -1,29 +1,30 @@
-## { alterEGO Linux: "Open the vault of knowledge" }---------------------------
+## { alterEGO Linux: "Open the vault of knowledge" } ##########################
 ##
 ## .extrarc
 ##   created        : 2021-03-16 10:15:03 UTC
-##   updatedi       : 2021-09-15 11:04:54 UTC
+##   updatedi       : 2021-09-26 13:49:43 UTC
 ##   description    : Shell config specific to this machine
 ##   app            : bash
 ##   target         : ${HOME}/.alterEGO/.extrarc
-## ____________________________________________________________________________
+##
+## ############################################################################
 
   export lgit="/usr/local/alterEGO"
   alias updateROOT='sudo -u root sh -c "cd $lgit && git pull"'
   alias vinotes="vim ~/repositories/droidnotes/droidnotes.html"
 
-## [ LOADED ]
+## [ LOADED ] #################################################################
 
-  function loaded_extrarc() {
-    printf "${COLOR_GREEN}[+]${COLOR_RESET} ${COLOR_BOLD}.extrarc loaded @ $(date | sed 's/  / /g')...${COLOR_RESET}\n"
+  function loadedExtrarc() {
+    printf '%b\n' "${COLOR_GREEN}[+]${COLOR_RESET} ${COLOR_BOLD}.extrarc loaded @ $(date | sed 's/  / /g')...${COLOR_RESET}"
   }
-  # loaded_extrarc
+  # loadedExtrarc
 
-## [ RELOAD ]
+## [ RELOAD ] #################################################################
 
-  function reload_extrarc() {
+  function reloadExtrarc() {
     source "${HOME}/.alterEGO/.extrarc"
-    loaded_extrarc
+    loadedExtrarc
   }
 
-## { FIN }_____________________________________________________________________
+## { FIN } ####################################################################

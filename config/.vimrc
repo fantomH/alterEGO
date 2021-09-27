@@ -1,14 +1,14 @@
-"" { alterEGO Linux: "Open the vault of knowledge" }---------------------------
-""
-"" .vimrc
-""   created        : 2021-02-23 02:54:43 UTC
-""   updated        : 2021-09-14 03:23:04 UTC
-""   description    : VIM main configuration file. 
-""   application    : vim
-""   target         : ${HOME}/.vimrc
-"" ____________________________________________________________________________
+"" { alterEGO Linux: "Open the vault of knowledge" } ----------------------- ##
+""                                                                           ##
+"" .vimrc                                                                    ##
+""   created        : 2021-02-23 02:54:43 UTC                                ##
+""   updated        : 2021-09-26 15:18:34 UTC                                ##
+""   description    : VIM main configuration file.                           ##
+""   application    : vim                                                    ##
+""   target         : ${HOME}/.vimrc                                         ##
+"" _________________________________________________________________________ ##
 
-"" { GENERAL CONFIG }__________________________________________________________
+"" [ GENERAL CONFIG ] ------------------------------------------------------ ##
 
   """"" Forces vim to act like vim, not like vi.
   set nocompatible
@@ -21,7 +21,7 @@
   """"" Used with colored column.
   set colorcolumn=80
 
-"" { ARROW KEYS }______________________________________________________________
+"" [ ARROW KEYS ] ---------------------------------------------------------- ##
 
   """"" Disables arrow keys.
   " noremap <UP> <NOP>
@@ -29,7 +29,7 @@
   " noremap <LEFT> <NOP>
   " noremap <DOWN> <NOP>
 
-"" { CHANGE CASES }____________________________________________________________
+"" [ CHANGE CASES ] -------------------------------------------------------- ##
 
   """"" Upper case.
   inoremap <C-u> <ESC>viwUea
@@ -38,7 +38,7 @@
   inoremap <C-l> <ESC>viwu
   nnoremap <C-l> viwu
 
-"" { COMMENTS TOGGLE }_________________________________________________________
+"" [ COMMENTS TOGGLE ] ----------------------------------------------------- ##
 
   """"" Stackoverflow
   ""... What's a quick way to comment/uncomment lines in Vim?
@@ -58,12 +58,12 @@
   vnoremap <leader>c :call CommentToggle()<CR>
   nnoremap <leader>c :call CommentToggle()<CR>
 
-"" { EDIT .vimrc }_____________________________________________________________
+"" [ EDIT .vimrc ] --------------------------------------------------------- ##
 
   nnoremap <leader>ev :tabedit $MYVIMRC<CR>
   nnoremap <leader>so :source $MYVIMRC<CR>
 
-"" { ENCODING }________________________________________________________________
+"" [ ENCODING ] ------------------------------------------------------------ ##
 
   """"" The encoding displayed.
   set encoding=utf8
@@ -72,12 +72,12 @@
   """"" set BOM ...WARNING: doesn't work, need to set manually.
   " set bomb
 
-"" { ESC }_____________________________________________________________________
+"" [ ESC ] ----------------------------------------------------------------- ##
 
   inoremap ,, <ESC>
   vnoremap ,, <ESC>
 
-"" { FILE EXPLORER }___________________________________________________________
+"" [ FILE EXPLORER ] ------------------------------------------------------- ##
 
   """"" NerdTree-like
   ""... Vim: you don't need NERDtree or (maybe) netrw
@@ -110,14 +110,14 @@
   endfunction
   map <F4> :call ToggleNetrw()<CR>
 
-"" { HELP }____________________________________________________________________
+"" [ HELP ] ---------------------------------------------------------------- ##
 
   """"" View man pages of word under cursor.
   nmap <leader>k :silent execute '!man <cword>'<cr>:redraw!<cr>
   """"" View Python documentation of word under cursor.
   nmap <leader>hp :silent execute '!pydoc <cword>'<cr>:redraw!<cr>
 
-"" { HIGHLIGHT LINE }__________________________________________________________
+"" [ HIGHLIGHT LINE ] ------------------------------------------------------ ##
 
   """"" ref. https://vimtricks.com/p/highlight-specific-lines/
 
@@ -126,7 +126,7 @@
   """"" Clear all the highlighted lines.
   nnoremap <silent> <Leader>hc :call clearmatches()<CR>
 
-"" { HTML MAPPING }____________________________________________________________
+"" [ HTML MAPPING ] -------------------------------------------------------- ##
 
   augroup filetype_html, filetype_htmldjango
     autocmd!
@@ -231,7 +231,7 @@
 
   augroup end
 
-"" { LINEBREAK AND WRAP }______________________________________________________
+"" [ LINEBREAK AND WRAP ] -------------------------------------------------- ##
 
   set linebreak
   set wrap
@@ -240,7 +240,7 @@
   """"" Toggle linewrap.
   map <leader>w :setlocal wrap!<CR>
 
-"" { LINE NUMBER }_____________________________________________________________
+"" [ LINE NUMBER ] --------------------------------------------------------- ##
 
   set number
   set relativenumber
@@ -248,15 +248,15 @@
   """"" Toggle line numbering
   nnoremap <leader>ln :set number! relativenumber!<CR>
 
-"" { LOREM }___________________________________________________________________
+"" [ LOREM ] --------------------------------------------------------------- ##
 
   inoremap lorem<TAB> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sodales, dolor ut lobortis rhoncus, mauris leo condimentum metus, vel elementum arcu ipsum aliquam est. Integer a scelerisque turpis, at ultrices nisl. Nunc fermentum quam elementum, sagittis velit id, porta tellus. Nunc quis suscipit felis. Etiam et leo scelerisque, gravida elit nec, aliquet justo. Phasellus et neque vel turpis hendrerit fringilla sed in arcu. Suspendisse id enim lacinia libero auctor pellentesque. Proin sed sem non neque pellentesque vehicula. Nunc sapien justo, tincidunt vitae ultrices eu, consectetur sit amet orci.
 
-"" { MOUSE }___________________________________________________________________
+"" [ MOUSE ] --------------------------------------------------------------- ##
 
   " set mouse=a
 
-"" { PREVIEW WINDOW }__________________________________________________________
+"" [ PREVIEW WINDOW ] ------------------------------------------------------ ##
 
   """"" Sends preview window to the right.
   ""... StackExchange
@@ -272,9 +272,9 @@
     " endif
   " endfunction 
 
-"" { RUN SCRIPT }______________________________________________________________
+"" [ RUN SCRIPT ] ---------------------------------------------------------- ##
 
-"" [ PYTHON ]
+  "" [ PYTHON ]
   """"" Requires tmux, with a second pane open.
 
   function! RunPython()
@@ -287,21 +287,21 @@
   """"" Kills the script.
   nnoremap <leader>ss :!tmux send-keys -t 1 "C-c";<CR><C-l>
 
-"" { SAVE FILE }_______________________________________________________________
+"" [ SAVE FILE ] ----------------------------------------------------------- ##
 
   """"" CTRL+s to save file
   ""... ref. https://stackoverflow.com/questions/3446320/in-vim-how-to-map-save-to-ctrl-s
   ""... Requires `stty -ixon` in a sourced rc file
   inoremap <C-s> <ESC>:write<CR>
 
-"" { SCROLL OFFSET }___________________________________________________________
+"" [ SCROLL OFFSET ] ------------------------------------------------------- ##
 
   """"" When scrolling, keeps the cursor at the vertical center.
   ""... Use so=999 for centered
   ""... ref. http://vim.wikia.com/wiki/make_search_results_appear_in_the_middle_of_the_screen
   set scrolloff=999
 
-"" { SEARCH }__________________________________________________________________
+"" [ SEARCH ] -------------------------------------------------------------- ##
 
   """"" Fuzzy find and wildmenu.
   set path+=**
@@ -317,12 +317,12 @@
   """"" Clear search highlighting
   nnoremap <leader>cs :let @/ = ""<CR>
 
-"" { SPELLCHECKER }____________________________________________________________
+"" [ SPELLCHECKER ] -------------------------------------------------------- ##
 
   """"" Toggle spell checker.
   map <F5> :setlocal spell! spelllang=en_us<CR>
 
-"" { STATUSLINE }______________________________________________________________
+"" [ STATUSLINE ] ---------------------------------------------------------- ##
 
   set laststatus=2
   set statusline=
@@ -336,7 +336,7 @@
   set statusline+=\ col:%03c\ "Colnr 
   set statusline+=\ %m%r%w\ %P\ \ "Modified? Readonly? Top/bot.
 
-"" { TAB AND INDENT }__________________________________________________________
+"" [ TAB AND INDENT ] ------------------------------------------------------ ##
 
   set tabstop=2
   """"" shiftround : rounds indent to multiple of shiftwidth.
@@ -346,7 +346,7 @@
   set shiftwidth=2
   set expandtab
 
-"" { TAGS }____________________________________________________________________
+"" [ TAGS ] ---------------------------------------------------------------- ##
 
   inoremap "<TAB> ""<left>
   inoremap '<TAB> ''<left>
@@ -356,7 +356,7 @@
   inoremap {<CR> {<CR>}<ESC>O
   inoremap {;<CR> {<CR>};<ESC>O
 
-"" { TIMESTAMP }_______________________________________________________________
+"" [ TIMESTAMP ] ----------------------------------------------------------- ##
 
   """"" Insert timestamp.
   ""... ex: Fri Mar 8 13:29:52 UTC 2019  
@@ -365,19 +365,19 @@
   ""[-] ex: 202005151148
   nnoremap <F9> "=system('echo -n $(date --utc "+%Y%m%d%H%M")')<CR>p
 
-"" { XCLIP }___________________________________________________________________
+"" [ XCLIP ] --------------------------------------------------------------- ##
 
   """"" Enable clipboard ability with xclip.
   ""... ref. Andrew [8xx8] Kulakov 'VIM Copy/Paste' <https://coderwall.com/p/hmki3q/vim-copy-paste>
   map <F7> y:call system("xclip -i -selection clipboard", getreg("\""))<cr>
   map <S-F7> :call setreg("\"",system("xclip -o -selection clipboard"))<cr>p")")")"))
 
-"" { PLUGINS }_________________________________________________________________
+"" [ PLUGINS ] ------------------------------------------------------------- ##
 
   syntax enable
   filetype plugin on
 
-"" [ vim-plug ]
+  "" [ vim-plug ]
 
   if empty(glob('~/.vim/autoload/plug.vim'))
     silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -411,7 +411,7 @@
   """"" Disable automatic indent on from vim-plug
   filetype indent off
 
-"" [ PLUGIN: fzf.vim ]
+  "" [ PLUGIN: fzf.vim ]
 
   """"" Buffers list.
   nnoremap <silent> <leader>ls :Buffers<CR>
@@ -424,16 +424,16 @@
   """"" Droidnotes TOC find.
   nnoremap <silent> <leader>td :BLines <!-- <CR>
 
-"" [ PLUGIN: emmet-vim ]
+  "" [ PLUGIN: emmet-vim ]
 
   """"" Enable emmet-vim tab completion 
   " imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 
-"" [ PLUGIN: syntastic ]
+  "" [ PLUGIN: syntastic ]
 
   map <leader>sx :SyntasticToggleMode<CR>
 
-"" {COLORSCHEME}_______________________________________________________________
+"" [ COLORSCHEME ] --------------------------------------------------------- ##
 
   """"" Colors:
   ""... 0   Black
@@ -525,7 +525,7 @@ hi MatchParen         term=NONE cterm=NONE ctermfg=NONE ctermbg=NONE
 " hi htmlItalic cterm=ITALIC ctermfg=27
 " hi htmlH1    term=NONE cterm=BOLD ctermfg=15  ctermbg=NONE
 
-"" { STUFF TO SORT }___________________________________________________________
+"" [ STUFF TO SORT ] ------------------------------------------------------- ##
 
 " function! HTML_tags()
   " let min_tag = expand("<cWORD>")
@@ -552,4 +552,4 @@ endfunction
 
 nnoremap <leader>pv :call Python_vim()<ESC>
 
-"" { FIN }_____________________________________________________________________
+"" FIN _____________________________________________________________ ¯\_(ツ)_/¯

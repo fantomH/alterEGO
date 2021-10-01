@@ -1,11 +1,9 @@
 ## { alterEGO Linux: "Open the vault of knowledge" } ----------------------- ##
 ##                                                                           ##
-## .bashrc                                                                   ##
+## ~/.bashrc                                                                 ##
 ##   created        : 2021-02-26 02:54:43 UTC                                ##
-##   updated        : 2021-09-26 12:04:20 UTC                                ##
+##   updated        : 2021-10-01 10:41:10 UTC                                ##
 ##   description    : Bash config file.                                      ##
-##   app            : bash                                                   ##
-##   target         : $HOME/.bashrc                                          ##
 ## _________________________________________________________________________ ##
 
 ## [ bash-completion ] ----------------------------------------------------- ##
@@ -25,7 +23,7 @@
 
 ## [ HISTORY ] ------------------------------------------------------------- ##
 
-  export HISTIGNORE="cd:clear:exit:ls"
+  export HISTIGNORE="cd:clear:exit:history:ls"
   export HISTCONTROL=ignoreboth:erasedups
   export HISTSIZE=1000000
   export HISEFILESIZE=1000000
@@ -34,13 +32,13 @@
 ## [ MAN IN COLOR ] -------------------------------------------------------- ##
 
   ##### TODO Need to work on the colors.
-  # export LESS_TERMCAP_mb=$(printf '\e[01;31m') # enter blinking mode – red
-  # export LESS_TERMCAP_md=$(printf '\e[01;35m') # enter double-bright mode – bold, magenta
-  # export LESS_TERMCAP_me=$(printf '\e[0m') # turn off all appearance modes (mb, md, so, us)
-  # export LESS_TERMCAP_se=$(printf '\e[0m') # leave standout mode
-  # export LESS_TERMCAP_so=$(printf '\e[01;33m') # enter standout mode – yellow
-  # export LESS_TERMCAP_ue=$(printf '\e[0m') # leave underline mode
-  # export LESS_TERMCAP_us=$(printf '\e[04;36m') # enter underline mode – cyan
+  export LESS_TERMCAP_mb=$(printf '\e[01;31m') # enter blinking mode – red
+  export LESS_TERMCAP_md=$(printf '\e[01;35m') # enter double-bright mode – bold, magenta
+  export LESS_TERMCAP_me=$(printf '\e[0m')     # turn off all appearance modes (mb, md, so, us)
+  export LESS_TERMCAP_se=$(printf '\e[0m')     # leave standout mode
+  export LESS_TERMCAP_so=$(printf '\e[01;33m') # enter standout mode – yellow
+  export LESS_TERMCAP_ue=$(printf '\e[0m')     # leave underline mode
+  export LESS_TERMCAP_us=$(printf '\e[04;36m') # enter underline mode – cyan
 
 ## [ SOURCING ] ------------------------------------------------------------ ##
 

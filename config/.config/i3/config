@@ -2,7 +2,7 @@
 ##                                                                           ##
 ## i3config                                                                  ##
 ##   created        : 2021-02-26 09:37:37 UTC                                ##
-##   updated        : 2021-09-26 15:38:33 UTC                                ##
+##   updated        : 2021-09-28 10:35:49 UTC                                ##
 ##   description    : i3vm configuration file.                               ##
 ##   app            : i3                                                     ##
 ##   target         : ${HOME}/.config/i3/config                              ##
@@ -12,9 +12,9 @@ set $mod Mod1
 
 ## [ FONTS ] --------------------------------------------------------------- ##
 
-# Font for window titles. Will also be used by the bar unless a different font
-# is used in the bar {} block below.
-font pango:monospace 8
+  # Font for window titles. Will also be used by the bar unless a different font
+  # is used in the bar {} block below.
+  font pango:monospace 8
 
 ## [ AUTOLOAD ] ------------------------------------------------------------ ##
 
@@ -33,16 +33,15 @@ font pango:monospace 8
   ## [dropbox]
   # exec_always --no-startup-id dropbox &
 
+  ## ( Network Manager )
+  exec_always --no-startup-id nm-applet &
+
   # The combination of xss-lock, nm-applet and pactl is a popular choice, so
   # they are included here as an example. Modify as you see fit.
 
   # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
   # screen before suspend. Use loginctl lock-session to lock your screen.
   # exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
-
-  # NetworkManager is the most popular way to manage wireless networks on Linux,
-  # and nm-applet is a desktop environment-independent system tray GUI for it.
-  # exec --no-startup-id nm-applet
 
   # Use pactl to adjust volume in PulseAudio.
   # set $refresh_i3status killall -SIGUSR1 i3status
@@ -127,10 +126,10 @@ font pango:monospace 8
           # Pressing right will grow the window’s width.
           # Pressing up will shrink the window’s height.
           # Pressing down will grow the window’s height.
-          bindsym j resize shrink width 10 px or 10 ppt
-          bindsym k resize grow height 10 px or 10 ppt
-          bindsym l resize shrink height 10 px or 10 ppt
-          bindsym semicolon resize grow width 10 px or 10 ppt
+          bindsym h resize shrink width 10 px or 10 ppt
+          bindsym j resize grow height 10 px or 10 ppt
+          bindsym k resize shrink height 10 px or 10 ppt
+          bindsym l resize grow width 10 px or 10 ppt
 
           # same bindings, but for the arrow keys
           bindsym Left resize shrink width 10 px or 10 ppt
@@ -207,6 +206,11 @@ font pango:monospace 8
   bindsym $mod+Shift+9 move container to workspace number $ws9
   bindsym $mod+Shift+0 move container to workspace number $ws10
 
+## [ APPLICATIONS TO WORKSPACE ] ------------------------------------------- ##
+
+  ## ( Firefox --private-window )
+  assign [title="Private Browsing"] → 9
+
 ## [ RELOAD, RESTART, EXIT i3 ] -------------------------------------------- ##
 
   # reload the configuration file
@@ -216,8 +220,13 @@ font pango:monospace 8
   # exit i3 (logs you out of your X session)
   bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
-
 ## [ APPLICATION SHORTCUTS ] ----------------------------------------------- ##
+
+  ## ( LANGUAGE )
+  bindsym $mod+CTRL+l exec toggle_language.sh
+
+  ## ( SCREENSHOT )
+  bindsym $mod+CTRL+s exec screenshot.sh --window
 
   ## ( TERMINAL )
   bindsym $mod+Return exec xfce4-terminal                                     \
@@ -252,18 +261,23 @@ font pango:monospace 8
       resize set 800px 350px,                                                 \
       move position center
 
-
 ## [ STATUS BAR ] ---------------------------------------------------------- ##
-#
+
   bar {
     id bar-001
     position top
     tray_output primary
-    #mode dock
     #workspace_buttons yes
     status_command i3blocks -c ~/.config/i3blocks/i3blocks.conf
-    # font pango:Inconsolata Bold 11
     font pango:Source Code Pro Medium 10
   }
 
-#--{ file:fin }----------------------------------------------------------------
+  # bar {
+    # id bar-2
+    # position bottom
+    # tray_output none
+    # workspace_buttons no
+    # status_command /usr/bin/bumblebee-status -m cpu
+  # }
+
+## FIN _____________________________________________________________ ¯\_(ツ)_/¯

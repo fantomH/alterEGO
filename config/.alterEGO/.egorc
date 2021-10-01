@@ -2,12 +2,10 @@
 
 ## { alterEGO Linux: "Open the vault of knowledge" } ----------------------- ##
 ##                                                                           ##
-## .egorc                                                                    ##
+## ~/.aterEGO/.egorc                                                         ##
 ##   created     : 2021-03-19 09:37:19 UTC                                   ##
-##   updated     : 2021-09-26 11:33:52 UTC                                   ##
+##   updated     : 2021-10-01 10:36:33 UTC                                   ##
 ##   description : Additional shell stuff for alterEGO Linux.                ##
-##   app         : sh                                                        ##
-##   target      : ${HOME}/.alterEGO/.egorc                                  ##
 ## _________________________________________________________________________ ##
 
 ## [ COLORS ] -------------------------------------------------------------- ##
@@ -173,6 +171,19 @@ EOF
       cat <<EOF
 Usage: juiceShop [start|stop]
 EOF
+    fi
+  }
+
+  kali() {
+    docker666 start
+    if [[ -z $(docker ps -a | awk '/kali/ { print $NF }') ]]; then
+      docker run --name kali --net="host" --privileged -e DISPLAY=$DISPLAY -it -v /tmp/.X11-unix:/tmp/.X11-unix kalilinux/kali-rolling /bin/bash
+    else
+      if [[ -z "$(docker ps | grep kali$)" ]]; then
+        docker start -i kali
+      else
+        printf '%b\n' "${COLOR_RED}[!]${COLOR_RESET} ${COLOR_BOLD}Kali is already running...${COLOR_RESET}"
+      fi
     fi
   }
 

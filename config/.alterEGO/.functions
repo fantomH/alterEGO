@@ -4,7 +4,7 @@
 ##                                                                           ##
 ## .functions                                                                ##
 ##   created        : 2021-05-25 19:40:20 UTC                                ##
-##   updated        : 2021-09-26 11:51:06 UTC                                ##
+##   updated        : 2021-09-28 19:21:00 UTC                                ##
 ##   description    : Shell functions.                                       ##
 ##   app            : sh                                                     ##
 ##   target         : ${HOME}/.alterEGO/.functions                           ##
@@ -228,6 +228,11 @@
   psgrep() {
 
       ps aux | grep -Ei "$@"
+  }
+
+  pyclean () {
+    ##### ref. https://stackoverflow.com/a/41386937/10500496  
+      find . -type f -name '*.py[co]' -delete -o -type d -name __pycache__ -delete
   }
 
   pywebserver() {

@@ -2,7 +2,7 @@
 ""                                                                           ##
 "" .vimrc                                                                    ##
 ""   created        : 2021-02-23 02:54:43 UTC                                ##
-""   updated        : 2021-09-26 15:18:34 UTC                                ##
+""   updated        : 2021-09-28 10:20:23 UTC                                ##
 ""   description    : VIM main configuration file.                           ##
 ""   application    : vim                                                    ##
 ""   target         : ${HOME}/.vimrc                                         ##
@@ -28,6 +28,12 @@
   " noremap <RIGHT> <NOP>
   " noremap <LEFT> <NOP>
   " noremap <DOWN> <NOP>
+
+"" [ BASE 64 ] ------------------------------------------------------------- ##
+
+  """" Decode inplace base64 text.
+  "... ref. https://stackoverflow.com/a/7849399/10500496
+  vnoremap <leader>64 y:let @"=system('base64 --decode', @")<cr>gvP
 
 "" [ CHANGE CASES ] -------------------------------------------------------- ##
 

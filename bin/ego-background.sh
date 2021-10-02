@@ -19,6 +19,6 @@
 
   selection=$(sxiv -t ${bgdir} -o)
 
-  feh --bg-max ${selection}
+  feh --bg-max --image-bg=black ${selection}
 
 #--{ file:fin }----------------------------------------------------------------

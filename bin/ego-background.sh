@@ -4,7 +4,7 @@
 ##                                                                           ##
 ## ego-background.sh                                                         ##
 ##   created       : 2021-04-01 12:38:04 UTC                                 ##
-##   updated       : 2021-10-03 12:48:17 UTC                                 ##
+##   updated       : 2021-10-03 18:20:58 UTC                                 ##
 ##   description   : Set and change backgrounds.                             ##
 ##   dependencies  : ['feh', 'sxiv']                                         ##
 ## _________________________________________________________________________ ##
@@ -56,7 +56,13 @@
     fi
   done
 
+  ##### Verify if dependencies are installed.
   if [[ ${_passed_check} == 'YES' ]]; then
+    ##### Verify if argument --set is given.
+    ##... If so, won't launch sxiv to change the background.
+    ##... Use in i3wm config:
+    ##    ## [ background ]
+    ##    exec --no-startup-id /usr/local/bin/ego-background.sh --set
     if [[ ${1} == '--set' ]]; then
       if [[ ! -e ${HOME}/.fehbg ]]; then
         feh --bg-max --image-bg=black /usr/local/share/backgrounds/scary_hacker.jpg
@@ -76,7 +82,7 @@
 
       feh --bg-max --image-bg=black ${selection}
 
-      echo ${selection}
+      msg_result "Background: $(basename ${selection})"
     fi
   else
     exit 1

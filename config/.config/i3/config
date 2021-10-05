@@ -2,7 +2,7 @@
 ##                                                                           ##
 ## i3config                                                                  ##
 ##   created        : 2021-02-26 09:37:37 UTC                                ##
-##   updated        : 2021-09-28 10:35:49 UTC                                ##
+##   updated        : 2021-10-03 18:23:29 UTC                                ##
 ##   description    : i3vm configuration file.                               ##
 ##   app            : i3                                                     ##
 ##   target         : ${HOME}/.config/i3/config                              ##
@@ -19,7 +19,7 @@ set $mod Mod1
 ## [ AUTOLOAD ] ------------------------------------------------------------ ##
 
   ## [ background ]
-  exec_always --no-startup-id feh --bg-max /usr/local/share/backgrounds/scary_hacker.jpg
+  exec --no-startup-id /usr/local/bin/ego-background.sh --set
 
   ## [keyboard layout]
   # exec_always setxkbmap -layout 'us,ca'

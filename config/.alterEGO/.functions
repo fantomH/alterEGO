@@ -4,7 +4,7 @@
 ##                                                                           ##
 ## .functions                                                                ##
 ##   created        : 2021-05-25 19:40:20 UTC                                ##
-##   updated        : 2021-09-28 19:21:00 UTC                                ##
+##   updated        : 2021-10-05 09:30:36 UTC                                ##
 ##   description    : Shell functions.                                       ##
 ##   app            : sh                                                     ##
 ##   target         : ${HOME}/.alterEGO/.functions                           ##
@@ -210,7 +210,7 @@
 
   nowutc() {
 
-      echo -n $(date --utc "+%F %H:%M:%S %Z")
+      echo  $(date --utc "+%F %H:%M:%S %Z")
   }
 
   ports() {

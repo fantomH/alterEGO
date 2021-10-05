@@ -1,11 +1,12 @@
 #!/usr/bin/env python
-#--{ alterEGO Linux: "Open the vault of knowledge" }---------------------------
-#
-# gitfzf.py
-#   created        : 2021-04-20 13:39:08 UTC
-#   updated        : 2021-04-21 09:19:35 UTC
-#   description    : Git with FZF.
-#------------------------------------------------------------------------------
+
+## { alterEGO Linux: "Open the vault of knowledge" } ----------------------- ##
+##                                                                           ##
+## gitfzf.py                                                                 ##
+##   created       : 2021-04-20 13:39:08 UTC                                 ##
+##   updated       : 2021-10-03 18:39:14 UTC                                 ##
+##   description   : Git with FZF.                                           ##
+## _________________________________________________________________________ ##
 
 import os
 import subprocess
@@ -16,6 +17,8 @@ def run_fzf(_input):
     viewer = 'ls {} | less'
     fzf = subprocess.Popen(
                     ['fzf',
+                    '--pointer=❯',
+                    '--prompt=SEARCH: ',
                     '--no-hscroll',
                     '-i',
                     '--exact'], stdin=_input.stdout, stdout=subprocess.PIPE)
@@ -61,7 +64,10 @@ def get_status(_directory):
 
     _files_status.sort(key=lambda f: f[0].lower())
 
-    return _files_status
+    if len(_files_status) > 0:
+        return _files_status
+    else:
+        return f'[!] Nothing to do.'
         
 choices = get_gits()
 
@@ -72,7 +78,7 @@ fzfout = run_fzf(gitdirs)
 for result_git in fzfout:
     if result_git is not None:
         result_git = result_git[:-1].decode('utf-8')
-        actions = ['cd', 'ls', 'status']
+        actions = ['ranger', 'ls', 'status']
 
         action_choices = subprocess.Popen(['echo', '\n'.join(actions)], stdout=subprocess.PIPE)
 
@@ -81,13 +87,11 @@ for result_git in fzfout:
         for result_action in fzfout:
             result_action = result_action[:-1].decode('utf-8')
 
-            if result_action == 'cd':
-                os.chdir(result_git)
-                print(os.getcwd())
-                print(os.listdir())
+            if result_action == 'ranger':
+                subprocess.run(f'/usr/bin/ranger {result_git}', shell=True)
             if result_action == 'ls':
                 print(os.listdir(result_git))
             if result_action == 'status':
                 print(get_status(result_git))
                 
-#--{ file:fin }----------------------------------------------------------------
+## FIN _____________________________________________________________ ¯\_(ツ)_/¯

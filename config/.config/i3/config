@@ -1,11 +1,10 @@
 ## { alterEGO Linux: "Open the vault of knowledge" } ----------------------- ##
 ##                                                                           ##
-## i3config                                                                  ##
+## ~/.config/i3/config                                                       ##
 ##   created        : 2021-02-26 09:37:37 UTC                                ##
-##   updated        : 2021-10-03 18:23:29 UTC                                ##
+##   updated        : 2021-10-13 09:43:55 UTC                                ##
 ##   description    : i3vm configuration file.                               ##
 ##   app            : i3                                                     ##
-##   target         : ${HOME}/.config/i3/config                              ##
 ## _________________________________________________________________________ ##
 
 set $mod Mod1
@@ -147,24 +146,24 @@ set $mod Mod1
 
 ## [ FLOATING WINDOWS ] ---------------------------------------------------- ##
 
-  #### Toggle tiling/floating.
+  ## >_ Toggle tiling/floating.
   bindsym $mod+Shift+space floating toggle
 
-  #### Drag floating windows to their wanted position.
+  ## >_ Drag floating windows to their wanted position.
   floating_modifier $mod
 
-  #### Make floating window sticky.
+  ## >_ Make floating window sticky.
   bindsym $mod+Shift+s sticky toggle
 
 ## [ SCRATCHPAD ] ---------------------------------------------------------- ##
 
-  #### Make the currently focused window a scratchpad.
+  ## >_ Make the currently focused window a scratchpad.
   bindsym $mod+Shift+minus floating toggle,                                   \
     resize set 1390px 850px,                                                  \
     move position center,                                                     \
     move scratchpad
 
-  #### Show scratchpad window.
+  ## >_ Show scratchpad window.
   bindsym $mod+minus scratchpad show
 
 ## [ WORKSPACE ] ----------------------------------------------------------- ##
@@ -259,6 +258,13 @@ set $mod Mod1
   for_window [title="EGOmenu"]                                                \
       floating enable,                                                        \
       resize set 800px 350px,                                                 \
+      move position center
+
+  ## ( PAVUCONTROL )
+ 
+  for_window [title="Volume Control"]                                         \
+      floating enable,                                                        \
+      resize set 900px 350px,                                                 \
       move position center
 
 ## [ STATUS BAR ] ---------------------------------------------------------- ##

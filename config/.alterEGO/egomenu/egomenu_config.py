@@ -13,5 +13,6 @@ additional_options = [
     MenuOption('pamac', 'launch', 'pamac-manager', 'PAMAC', 'Package Manager based on libalpm with AUR and Appstream support.', False),
     MenuOption('pdfman', 'stay_in_terminal', '${HOME}/fH/scripts/pdfman.sh && exit', 'PDFMAN', 'Open man in pdf.', True),
     MenuOption('toggle audio', 'launch', 'bash ${HOME}/fH/scripts/toggle_audio_device.sh && exit', 'AUDIO', 'Toggle audio device.', False),
+    MenuOption('virtualbox', 'launch', 'virtualbox', 'VBOX', 'Open-source virtualization tool.', False),
     MenuOption('Work RDP', 'launch', 'remmina --connect=/home/ghost/.local/share/remmina/group_rdp_work_ws-18-02-mtl-radiologymontreal-com.remmina', 'WILLWORK', 'Connect to work. mstsc', False),
     ]

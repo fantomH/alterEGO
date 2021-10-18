@@ -4,7 +4,7 @@
 ##                                                                           ##
 ## .tryhackmerc                                                              ##
 ##   created     : 2021-03-07 15:10:11 UTC                                   ##
-##   updated     : 2021-09-26 12:10:37 UTC                                   ##
+##   updated     : 2021-10-18 09:34:19 UTC                                   ##
 ##   description : TryHackMe stuff                                           ##
 ##   target      : ${HOME}/.alterEGO/.tryhackmerc                            ##
 ## _________________________________________________________________________ ##
@@ -90,6 +90,13 @@ EOF
   export THM_MAINDIR
   export THM_PATH="$THM_MAINDIR/$THM_ROOM"
   export THM_TOOLS="$THM_MAINDIR/tools"
+
+  ## (ROOM PATH EXISTS?)
+
+  if [ ! -d ${THM_PATH} ]; then
+    mkdir -p ${THM_PATH}
+    echo "Room created"
+  fi
 
   ## [ METASPLOIT ]
   ##### Create msfconsole resource file.

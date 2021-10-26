@@ -9,6 +9,7 @@
 ##   target      : ${HOME}/.alterEGO/.tryhackmerc                            ##
 ## _________________________________________________________________________ ##
 
+  THM_CONFIG_DIR=""
   CONFIG="${HOME}/.alterEGO/.tryhackme.conf"
   [[ -f ${CONFIG} ]] && . ${CONFIG}
 

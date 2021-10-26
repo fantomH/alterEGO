@@ -69,6 +69,15 @@ $ pacman -Qo pdflatex
 /usr/bin/pdflatex is owned by texlive-bin 2021.58686-3
 ```
 
+### tcpdump
+
+```
+tcpdump
+  package          : extra/tcpdump
+  url              : https://www.tcpdump.org/
+  description      : Powerful command-line packet analyzer
+```
+
 ### tor-browser
 
 ```

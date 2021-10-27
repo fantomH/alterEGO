@@ -78,6 +78,8 @@ tcpdump
   description      : Powerful command-line packet analyzer
 ```
 
+<p><em>ref.</em> Daniel Miessler, <a href="https://danielmiessler.com/study/tcpdump/" target="_blank">"A tcpdump Tutorial with Examples — 50 Ways to Isolate Traffic"</a>.</p>
+
 ### tor-browser
 
 ```
@@ -256,3 +258,15 @@ Shell commands for TryHackMe.com
     Date last updated: 23 May 2012
     Project Gutenberg Canada ebook #949
     url: http://gutenberg.ca/ebooks/orwellg-nineteeneightyfour/orwellg-nineteeneightyfour-00-h.html
+
+## Web Browser + plugins
+
+### CSSViewer
+
+```
+CSSViewer
+  description      : A simple yet powerful CSS property viewer.
+  author           : Mohsen Khanpour
+  url              : https://github.com/mohsenkhanpour/CSSViewer
+  mozilla add-ons  : https://addons.mozilla.org/en-US/firefox/addon/cssviewer-quantum/
+```

@@ -22,6 +22,7 @@ case ${2} in
         
     *)
         exec /usr/bin/i3
+        /usr/bin/bash .autostart
         ;;
 
 esac

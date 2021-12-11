@@ -1,15 +1,14 @@
 ## { alterEGO Linux: "Open the vault of knowledge" } ----------------------- ##
 ##                                                                           ##
-## .profile                                                                  ##
+## ~/.profile                                                                ##
 ##   created        : 2021-04-28 14:59:01 UTC                                ##
-##   updated        : 2021-09-26 12:03:52 UTC                                ##
+##   updated        : 2021-12-06 11:17:59 UTC                                ##
 ##   description    : Loaded in non interactive shell.                       ##
-##   app            : sh                                                     ##
-##   target         : ${HOME}/.profile                                       ##
 ## _________________________________________________________________________ ##
 
   [ -f ${HOME}/.alterEGO/.egorc ] && . ${HOME}/.alterEGO/.egorc
   [ -f ${HOME}/.alterEGO/.functions ] && . ${HOME}/.alterEGO/.functions
+  [ -f ${HOME}/.alterEGO/.containers ] && . ${HOME}/.alterEGO/.containers
   [ -f ${HOME}/.alterEGO/.extrarc ] && . ${HOME}/.alterEGO/.extrarc
 
 ## [ LOADED ] -------------------------------------------------------------- ##

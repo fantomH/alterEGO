@@ -1,13 +1,10 @@
 #! /usr/bin/env sh
-
 ## { alterEGO Linux: "Open the vault of knowledge" } ----------------------- ##
 ##                                                                           ##
-## .functions                                                                ##
+## ~/.alterEGO/.functions                                                    ##
 ##   created        : 2021-05-25 19:40:20 UTC                                ##
-##   updated        : 2021-10-05 09:30:36 UTC                                ##
-##   description    : Shell functions.                                       ##
-##   app            : sh                                                     ##
-##   target         : ${HOME}/.alterEGO/.functions                           ##
+##   updated        : 2021-12-11 11:08:28 UTC                                ##
+##   description    : Shell functions to complement .egorc                   ##
 ## _________________________________________________________________________ ##
 
   busy() {
@@ -77,7 +74,7 @@
   docker666() {
     ##### START/STOP docker service
 
-    printf "%b\n" "${COLOR_GREEN}[+]${COLOR_RESET} ${COLOR_BOLD}Runing docker666() ${1}...${COLOR_RESET}"
+    printf "%b\n" "${COLOR_GREEN}[+]${COLOR_RESET} ${COLOR_BOLD}Runing docker666() to check docker status...${COLOR_RESET}"
 
     case "${1}" in
 
@@ -206,6 +203,12 @@
 
       curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py \
       | python -
+  }
+
+  nmapBasic() {
+      printf "%b\n" "${COLOR_BLUE}[-]${COLOR_RESET} ${COLOR_BOLD}Function <nmapBasic> is <sudo grc nmap -sV -O -sC --traceroute> ...${COLOR_RESET}"
+      sleep 2
+      sudo grc nmap -sV -O -sC --traceroute ${@}
   }
 
   nowutc() {

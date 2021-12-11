@@ -1,10 +1,9 @@
 #!/usr/bin/env sh
-
 ## { alterEGO Linux: "Open the vault of knowledge" } ----------------------- ##
 ##                                                                           ##
-## ~/.aterEGO/.egorc                                                         ##
+## ~/.alterEGO/.egorc                                                        ##
 ##   created     : 2021-03-19 09:37:19 UTC                                   ##
-##   updated     : 2021-10-05 10:01:01 UTC                                   ##
+##   updated     : 2021-12-11 11:09:26 UTC                                   ##
 ##   description : Additional shell stuff for alterEGO Linux.                ##
 ## _________________________________________________________________________ ##
 
@@ -21,7 +20,6 @@
 ## [ ALIAS ] --------------------------------------------------------------- ##
 
   alias msfconsole='msfconsole -x "db_connect ${USER}@msf"'
-  alias nmapBasic='sudo grc nmap -sV -O -sC --traceroute'
 
 ## [ DEFAULT APPLICATIONS ] ------------------------------------------------ ##
 
@@ -103,17 +101,34 @@
 
 ## [ PROMPTS ] ------------------------------------------------------------- ##
 
-  PROMPT_COMMAND='history -a'
+  prompt_command() {
+      history -a
+      dateNOW="$(date "+%F %H:%M:%S %Z")"
+      #### tty won't show unicode character #10095.
+      if tty | grep pts &>/dev/null; then
 
-  ## [ SIMPLE ]
-  # export PS1='[\u@\h \W]\$ '
-  
-  ## [ EGO ]
-  # export PS1="\[${COLOR_GREEN}\]\h [\w] • ${IPLOC}\n\[${COLOR_GREEN}\]$ \[${COLOR_RESET}\]"
-  export PS1="\[${COLOR_RESET}\]\[${COLOR_GREEN}\]┌────(\u@\h)-[\[${COLOR_RESET}\]\w\[${COLOR_GREEN}\]] • \[$(date "+%F %H:%M:%S %Z")\] • \[$(echo "SHLVL ${SHLVL}")\] • \[${IPLOC}\]\n\[${COLOR_GREEN}\]└─$ \[${COLOR_RESET}\]"
+          ## ( SIMPLE )
+          # export PS1='[\u@\h \W]\$ '
+          
+          ## ( KALI STYLE )
+          # export PS1="\[${COLOR_RESET}\]\[${COLOR_GREEN}\]┌────(\[${COLOR_RESET}\]\u@\h\[${COLOR_GREEN}\])-[\[${COLOR_RESET}\]\w\[${COLOR_GREEN}\]]\n\[${COLOR_GREEN}\]└─$ \[${COLOR_RESET}\]"
 
-  ## [ KALI STYLE ]
-  # export PS1="\[${COLOR_RESET}\]\[${COLOR_GREEN}\]┌────(\[${COLOR_RESET}\]\u@\h\[${COLOR_GREEN}\])-[\[${COLOR_RESET}\]\w\[${COLOR_GREEN}\]]\n\[${COLOR_GREEN}\]└─$ \[${COLOR_RESET}\]"
+          ## ( EGO )
+          export PS1="\[${COLOR_RESET}\]\[${COLOR_GREEN}\](\u@\h)-[\[${COLOR_RESET}\]\w\[${COLOR_GREEN}\]] • \[$dateNOW\]\n\[${COLOR_GREEN}\]❯ \[${COLOR_RESET}\]"
+      else
+
+          ## ( SIMPLE )
+          # export PS1='[\u@\h \W]\$ '
+          
+          ## ( KALI STYLE )
+          # export PS1="\[${COLOR_RESET}\]\[${COLOR_GREEN}\]┌────(\[${COLOR_RESET}\]\u@\h\[${COLOR_GREEN}\])-[\[${COLOR_RESET}\]\w\[${COLOR_GREEN}\]]\n\[${COLOR_GREEN}\]└─$ \[${COLOR_RESET}\]"
+
+          ## ( EGO )
+          export PS1="\[${COLOR_RESET}\]\[${COLOR_GREEN}\](\u@\h)-[\[${COLOR_RESET}\]\w\[${COLOR_GREEN}\]] • \[$dateNOW\]\n\[${COLOR_GREEN}\]> \[${COLOR_RESET}\]"
+      fi
+  }
+
+  PROMPT_COMMAND=prompt_command
 
 ## [ GOTO ] ---------------------------------------------------------------- ##
 

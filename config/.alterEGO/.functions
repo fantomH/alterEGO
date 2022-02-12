@@ -3,7 +3,7 @@
 ##                                                                           ##
 ## ~/.alterEGO/.functions                                                    ##
 ##   created        : 2021-05-25 19:40:20 UTC                                ##
-##   updated        : 2021-12-11 11:08:28 UTC                                ##
+##   updated        : 2021-12-11 11:39:00 UTC                                ##
 ##   description    : Shell functions to complement .egorc                   ##
 ## _________________________________________________________________________ ##
 
@@ -206,7 +206,7 @@
   }
 
   nmapBasic() {
-      printf "%b\n" "${COLOR_BLUE}[-]${COLOR_RESET} ${COLOR_BOLD}Function <nmapBasic> is <sudo grc nmap -sV -O -sC --traceroute> ...${COLOR_RESET}"
+      printf "%b\n" "${COLOR_BLUE}[-]${COLOR_RESET} ${COLOR_BOLD}Function <nmapBasic> is <sudo grc nmap -sV -O -sC --traceroute ${*}> ...${COLOR_RESET}"
       sleep 2
       sudo grc nmap -sV -O -sC --traceroute ${@}
   }
@@ -242,6 +242,13 @@
 
       printf "%b\n" "${COLOR_BLUE}[-]${COLOR_RESET} ${COLOR_BOLD}Function <pywebserver> is <python -m http.server> ...${COLOR_RESET}"
       python -m http.server
+  }
+
+  scanNet() {
+      printf "%b\n" "${COLOR_GREEN}[+]${COLOR_RESET} ${COLOR_BOLD}<scanNet> running...${COLOR_RESET}"
+      printf "%b\n" "${COLOR_BLUE}[+]${COLOR_RESET} ${COLOR_BOLD}sudo rustscan -a ${1} -- -sV -O -sC --traceroute -Pn${COLOR_RESET}"
+      sleep 2
+      sudo rustscan -a ${1} -- -sV -O -sC --traceroute -Pn
   }
 
   tagalog() {

@@ -1,21 +1,3 @@
----
-geometry: "left=3cm,right=3cm,top=2cm,bottom=2cm"
----
-
-~/.alterEGO/.tryhackmerc
-~/.alterEGO/.tryhackme.conf
-
-Shell commands for TryHackMe.com
-  - attack
-  - attack start
-  - attack set-player
-  - attack set-room
-  - attack set-rhost
-
-### ~/.vimrc
-
-### ~/.xinitrc
-
 ## Keyboard mapping
 
 | APPS         | KEYS                        | DESCRIPTION                                                               |
@@ -129,18 +111,6 @@ Shell commands for TryHackMe.com
 | ports                      | .functions          | is `sudo netstat -tulanp`                                                                          |
 | psbasic                    | .functions          | is `ps aux`                                                                                        |
 | psgrep                     | .functions          | `ps aux | grep -Ei $@`                                                                             |
-
-## Collection
-
-### George Orwell (1949), "Nineteen Eighty-Four"
-    Title: Nineteen Eighty-Four
-    Author: Orwell, George [Blair, Eric Arthur] (1903-1950)
-    Date of first publication: 1949
-    Edition used as base for this ebook: London: Secker & Warburg; Toronto: S. J. Reginald Saunders, 1949
-    Date first posted: 23 May 2012
-    Date last updated: 23 May 2012
-    Project Gutenberg Canada ebook #949
-    url: http://gutenberg.ca/ebooks/orwellg-nineteeneightyfour/orwellg-nineteeneightyfour-00-h.html
 
 ## Web Browser + plugins
 

@@ -28,35 +28,6 @@
 | i3           | MOD+RETURN                  | Opens new terminal with tmux                                              |
 | i3           | MOD+b                       | Bookmarks: bookmarks.py                                                   |
 | i3           | MOD+m                       | EGOmenu: EGOmenu.py                                                       |
-| vim          | CTRL+f                      | Find in document (requires fzf.vim)                                       |
-| vim          | CTRL+l                      | To lowercase                                                              |
-| vim          | CTRL+o                      | List and open files in $HOME                                              |
-| vim          | CTRL+s                      | Saves just like on Window!                                                |
-| vim          | CTRL+u                      | To UPPERCASE                                                              |
-| vim          | F3                          | Toggle search highlighting                                                |
-| vim          | F4                          | ToggleNetrw() File Explorer                                               |
-| vim          | F5                          | Toggle spellchecker                                                       |
-| vim          | F7                          | Copy selection to clipboard (requires xclip)                              |
-| vim          | F9                          | Insert UTC timestamp as ID                                                |
-| vim          | F12                         | Insert UTC timestamp                                                      |
-| vim          | LEADER+c                    | CommentToggle()                                                           |
-| vim          | LEADER+cs                   | Clear search highlighting                                                 |
-| vim          | LEADER+ev                   | Edit $MYVIMRC in a new tab                                                |
-| vim          | LEADER+hc                   | Clear lines highlights                                                    |
-| vim          | LEADER+hl                   | Highlights current line.                                                  |
-| vim          | LEADER+hp                   | View python documentation of current word                                 |
-| vim          | LEADER+k                    | View man page of current word                                             |
-| vim          | LEADER+ln                   | Toggle line numbering                                                     |
-| vim          | LEADER+ls                   | List and open files in Buffer (requires fzf.vim)                          |
-| vim          | LEADER+os                   | List and open files in / (requires fzf.vim)                               |
-| vim          | LEADER+p                    | RunPython()                                                               |
-| vim          | LEADER+so                   | Source $MYVIMRC                                                           |
-| vim          | LEADER+ss                   | Kill script running in tmux -t 1                                          |
-| vim          | LEADER+sx                   | Toggle Syntastic (requires syntastic plugin)                              |
-| vim          | LEADER+w                    | Toggle line wrap                                                          |
-| vim          | SHIFT+F7                    | Paste selection from clipboard (requires xclip)                           |
-| vim          | ,,                          | Same as ESC                                                               |
-| vim          | LEADER+64                   | Decode base64 inplace                                                     |
 
 ## Shell aliases and functions
 

@@ -83,14 +83,3 @@
 | psbasic                    | .functions          | is `ps aux`                                                                                        |
 | psgrep                     | .functions          | `ps aux | grep -Ei $@`                                                                             |
 
-## Web Browser + plugins
-
-### CSSViewer
-
-```
-CSSViewer
-  description      : A simple yet powerful CSS property viewer.
-  author           : Mohsen Khanpour
-  url              : https://github.com/mohsenkhanpour/CSSViewer
-  mozilla add-ons  : https://addons.mozilla.org/en-US/firefox/addon/cssviewer-quantum/
-```
